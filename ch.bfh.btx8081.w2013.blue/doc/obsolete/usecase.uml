@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_apIaEDZFEeOGi4IeDkZOrQ" name="NewModel">
+  <packagedElement xmi:type="uml:Actor" xmi:id="_qCrW8DZFEeOGi4IeDkZOrQ" name="User"/>
+  <packagedElement xmi:type="uml:Artifact" xmi:id="_1hrJ0DZFEeOGi4IeDkZOrQ" name="iDoctor" useCase="_3I_F4DZFEeOGi4IeDkZOrQ _370RADZFEeOGi4IeDkZOrQ _4jNBIDZFEeOGi4IeDkZOrQ _IoqV4DZTEeOGi4IeDkZOrQ"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_3I_F4DZFEeOGi4IeDkZOrQ" name="release alert" subject="_1hrJ0DZFEeOGi4IeDkZOrQ"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_370RADZFEeOGi4IeDkZOrQ" name="denial handling" subject="_1hrJ0DZFEeOGi4IeDkZOrQ">
+    <include xmi:id="_NwPTsDZTEeOGi4IeDkZOrQ" addition="_IoqV4DZTEeOGi4IeDkZOrQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_4jNBIDZFEeOGi4IeDkZOrQ" name="patient referral" subject="_1hrJ0DZFEeOGi4IeDkZOrQ">
+    <include xmi:id="_MqjeADZTEeOGi4IeDkZOrQ" addition="_IoqV4DZTEeOGi4IeDkZOrQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_AvK9ADZGEeOGi4IeDkZOrQ" name="Therapist (external)">
+    <generalization xmi:id="_Wo4wYDZIEeOGi4IeDkZOrQ" general="_qCrW8DZFEeOGi4IeDkZOrQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_n9SiUDZGEeOGi4IeDkZOrQ" name="Doctor">
+    <generalization xmi:id="_vFjlgDZGEeOGi4IeDkZOrQ" general="_qCrW8DZFEeOGi4IeDkZOrQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_oREZ8DZGEeOGi4IeDkZOrQ" name="Therapist">
+    <generalization xmi:id="_v7iLQDZGEeOGi4IeDkZOrQ" general="_qCrW8DZFEeOGi4IeDkZOrQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_rlIWQDZHEeOGi4IeDkZOrQ" name="Association_patient referral_to_denial handling" memberEnd="_rlRgMDZHEeOGi4IeDkZOrQ _rlSHQDZHEeOGi4IeDkZOrQ">
+    <ownedEnd xmi:id="_rlRgMDZHEeOGi4IeDkZOrQ" type="_4jNBIDZFEeOGi4IeDkZOrQ" association="_rlIWQDZHEeOGi4IeDkZOrQ"/>
+    <ownedEnd xmi:id="_rlSHQDZHEeOGi4IeDkZOrQ" type="_370RADZFEeOGi4IeDkZOrQ" association="_rlIWQDZHEeOGi4IeDkZOrQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_sgiOkDZHEeOGi4IeDkZOrQ" name="Association_denial handling_to_release alert" memberEnd="_sgiOkTZHEeOGi4IeDkZOrQ _sgjcsDZHEeOGi4IeDkZOrQ">
+    <ownedEnd xmi:id="_sgiOkTZHEeOGi4IeDkZOrQ" type="_370RADZFEeOGi4IeDkZOrQ" association="_sgiOkDZHEeOGi4IeDkZOrQ"/>
+    <ownedEnd xmi:id="_sgjcsDZHEeOGi4IeDkZOrQ" type="_3I_F4DZFEeOGi4IeDkZOrQ" association="_sgiOkDZHEeOGi4IeDkZOrQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_tph28DZHEeOGi4IeDkZOrQ" name="Association_patient referral_to_release alert" memberEnd="_tpieADZHEeOGi4IeDkZOrQ _tpjFEDZHEeOGi4IeDkZOrQ">
+    <ownedEnd xmi:id="_tpieADZHEeOGi4IeDkZOrQ" type="_4jNBIDZFEeOGi4IeDkZOrQ" association="_tph28DZHEeOGi4IeDkZOrQ"/>
+    <ownedEnd xmi:id="_tpjFEDZHEeOGi4IeDkZOrQ" type="_3I_F4DZFEeOGi4IeDkZOrQ" association="_tph28DZHEeOGi4IeDkZOrQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_03Qo8DZHEeOGi4IeDkZOrQ" name="Association_User_to_release alert" memberEnd="_03RQADZHEeOGi4IeDkZOrQ _03RQATZHEeOGi4IeDkZOrQ">
+    <ownedEnd xmi:id="_03RQADZHEeOGi4IeDkZOrQ" type="_qCrW8DZFEeOGi4IeDkZOrQ" association="_03Qo8DZHEeOGi4IeDkZOrQ"/>
+    <ownedEnd xmi:id="_03RQATZHEeOGi4IeDkZOrQ" type="_3I_F4DZFEeOGi4IeDkZOrQ" association="_03Qo8DZHEeOGi4IeDkZOrQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_an3HYDZIEeOGi4IeDkZOrQ" name="Police"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_yw8AMDZIEeOGi4IeDkZOrQ" name="Association_Police_to_release alert" memberEnd="_yw8nQDZIEeOGi4IeDkZOrQ _yw9OUDZIEeOGi4IeDkZOrQ">
+    <ownedEnd xmi:id="_yw8nQDZIEeOGi4IeDkZOrQ" type="_an3HYDZIEeOGi4IeDkZOrQ" association="_yw8AMDZIEeOGi4IeDkZOrQ"/>
+    <ownedEnd xmi:id="_yw9OUDZIEeOGi4IeDkZOrQ" type="_3I_F4DZFEeOGi4IeDkZOrQ" association="_yw8AMDZIEeOGi4IeDkZOrQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_IoqV4DZTEeOGi4IeDkZOrQ" name="data validation" subject="_1hrJ0DZFEeOGi4IeDkZOrQ"/>
+</uml:Model>

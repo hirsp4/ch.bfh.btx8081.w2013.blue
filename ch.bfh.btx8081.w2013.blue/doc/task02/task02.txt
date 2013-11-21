@@ -1,0 +1,35 @@
+meeting 25.09.13
+
+agile: 
++ customer involvement
++ responding to the change
++ according to our knowledge it's simpler and easier
++ small team
++ easier to realise task after task
++ all members know everything
+
+- customer is not available
+- final result is not visible
+- complexity might be a problem
+
+2.
+XP: 
+
+select user stories: 
+- goal: tasks
+break them down to tasks: stakeholder and team
+- goal: satisfy customer wishes
+- potential output: base for implementation
+plan release: stakeholder and team
+- goal: deadline
+develop/integrate/test software (both): team
+- goal: define test before programming, realization plan
+output: program 
+release software: both
+- goal: provide software to the customer
+evaluate system: both
+- goal: changes based on feedback
+
+relations among outputs
+- if we haven't the pree activity we cannot do the next activity 
+++

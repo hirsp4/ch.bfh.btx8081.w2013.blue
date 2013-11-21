@@ -1,0 +1,29 @@
+
+meeting 25.09.13
+
+1. target users
+- clinical staff
+    - doctors
+    - nurses
+    - health visitors
+- receptionists
+- medical records staff
+
+2. key features
+- clinical staff: agenda, medical record, 
+    - doctors: descriptions, therapy records, instructions
+    - nurses: therapy records, instructions
+    - health visitors: 
+- receptionists: agenda
+- medical records staff: generating reports for management
+
+3. critical success factor
+- focus on mental health care
+- data integrity
+- intuition
+
+
+4. potential system components and architecture
+- database
+- interface usability 
+- user privileges management
