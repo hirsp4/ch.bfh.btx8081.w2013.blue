@@ -1,8 +1,16 @@
 package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue;
 
+import java.awt.Dimension;
+
+import com.vaadin.ui.UI;
+
 public class AlertView {
 	//Kommentar
 	public AlertView(){
 		
+	}
+	
+	private Dimension getWindowSize(){
+		return new Dimension(UI.getCurrent().getPage().getBrowserWindowHeight(), UI.getCurrent().getPage().getBrowserWindowHeight());
 	}
 }

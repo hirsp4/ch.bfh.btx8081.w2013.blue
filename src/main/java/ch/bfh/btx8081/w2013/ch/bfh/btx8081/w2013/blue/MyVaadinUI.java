@@ -4,6 +4,7 @@ import javax.servlet.annotation.WebServlet;
 
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
+import com.vaadin.client.ApplicationConfiguration;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Button;
@@ -27,6 +28,7 @@ public class MyVaadinUI extends UI
         final VerticalLayout layout = new VerticalLayout();
         layout.setMargin(true);
         setContent(layout);
+        
         
         Button button = new Button("Click Me again");
         Label label = new Label("Ich bin ein Label und heisse URS!");
