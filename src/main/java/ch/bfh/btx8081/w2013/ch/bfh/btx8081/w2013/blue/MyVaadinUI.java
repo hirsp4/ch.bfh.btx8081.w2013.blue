@@ -28,7 +28,7 @@ public class MyVaadinUI extends UI
         layout.setMargin(true);
         setContent(layout);
         
-        Button button = new Button("Click Me");
+        Button button = new Button("Click Me again");
         Label label = new Label("Ich bin ein Label und heisse URS!");
         layout.addComponent(label);
         button.addClickListener(new Button.ClickListener() {
