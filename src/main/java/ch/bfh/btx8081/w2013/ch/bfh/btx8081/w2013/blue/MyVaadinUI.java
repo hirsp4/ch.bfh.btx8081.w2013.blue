@@ -33,7 +33,7 @@ public class MyVaadinUI extends UI
         layout.addComponent(label);
         button.addClickListener(new Button.ClickListener() {
             public void buttonClick(ClickEvent event) {
-                layout.addComponent(new Label("Thank you for clicking"));
+                layout.addComponent(new Label("Thank you for not clicking"));
             }
         });
         layout.addComponent(button);
