@@ -1,2 +1,0 @@
-# Module ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.AppWidgetSet
-# RPC service class, partial path of RPC policy file
