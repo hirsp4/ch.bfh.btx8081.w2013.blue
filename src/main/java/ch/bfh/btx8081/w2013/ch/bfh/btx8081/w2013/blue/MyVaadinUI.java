@@ -30,7 +30,7 @@ public class MyVaadinUI extends UI
         setContent(layout);
         
         
-        Button button = new Button("Click Me again");
+        Button button = new Button("Click Me");
         Button btn1 = new Button("hoi du");
         Label label = new Label("Ich bin ein Label und heisse URS!");
         layout.addComponent(label);
@@ -40,6 +40,7 @@ public class MyVaadinUI extends UI
             }
         });
         layout.addComponent(button);
+        layout.addComponent(btn1);
     }
 
 }
