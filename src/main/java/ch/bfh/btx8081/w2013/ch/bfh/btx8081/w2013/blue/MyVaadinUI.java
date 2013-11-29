@@ -18,6 +18,10 @@ import com.vaadin.ui.VerticalLayout;
 public class MyVaadinUI extends UI
 {
 
+	
+	private AlertView view1 = new AlertView();
+	
+	
     @WebServlet(value = "/*", asyncSupported = true)
     @VaadinServletConfiguration(productionMode = false, ui = MyVaadinUI.class, widgetset = "ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.AppWidgetSet")
     public static class Servlet extends VaadinServlet {
@@ -29,7 +33,7 @@ public class MyVaadinUI extends UI
         layout.setMargin(true);
         setContent(layout);
         
-        
+        Button button2 = new Button("Hallo Velo");
         Button button = new Button("Click Me again");
         Label label = new Label("Ich bin ein Label und heisse URS!");
         layout.addComponent(label);
@@ -39,6 +43,7 @@ public class MyVaadinUI extends UI
             }
         });
         layout.addComponent(button);
+        layout.addComponent(button2);
     }
 
 }
