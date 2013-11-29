@@ -31,6 +31,7 @@ public class MyVaadinUI extends UI
         
         
         Button button = new Button("Click Me again");
+        Button btn1 = new Button("hoi du");
         Label label = new Label("Ich bin ein Label und heisse URS!");
         layout.addComponent(label);
         button.addClickListener(new Button.ClickListener() {
