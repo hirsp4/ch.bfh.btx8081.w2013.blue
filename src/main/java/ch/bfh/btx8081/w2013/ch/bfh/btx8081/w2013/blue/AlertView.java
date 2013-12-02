@@ -1,26 +1,37 @@
 package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue;
 
-import java.awt.Dimension;
-import java.awt.Rectangle;
-
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
+/**
+ * 
+ * @author Rafael Kapp
+ *
+ *
+ *AlertView v1.0 29.11.2013
+ *
+ *This is the mainView  for the Alert thing
+ *
+ */
 public class AlertView extends VerticalLayout implements View{
 	
-	private Window window;
-	private MyLabel lbl;
+	/**
+	 * Default seralVersssonUID cause the warning was annoying!
+	 */
+	private static final long serialVersionUID = 1L;	
 	
+	private MyPanel myPanel;
 
 	public AlertView(){
 		setSizeFull();
 		this.setMargin(true);
-		
-		this.window = new Window();
-		this.lbl = new MyLabel("Stroke me", window);
-		addComponent(this.lbl);
+		myPanel = new MyPanel();
+		addComponent(myPanel);
+	}
+	
+	public void update(){
+		myPanel.update();
 	}
 
 	@Override
