@@ -6,7 +6,7 @@ import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.server.Sizeable;
+import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Slider;
 import com.vaadin.ui.VerticalLayout;
 
@@ -43,12 +43,15 @@ public class AlertView extends VerticalLayout implements View{
 			public void valueChange(ValueChangeEvent event) {
 		        double value = (Double) s.getValue();
 		        if(value<s.getMax()){
-		        	
+		        	s.setValue(0.0);
 		        }else{
 		        	MyVaadinUI.setPatientView(new PatientView());
 		        }
 		    }
 		});
+		
+		s.setIcon(new ThemeResource("alert.png"));
+		s.setWidth("260");
 		return s;
 	}
 	

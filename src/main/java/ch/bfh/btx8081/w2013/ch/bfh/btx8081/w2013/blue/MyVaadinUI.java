@@ -26,7 +26,7 @@ public class MyVaadinUI extends UI
 
     @Override
     protected void init(VaadinRequest request) {
-    	getPage().setTitle("Alert Baby!");
+    	getPage().setTitle("iDoctor Web-Application");
     	
     	navi = new Navigator(this, this);
     	
