@@ -1,20 +1,20 @@
 package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue;
 
 import javax.servlet.annotation.WebServlet;
-
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.patient.PatientView;
-
+import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
-import com.vaadin.navigator.View;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
+import com.vaadin.shared.communication.PushMode;
 import com.vaadin.ui.UI;
 
 
 @Theme("mytheme")
 @SuppressWarnings("serial")
+@Push(PushMode.MANUAL)
 public class MyVaadinUI extends UI
 {
 	private static Navigator navi;
@@ -38,8 +38,15 @@ public class MyVaadinUI extends UI
     }
     
     public static void setPatientView(PatientView pv){
+		pv.setImmediate(true);
     	navi.addView("Patient", pv);
     	navi.navigateTo("Patient");
     }
+
+	public static void setAlertView(AlertView av) {
+		av.setImmediate(true);
+		navi.addView("Alert", av);
+    	navi.navigateTo("Alert");
+	}
 
 }

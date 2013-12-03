@@ -16,8 +16,7 @@ import com.vaadin.ui.VerticalLayout;
  */
 
 public class PatientView extends VerticalLayout implements View{
-	
-
+	private static final long serialVersionUID = 1L;
 	public PatientView(){
 		setSizeFull();
 		this.setMargin(true);
