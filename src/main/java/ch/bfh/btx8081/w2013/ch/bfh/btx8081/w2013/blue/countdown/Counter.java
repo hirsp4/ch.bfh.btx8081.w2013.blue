@@ -2,7 +2,7 @@ package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.countdown;
 
 import com.vaadin.ui.Notification;
 
-import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.MyVaadinUI;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.Alert.MyVaadinUI;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.patient.PatientView;
 
 public class Counter extends Thread{
