@@ -3,6 +3,8 @@ package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.person;
 import java.util.ArrayList;
 import java.util.Date;
 
+import ch.bfh.btx8081.w2013.blue.ch.bfh.btx8081.w2013.blue.event.IEvent;
+
 public class Patient extends Person{
 
 	private int pid;
@@ -18,6 +20,8 @@ public class Patient extends Person{
 		return this.medication;
 	}
 	
-	@Overwrite
-	public void 
+	@Override
+	public void addEvent(IEvent event){
+		
+	}
 }
