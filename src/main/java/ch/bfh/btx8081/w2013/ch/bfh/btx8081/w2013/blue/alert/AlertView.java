@@ -1,4 +1,4 @@
-package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.Alert;
+package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.alert;
 
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.countdown.Counter;
 import com.vaadin.data.Property;

@@ -1,4 +1,4 @@
-package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.Alert;
+package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.alert;
 
 import javax.servlet.annotation.WebServlet;
 
