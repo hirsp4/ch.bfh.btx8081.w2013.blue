@@ -24,4 +24,8 @@ public class Patient extends Person{
 	public void addEvent(IEvent event){
 		
 	}
+	
+	public String toString(){
+		return Integer.toString(pid);
+	}
 }
