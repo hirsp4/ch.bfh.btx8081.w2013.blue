@@ -18,10 +18,8 @@ import com.vaadin.ui.VerticalLayout;
 public class PatientView extends VerticalLayout implements View{
 	private static final long serialVersionUID = 1L;
 	public PatientView(){
-		setSizeFull();
-		this.setMargin(true);
-		addComponent(new TextFieldPanel()); // create the textfield panel and add it to the
-											// patient view.
+		setMargin(true);
+		addComponent(new TextFieldPanel()); // create the textfield panel and add it to the										// patient view.
 	}
 
 	@Override

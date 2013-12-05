@@ -1,5 +1,7 @@
 package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.countdown;
 
+import com.vaadin.server.Page;
+import com.vaadin.shared.Position;
 import com.vaadin.ui.Notification;
 
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.alert.MyVaadinUI;
@@ -18,8 +20,11 @@ public class Counter extends Thread{
 				Thread.sleep(5000);
 				MyVaadinUI.getCurrent().markAsDirty();
 				MyVaadinUI.setPatientView(new PatientView());
-				Notification.show("ALERT IS RELEASED" + "\n "
+				Notification notif = new Notification("ALERT IS RELEASED" + "\n "
 						+ "You can now update the PatientData.", Notification.TYPE_ERROR_MESSAGE);
+	        	notif.setDelayMsec(5000);
+	        	notif.setPosition(Position.BOTTOM_RIGHT);
+				notif.show(Page.getCurrent());
 				MyVaadinUI.getCurrent().push();
 			} catch (InterruptedException e) {
 			}

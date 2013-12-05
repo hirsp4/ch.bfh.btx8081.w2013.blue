@@ -1,5 +1,7 @@
 package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.patient;
 
+import com.vaadin.server.Page;
+import com.vaadin.shared.Position;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Notification;
@@ -7,6 +9,7 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.themes.ChameleonTheme;
 
 /**
  * 
@@ -32,12 +35,17 @@ public class TextFieldPanel extends Panel {
 
 	public TextFieldPanel() {
 
-		this.addStyleName("labelPanel");
-		this.setSizeUndefined();
 		this.pidField = new TextField("PID:");
+		this.pidField.setStyleName(ChameleonTheme.TEXTFIELD_BIG);
 		this.nameField = new TextField("Name:");
+		this.nameField.setStyleName(ChameleonTheme.TEXTFIELD_BIG);
 		this.forenameField = new TextField("Forename:");
+		this.forenameField.setStyleName(ChameleonTheme.TEXTFIELD_BIG);
 		this.infoArea = new TextArea();
+		this.addStyleName(ChameleonTheme.PANEL_LIGHT);
+		this.setWidth("290px");
+		this.setHeight("450px");
+		
 
 		FormLayout content = new FormLayout();
 		content.addStyleName("labelPanelContent");
@@ -59,6 +67,7 @@ public class TextFieldPanel extends Panel {
 	 */
 	public Button createAddPatientButton() {
 		Button addPatientButton = new Button("Add Patient");
+		addPatientButton.setStyleName(ChameleonTheme.BUTTON_BIG);
 		addPatientButton.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;
 
@@ -126,9 +135,12 @@ public class TextFieldPanel extends Panel {
 		// the boolean valid PID is set true. if not, a notification
 		// is shown and the field will be set empty.
 		if (!getPID().matches("\\d*")) {
-			Notification.show("Input failure",
+			Notification notif = new Notification("Input failure",
 					"Please enter a valid PID (integer)",
 					Notification.Type.WARNING_MESSAGE);
+        	notif.setDelayMsec(5000);
+        	notif.setPosition(Position.BOTTOM_RIGHT);
+			notif.show(Page.getCurrent());
 			this.pidField.setValue("");
 		} else
 			validPID = true;
@@ -137,8 +149,11 @@ public class TextFieldPanel extends Panel {
 		// the boolean valid PID is set true. if not, a notification
 		// is shown.
 		if (getName().isEmpty() || getForename().isEmpty()) {
-			Notification.show("Input failure", "Text fields can't be empty.",
+			Notification notif = new Notification("Input failure", "Text fields can't be empty.",
 					Notification.Type.WARNING_MESSAGE);
+        	notif.setDelayMsec(5000);
+        	notif.setPosition(Position.MIDDLE_RIGHT);
+			notif.show(Page.getCurrent());
 		} else
 			validStrings = true;
 
