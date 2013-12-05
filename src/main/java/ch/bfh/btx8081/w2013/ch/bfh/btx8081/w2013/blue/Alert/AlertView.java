@@ -26,11 +26,15 @@ public class AlertView extends VerticalLayout implements View{
 	
 	/**
 	 * Default seralVersssonUID cause the warning was annoying!
+	 * Slider used to release the Alert
 	 */
 	private static final long serialVersionUID = 1L;	
 	private final Slider slider;
 	private Counter counter;
 	
+	/**
+	 * Add the different Components the View need, and make a Counterinstance
+	 */
 	public AlertView(){
 		this.counter = new Counter();
 		VerticalLayout layout = new VerticalLayout();
@@ -42,6 +46,11 @@ public class AlertView extends VerticalLayout implements View{
 		addComponent(layout);
 	}
 	
+	/**
+	 * Make the Slide and sets it always back to 0 if yu didnt push it to the max value.
+	 * And if and only if the value is max, the counter get started and an Notification is shown
+	 * @return the Slider
+	 */
 	private Slider createSlider(){
 		final Slider s = new Slider();
 		s.setImmediate(true);
@@ -67,6 +76,10 @@ public class AlertView extends VerticalLayout implements View{
 		return s;
 	}
 	
+	/**
+	 * make the Stopbutton to cancel the Counter. 
+	 * @return the Stop-Alert-Button
+	 */
 	private Button createButton(){
 		Button btn = new Button("Stop Alert");
 		btn.addClickListener(new Button.ClickListener() {
