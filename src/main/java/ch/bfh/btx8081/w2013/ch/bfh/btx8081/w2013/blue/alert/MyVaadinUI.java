@@ -2,6 +2,7 @@ package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.alert;
 
 import javax.servlet.annotation.WebServlet;
 
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.index.IndexView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.patient.PatientView;
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
@@ -32,12 +33,18 @@ public class MyVaadinUI extends UI
     	
     	navi = new Navigator(this, this);
     	
-    	AlertView alertView = new AlertView();
+    	IndexView indexView = new IndexView();
+    	navi.addView("Index", indexView);
+    	navi.navigateTo("Index");
     	
-    	navi.addView("Alert", alertView);
-    	navi.navigateTo("Alert");
     	
     }
+    
+    public static void setIndexView(IndexView av) {
+		av.setImmediate(true);
+		navi.addView("Index", av);
+    	navi.navigateTo("Index");
+	}
     
     public static void setPatientView(PatientView pv){
 		pv.setImmediate(true);
