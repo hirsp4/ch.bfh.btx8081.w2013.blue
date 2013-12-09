@@ -1,7 +1,8 @@
-package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.alert;
+package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.main;
 
 import javax.servlet.annotation.WebServlet;
 
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.alert.AlertView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.index.IndexView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.patient.PatientView;
 import com.vaadin.annotations.Push;

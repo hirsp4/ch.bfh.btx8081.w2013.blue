@@ -1,7 +1,7 @@
 package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.patient;
 
-import ch.bfh.btx8081.w2013.blue.ch.bfh.btx8081.w2013.blue.database.PersonNotFoundException;
-import ch.bfh.btx8081.w2013.blue.ch.bfh.btx8081.w2013.blue.event.Alert;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.PersonNotFoundException;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.event.Alert;
 
 import com.vaadin.server.Page;
 import com.vaadin.shared.Position;

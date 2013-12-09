@@ -1,7 +1,7 @@
 package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.index;
 
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.alert.AlertView;
-import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.alert.MyVaadinUI;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.main.MyVaadinUI;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;

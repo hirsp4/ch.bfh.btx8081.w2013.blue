@@ -2,6 +2,7 @@ package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.alert;
 
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.countdown.Counter;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.index.IndexView;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.main.MyVaadinUI;
 
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;

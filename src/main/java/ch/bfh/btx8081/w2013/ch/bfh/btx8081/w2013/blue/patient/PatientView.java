@@ -7,28 +7,27 @@ import com.vaadin.ui.VerticalLayout;
 /**
  * 
  * @author Patrick Hirschi
- *
- *
- * PatientView v1.0 29.11.2013
- *
- * The general view if the user has to add informations about a patient.
+ * 
+ * 
+ *         PatientView v1.0 29.11.2013
+ * 
+ *         The general view if the user has to add informations about a patient.
  * 
  */
 
-public class PatientView extends VerticalLayout implements View{
+public class PatientView extends VerticalLayout implements View {
 	private static final long serialVersionUID = 1L;
-	public PatientView(){
+
+	public PatientView() {
 		setMargin(true);
-		addComponent(new TextFieldPanel()); // create the textfield panel and add it to the										// patient view.
+		addComponent(new TextFieldPanel()); // create the textfield panel and
+											// add it to the patient view.
 	}
 
 	@Override
 	public void enter(ViewChangeEvent event) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
-	
 
 }
-

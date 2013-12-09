@@ -1,4 +1,4 @@
-package ch.bfh.btx8081.w2013.blue.ch.bfh.btx8081.w2013.blue.database;
+package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -38,7 +38,7 @@ public class DatabaseHandler {
 	private final File DATABASE;
 
 	/**
-	 * Use the constructor to deside witch Database you will use, deliver the
+	 * Use the constructor to deside which Database you will use, deliver the
 	 * String : Person to choose the Person Database
 	 * 
 	 * @param selectDatabase
@@ -57,10 +57,10 @@ public class DatabaseHandler {
 	 * TreeMap hat als Key einen Integer und als Value eine HashMap(HashMap ist
 	 * soweit ich weiss effizienter als TreeMap), Die HashMap, beinhaltet 10
 	 * sachen, und zwar Vorname, Nachname, Strasse, StrassenNummer, ZIP, Stadt,
-	 * Geschlecht, geburtsdatum, PID(Fals vorhanden), Funktion(Arzt, oder
-	 * Patient?). Die Keys der HashMap, sind auch Strings. Ich Splitte den
-	 * String und gebe dann die einzelnen Werte in die Hashmap. Der erste Wert
-	 * ist allerdings einfach die Referenz(key) der Treemap.
+	 * Geschlecht, geburtsdatum, PID(Fals vorhanden), Dangerous. Die Keys der
+	 * HashMap, sind auch Strings. Ich Splitte den String und gebe dann die
+	 * einzelnen Werte in die Hashmap. Der erste Wert ist allerdings einfach die
+	 * Referenz(key) der Treemap.
 	 * 
 	 * @return TreeMap
 	 * @throws FileNotFoundException
@@ -227,7 +227,7 @@ public class DatabaseHandler {
 	 * @param data
 	 * @return ArrayList<Patient>
 	 * @throws IllegalArgumentException
-	 * @throws PersonNotFoundException 
+	 * @throws PersonNotFoundException
 	 * @throws FileNotFoundException
 	 * @throws FileIsEmptyException
 	 */
@@ -270,7 +270,7 @@ public class DatabaseHandler {
 		} catch (FileNotFoundException | FileIsEmptyException e) {
 			e.printStackTrace();
 		}
-		if(foundPerson.isEmpty()){
+		if (foundPerson.isEmpty()) {
 			throw new PersonNotFoundException();
 		}
 		return foundPerson;

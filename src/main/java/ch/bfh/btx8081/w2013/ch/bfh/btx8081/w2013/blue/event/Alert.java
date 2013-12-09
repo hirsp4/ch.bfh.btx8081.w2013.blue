@@ -1,10 +1,10 @@
-package ch.bfh.btx8081.w2013.blue.ch.bfh.btx8081.w2013.blue.event;
+package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.event;
 
 import java.io.IOException;
 
-import ch.bfh.btx8081.w2013.blue.ch.bfh.btx8081.w2013.blue.database.DatabaseHandler;
-import ch.bfh.btx8081.w2013.blue.ch.bfh.btx8081.w2013.blue.database.FileIsEmptyException;
-import ch.bfh.btx8081.w2013.blue.ch.bfh.btx8081.w2013.blue.database.PersonNotFoundException;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.DatabaseHandler;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.FileIsEmptyException;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.PersonNotFoundException;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.person.Patient;
 
 /**
