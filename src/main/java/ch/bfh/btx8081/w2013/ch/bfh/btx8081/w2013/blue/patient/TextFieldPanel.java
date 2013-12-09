@@ -1,5 +1,8 @@
 package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.patient;
 
+import ch.bfh.btx8081.w2013.blue.ch.bfh.btx8081.w2013.blue.database.PersonNotFoundException;
+import ch.bfh.btx8081.w2013.blue.ch.bfh.btx8081.w2013.blue.event.Alert;
+
 import com.vaadin.server.Page;
 import com.vaadin.shared.Position;
 import com.vaadin.ui.Button;
@@ -13,10 +16,12 @@ import com.vaadin.ui.themes.ChameleonTheme;
 
 /**
  * 
- * @author Patrick Hirschi
+ * @author Patrick Hirschi / Rafael Kapp
  * 
  * 
  *         TextFieldPanel v1.0 29.11.2013
+ *         
+ *         v1.1 09.12.2013
  * 
  *         Creates the panel for our PatientView. The panel consists of several
  *         text fields to add specific patient data, a button for adding the
@@ -42,7 +47,7 @@ public class TextFieldPanel extends Panel {
 		this.forenameField = new TextField("Forename:");
 		this.forenameField.setStyleName(ChameleonTheme.TEXTFIELD_BIG);
 		this.infoArea = new TextArea();
-		this.addStyleName(ChameleonTheme.PANEL_LIGHT);
+		this.addStyleName(ChameleonTheme.PANEL_BORDERLESS);
 		this.setWidth("290px");
 		this.setHeight("450px");
 		
@@ -62,6 +67,7 @@ public class TextFieldPanel extends Panel {
 	/**
 	 * Creates the "Add Patient" Button and adds a ClickListener to generate the
 	 * output.
+	 * If the button was clicked it makes a new Alert
 	 * 
 	 * @return Button
 	 */
@@ -79,10 +85,12 @@ public class TextFieldPanel extends Panel {
 				// if the input is incorrect.
 				if (checkInputValues()) {
 					String pid = getPID();
-					String name = getName();
-					String forename = getForename();
-					new CSVGenerator(pid + ";" + name + ";" + forename + ";\n");
-					infoArea.setValue("the database update was successful.");
+						try {
+							new Alert(pid);
+							infoArea.setValue("the database update was successful. Patient was set on dangerous!");
+						} catch (PersonNotFoundException e) {
+							infoArea.setValue("the database update failed. Patient not found!");
+						}	
 				} else {
 					infoArea.setValue("the database update failed.");
 				}

@@ -1,7 +1,5 @@
 package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.person;
 
-import java.util.Date;
-
 import ch.bfh.btx8081.w2013.blue.ch.bfh.btx8081.w2013.blue.event.IEvent;
 
 public abstract class Person {
@@ -9,10 +7,10 @@ public abstract class Person {
 	private Address address;
 	private String name, foreName;
 	private char gender;
-	private Date birthdate;
+	private String birthdate;
 
 	public Person(String name, String foreName, Address address, char gender,
-			Date birthdate) {
+			String birthdate) {
 		this.setName(name);
 		this.setForeName(foreName);
 		this.setAddress(address);
@@ -56,11 +54,11 @@ public abstract class Person {
 		this.gender = gender;
 	}
 
-	public Date getBirthdate() {
+	public String getBirthdate() {
 		return birthdate;
 	}
 
-	public void setBirthdate(Date birthdate) {
+	public void setBirthdate(String birthdate) {
 		this.birthdate = birthdate;
 	}
 
