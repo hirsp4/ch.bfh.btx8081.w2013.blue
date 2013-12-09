@@ -1,6 +1,7 @@
 package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.alert;
 
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.countdown.Counter;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.index.IndexView;
 
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
@@ -25,8 +26,8 @@ public class AlertPanel extends Panel{
 	private Counter counter;
 	
 	public AlertPanel(){
-		
-		this.addStyleName(ChameleonTheme.PANEL_BORDERLESS);
+		this.addStyleName(ChameleonTheme.PANEL_LIGHT);
+		this.setWidth("290");
 		this.counter = new Counter();
 		this.slider = createSlider();
 		this.setWidth("290px");
@@ -37,6 +38,7 @@ public class AlertPanel extends Panel{
 		layout.setMargin(true);
 		layout.addComponent(this.slider);
 		layout.addComponent(createButton());
+		layout.addComponent(createBackButton());
 		setContent(layout);
 
 	}
@@ -69,7 +71,7 @@ public class AlertPanel extends Panel{
 		    }
 		});
 		
-		s.setIcon(new ThemeResource("alert.jpg"));
+		s.setIcon(new ThemeResource("alert.png"));
 		s.setWidth("260");
 		return s;
 	}
@@ -87,6 +89,17 @@ public class AlertPanel extends Panel{
 			public void buttonClick(ClickEvent event) {
 				counter.interrupt();
 				MyVaadinUI.setAlertView(new AlertView());
+			}
+		});
+		return btn;
+	}
+	
+	private Button createBackButton(){
+		Button btn = new Button("Index");
+		btn.addClickListener(new Button.ClickListener() {
+			private static final long serialVersionUID = 1L;
+			public void buttonClick(ClickEvent event) {
+				MyVaadinUI.setIndexView(new IndexView());
 			}
 		});
 		return btn;
