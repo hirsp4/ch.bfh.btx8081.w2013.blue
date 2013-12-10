@@ -82,8 +82,11 @@ public class PatientPanel extends Panel {
 				try {
 					selectedPatient = dbh.getPatient(DatabaseHandler.PID, ((String) combobox.getValue()).split(" ")[2]);
 					if(selectedPatient.getState().getStateDescription().equals("NORMAL")){
-						Normal stateNormal = (Normal) selectedPatient.getState();
-						stateNormal.setDangerous();
+						
+						Normal normal = new Normal(selectedPatient);
+						selectedPatient.setState(normal);
+						normal.setDangerous();
+						
 					}
 					
 					infoArea.setValue(selectedPatient.getState().getStateDescription());
