@@ -3,8 +3,10 @@ package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.main;
 import javax.servlet.annotation.WebServlet;
 
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.alert.AlertView;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.denial.DenialView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.index.IndexView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.patient.PatientView;
+
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
@@ -58,5 +60,12 @@ public class MyVaadinUI extends UI
 		navi.addView("Alert", av);
     	navi.navigateTo("Alert");
 	}
+
+	public static void setDenialView(DenialView dv) {
+		dv.setImmediate(true);
+		navi.addView("Denial", dv);
+    	navi.navigateTo("Denial");
+	}
+	
 
 }
