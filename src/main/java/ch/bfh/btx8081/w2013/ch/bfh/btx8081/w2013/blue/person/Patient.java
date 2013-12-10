@@ -3,16 +3,17 @@ package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.person;
 import java.util.ArrayList;
 
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.event.IEvent;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.statedesign.State;
 
 public class Patient extends Person {
 
 	private int pid;
 	private ArrayList<String> medication;
 	
-	private String state;
+	private State state;
 
 	public Patient(int pid, String name, String foreName, Address address,
-			char gender, String birthdate, String state) {
+			char gender, String birthdate, State state) {
 		super(name, foreName, address, gender, birthdate);
 		this.setPid(pid);
 		this.setState(state);
@@ -40,11 +41,11 @@ public class Patient extends Person {
 		return super.toString() + " " + this.getPid();
 	}
 
-	public String getState() {
+	public State getState() {
 		return state;
 	}
 
-	public void setState(String state) {
+	public void setState(State state) {
 		this.state = state;
 	}
 }

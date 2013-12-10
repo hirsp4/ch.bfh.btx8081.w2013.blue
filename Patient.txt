@@ -1,8 +1,8 @@
-1234;Kapp;Rafael;Gostel;11;3235;Erlach;m;18.09.1991;1234;true
-1333;Wyss;Adrian;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;1333;true
-1343;Wyss;Adrian;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;1333;false
-2223;Wyss;Adrian;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;1333;false
-2323;Hirschi;Patrick;Heimweg;22;5555;Hinternmond;m;22.03.1990;2323;true
-3333;Wyss;Adrian;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;3333;true
-8333;Wyss;Adrian;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;8333;false
-9003;Wyss;Adrian;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;9003;true
+1234;Kapp;Rafael;Gostel;11;3235;Erlach;m;18.09.1991;1234;NORMAL
+1333;Wyss;Adrian;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;1333;NORMAL
+1343;Wyss;Adrian;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;1333;NORMAL
+2223;Wyss;Adrian;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;1333;NORMAL
+2323;Hirschi;Patrick;Heimweg;22;5555;Hinternmond;m;22.03.1990;2323;NORMAL
+3333;Wyss;Adrian;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;3333;NORMAL
+8333;Wyss;Adrian;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;8333;NORMAL
+9003;Wyss;Adrian;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;9003;NORMAL

@@ -13,6 +13,9 @@ import java.util.TreeMap;
 
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.person.Address;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.person.Patient;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.statedesign.Dangerous;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.statedesign.Normal;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.statedesign.State;
 
 /**
  * 
@@ -277,9 +280,19 @@ public class DatabaseHandler {
 			String foreName = tm.get(i).get(FORENAME);
 			char gender = tm.get(i).get(GENDER).charAt(0);
 			String birthdate = new String(tm.get(i).get(BIRTHDATE));
-			String state = tm.get(i).get(STATE);
+			
+			String stateName = tm.get(i).get(STATE);
+			State state = null;
+			Patient patient = null;
+			
+			if(stateName.equals("DANGEROUS")){
+				state = new Dangerous(patient);
+			} else if (stateName.equals("NORMAL")){
+				state = new Normal(patient);
+			}
+			
 
-			Patient patient = new Patient(pid, name, foreName, address, gender,
+			patient = new Patient(pid, name, foreName, address, gender,
 					birthdate, state);
 
 			list.add(patient);
@@ -315,7 +328,7 @@ public class DatabaseHandler {
 		hashMap.put(GENDER, String.valueOf(patient.getGender()));
 		hashMap.put(BIRTHDATE, patient.getBirthdate());
 		hashMap.put(PID, Integer.toString(patient.getPid()));
-		hashMap.put(STATE, patient.getState());
+		hashMap.put(STATE, patient.getState().getStateDescription());
 
 		tm.put(patient.getPid(), hashMap);
 

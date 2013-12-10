@@ -4,8 +4,11 @@ import java.util.ArrayList;
 
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.DatabaseHandler;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.PersonNotFoundException;
-import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.event.Alert;
+//import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.PersonNotFoundException;
+//import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.event.Alert;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.person.Patient;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.statedesign.Dangerous;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.statedesign.Normal;
 
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
@@ -73,9 +76,19 @@ public class PatientPanel extends Panel {
 
 			public void buttonClick(ClickEvent event) {
 				infoArea.setValue((String) combobox.getValue());
+				
+				DatabaseHandler dbh = new DatabaseHandler("Patient");
+				Patient selectedPatient;
 				try {
-					new Alert(((String) combobox.getValue()).split(" ")[0]);
+					selectedPatient = dbh.getPatient(DatabaseHandler.PID, ((String) combobox.getValue()).split(" ")[2]);
+					if(selectedPatient.getState().getStateDescription().equals("NORMAL")){
+						Normal stateNormal = (Normal) selectedPatient.getState();
+						stateNormal.setDangerous();
+					}
+					
+					infoArea.setValue(selectedPatient.getState().getStateDescription());
 				} catch (PersonNotFoundException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
