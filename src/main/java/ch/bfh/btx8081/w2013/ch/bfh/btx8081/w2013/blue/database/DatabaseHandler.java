@@ -33,7 +33,7 @@ public class DatabaseHandler {
 	public final static String GENDER = "g:";
 	public final static String BIRTHDATE = "b:";
 	public final static String PID = "pid:";
-	public final static String DANGEROUS = "danger:";
+	public final static String STATE = "state:";
 
 	private final File DATABASE;
 
@@ -103,7 +103,7 @@ public class DatabaseHandler {
 			hashMap.put(GENDER, splitted[7]);
 			hashMap.put(BIRTHDATE, splitted[8]);
 			hashMap.put(PID, splitted[9]);
-			hashMap.put(DANGEROUS, splitted[10]);
+			hashMap.put(STATE, splitted[10]);
 
 			treeMap.put(Integer.parseInt(splitted[0]), hashMap);
 		}
@@ -148,7 +148,7 @@ public class DatabaseHandler {
 			printer.print(";");
 			printer.print(treeMap.get(i).get(PID));
 			printer.print(";");
-			printer.print(treeMap.get(i).get(DANGEROUS));
+			printer.print(treeMap.get(i).get(STATE));
 			printer.println();
 		}
 		printer.close();
@@ -205,7 +205,7 @@ public class DatabaseHandler {
 			} else if (delemitter.equals(PID)) {
 				if (data.equals(tm.get(i).get(delemitter)))
 					resultMap.put(i, tm.get(i));
-			} else if (delemitter.equals(DANGEROUS)) {
+			} else if (delemitter.equals(STATE)) {
 				if (data.equals(tm.get(i).get(delemitter)))
 					resultMap.put(i, tm.get(i));
 			} else {
@@ -228,52 +228,63 @@ public class DatabaseHandler {
 	 * @return ArrayList<Patient>
 	 * @throws IllegalArgumentException
 	 * @throws PersonNotFoundException
-	 * @throws FileNotFoundException
-	 * @throws FileIsEmptyException
 	 */
 	public ArrayList<Patient> searchPatients(String delemitter, String data)
 			throws IllegalArgumentException, PersonNotFoundException {
-		ArrayList<Patient> foundPerson = new ArrayList<Patient>();
-		TreeMap<Integer, HashMap<String, String>> treeFoundPerson;
+		ArrayList<Patient> foundPerson;
+		TreeMap<Integer, HashMap<String, String>> treeFoundPerson = null;
 		try {
 			treeFoundPerson = this.searchPatients(
 					this.buildMapFromFile(this.DATABASE), delemitter, data);
 
-			Set<Integer> set = treeFoundPerson.keySet();
-			Iterator<Integer> itr = set.iterator();
-
-			while (itr.hasNext()) {
-				int i = itr.next();
-
-				String street = treeFoundPerson.get(i).get(STREET);
-				int streetNr = Integer.parseInt(treeFoundPerson.get(i).get(
-						STREETNB));
-				int zip = Integer.parseInt(treeFoundPerson.get(i).get(ZIP));
-				String cityName = treeFoundPerson.get(i).get(CITY);
-
-				Address address = new Address(street, streetNr, zip, cityName);
-
-				int pid = Integer.parseInt(treeFoundPerson.get(i).get(PID));
-				String name = treeFoundPerson.get(i).get(NAME);
-				String foreName = treeFoundPerson.get(i).get(FORENAME);
-				char gender = treeFoundPerson.get(i).get(GENDER).charAt(0);
-				String birthdate = new String(treeFoundPerson.get(i).get(
-						BIRTHDATE));
-				boolean dangerous = Boolean.getBoolean(treeFoundPerson.get(i)
-						.get(DANGEROUS));
-
-				Patient patient = new Patient(pid, name, foreName, address,
-						gender, birthdate, dangerous);
-
-				foundPerson.add(patient);
-			}
 		} catch (FileNotFoundException | FileIsEmptyException e) {
 			e.printStackTrace();
 		}
+		foundPerson = writeMapToList(treeFoundPerson);
 		if (foundPerson.isEmpty()) {
 			throw new PersonNotFoundException();
 		}
 		return foundPerson;
+	}
+
+	/**
+	 * In dieser Metode hier, werden Patienten die noch ein einer Map sind, also
+	 * als Strings und Integer, umgewandelt in Patienten und in einer Liste
+	 * zurückgebracht
+	 * 
+	 * @param tm
+	 * @return ArrayList
+	 */
+	private ArrayList<Patient> writeMapToList(
+			TreeMap<Integer, HashMap<String, String>> tm) {
+		ArrayList<Patient> list = new ArrayList<Patient>();
+
+		Set<Integer> set = tm.keySet();
+		Iterator<Integer> itr = set.iterator();
+
+		while (itr.hasNext()) {
+			int i = itr.next();
+
+			String street = tm.get(i).get(STREET);
+			int streetNr = Integer.parseInt(tm.get(i).get(STREETNB));
+			int zip = Integer.parseInt(tm.get(i).get(ZIP));
+			String cityName = tm.get(i).get(CITY);
+
+			Address address = new Address(street, streetNr, zip, cityName);
+
+			int pid = Integer.parseInt(tm.get(i).get(PID));
+			String name = tm.get(i).get(NAME);
+			String foreName = tm.get(i).get(FORENAME);
+			char gender = tm.get(i).get(GENDER).charAt(0);
+			String birthdate = new String(tm.get(i).get(BIRTHDATE));
+			String state = tm.get(i).get(STATE);
+
+			Patient patient = new Patient(pid, name, foreName, address, gender,
+					birthdate, state);
+
+			list.add(patient);
+		}
+		return list;
 	}
 
 	/**
@@ -304,7 +315,7 @@ public class DatabaseHandler {
 		hashMap.put(GENDER, String.valueOf(patient.getGender()));
 		hashMap.put(BIRTHDATE, patient.getBirthdate());
 		hashMap.put(PID, Integer.toString(patient.getPid()));
-		hashMap.put(DANGEROUS, Boolean.toString(patient.isDangerous()));
+		hashMap.put(STATE, patient.getState());
 
 		tm.put(patient.getPid(), hashMap);
 
@@ -325,6 +336,20 @@ public class DatabaseHandler {
 			throws PersonNotFoundException {
 		ArrayList<Patient> tm = searchPatients(delemitter, data);
 		return tm.get(0);
+	}
+
+	/**
+	 * Liefer den Kommpleten datensatz an Patienten.
+	 * @return ArrayList
+	 */
+	public ArrayList<Patient> getAll(){
+		TreeMap<Integer, HashMap<String, String>> tm = null; 
+		try {
+			tm = buildMapFromFile(DATABASE);
+		} catch (FileNotFoundException | FileIsEmptyException e) {
+			e.printStackTrace();
+		}
+		return writeMapToList(tm);
 	}
 
 	/**

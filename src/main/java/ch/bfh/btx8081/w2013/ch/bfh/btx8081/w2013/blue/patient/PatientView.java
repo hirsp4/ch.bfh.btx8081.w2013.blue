@@ -20,7 +20,7 @@ public class PatientView extends VerticalLayout implements View {
 
 	public PatientView() {
 		setMargin(true);
-		addComponent(new TextFieldPanel()); // create the textfield panel and
+		addComponent(new PatientPanel()); // create the textfield panel and
 											// add it to the patient view.
 	}
 

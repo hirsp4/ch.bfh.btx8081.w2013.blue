@@ -9,13 +9,13 @@ public class Patient extends Person {
 	private int pid;
 	private ArrayList<String> medication;
 	
-	private boolean dangerous;
+	private String state;
 
 	public Patient(int pid, String name, String foreName, Address address,
-			char gender, String birthdate, boolean dangerous) {
+			char gender, String birthdate, String state) {
 		super(name, foreName, address, gender, birthdate);
 		this.setPid(pid);
-		this.dangerous = dangerous;
+		this.setState(state);
 	}
 	
 	public int getPid(){
@@ -37,14 +37,14 @@ public class Patient extends Person {
 	}
 
 	public String toString() {
-		return this.getPid() + " " + super.toString();
+		return super.toString() + " " + this.getPid();
 	}
 
-	public boolean isDangerous() {
-		return dangerous;
+	public String getState() {
+		return state;
 	}
 
-	public void setDangerous(boolean dangerous) {
-		this.dangerous = dangerous;
+	public void setState(String state) {
+		this.state = state;
 	}
 }

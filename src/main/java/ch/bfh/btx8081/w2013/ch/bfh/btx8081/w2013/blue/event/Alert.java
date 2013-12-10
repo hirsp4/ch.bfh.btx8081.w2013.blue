@@ -30,7 +30,7 @@ public class Alert implements IEvent {
 		DatabaseHandler dbh = new DatabaseHandler("Patient");
 		patient = dbh.getPatient(DatabaseHandler.PID, pid);
 		setPatient(patient);
-		setDangerous(true);
+		setState("dangerous");
 		try {
 			dbh.removePatient(patient); // To change an attribute of an existing
 										// Patient, we have to remove the old
@@ -41,8 +41,8 @@ public class Alert implements IEvent {
 		}
 	}
 
-	private void setDangerous(boolean dangerous) {
-		this.patient.setDangerous(dangerous);
+	private void setState(String state) {
+		this.patient.setState(state);
 	}
 
 	@Override

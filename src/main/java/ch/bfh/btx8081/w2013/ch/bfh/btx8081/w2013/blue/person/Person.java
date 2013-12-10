@@ -63,7 +63,6 @@ public abstract class Person {
 	}
 
 	public String toString() {
-		return getName() + getForeName() + getAddress() + getGender()
-				+ getBirthdate();
+		return getName() + " "+ getForeName();
 	}
 }
