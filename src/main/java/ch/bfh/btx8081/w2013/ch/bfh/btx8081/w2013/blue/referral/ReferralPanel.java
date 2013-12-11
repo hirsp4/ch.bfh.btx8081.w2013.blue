@@ -166,7 +166,7 @@ public class ReferralPanel extends Panel {
 				String doctoroffice = getDoctorOffice(); 
 				String doctor = getDoctor();
 				new CSVCreator(referral + ";" + dateFrom + ";" + dateTo + ";" + referralType + ";" + 
-				referralMessage + ";" + clinic + ";" + doctoroffice + ";" + doctor +";\n");
+				referralMessage + ";" + clinic + ";" + doctoroffice + ";" + doctor +";\n", "referral.txt");
 				infoArea.setValue("the referral message has been sent.");
 				} else {
 					infoArea.setValue("the referral message was not sent.");

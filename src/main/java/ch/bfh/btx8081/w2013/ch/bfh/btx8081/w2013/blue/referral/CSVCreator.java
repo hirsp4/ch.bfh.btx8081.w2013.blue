@@ -6,9 +6,9 @@ import java.io.IOException;
 
 public class CSVCreator {
 
-	public CSVCreator(String input) {
+	public CSVCreator(String input, String path) {
 		try {
-			File file = new File("referral.txt"); // create the database.txt file
+			File file = new File(path); // create the database.txt file
 			if (!file.exists()) {
 				file.createNewFile();
 			}

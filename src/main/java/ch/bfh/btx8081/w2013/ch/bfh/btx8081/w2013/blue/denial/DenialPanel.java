@@ -3,12 +3,20 @@ package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.denial;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.index.IndexView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.main.MyVaadinUI;
 
+
+
+
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.referral.CSVCreator;
+
+import com.vaadin.server.Page;
+import com.vaadin.shared.Position;
 //import com.vaadin.server.Page;
 //import com.vaadin.shared.Position;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Notification;
 //import com.vaadin.ui.Notification;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.TextArea;
@@ -27,7 +35,8 @@ public class DenialPanel extends Panel {
 	 * 
 	 *         Creates the panel for our DenialView with the description 
 	 *         when does the patient deny a drug and which drug.
-	 *         Button add to medical report does nothing yet.    
+	 *         Button add to medical report writes the information from the
+	 *         field when and what as a String in a txt file out.  
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
@@ -44,8 +53,10 @@ public class DenialPanel extends Panel {
 		this.setHeight("450px");
 		this.denial = new Label("Denial");
 		this.whenField = new TextField("When:");
+		this.whenField.setInputPrompt("dd.mm.yyyy");
 		this.whenField.setStyleName(ChameleonTheme.TEXTFIELD_BIG);
 		this.whatField = new TextField("What:");
+		this.whatField.setInputPrompt("dd.mm.yyyy");
 		this.whatField.setStyleName(ChameleonTheme.TEXTFIELD_BIG);
 		this.infoArea = new TextArea();
 
@@ -55,7 +66,7 @@ public class DenialPanel extends Panel {
 		layout.setMargin(true);
 		layout.setSpacing(true);
 		hlayout.setWidth("350px");
-		hlayout.addComponent(createaddtomedicalreportbutton());
+		hlayout.addComponent(createAddtoMedicalReportButton());
 		layout.addComponent(denial);
 		layout.addComponent(this.whenField);
 		layout.addComponent(this.whatField);
@@ -82,105 +93,93 @@ public class DenialPanel extends Panel {
 		});
 		return btn;
 	}
+
+	/**
+	 * Returns the value of the When-TextField.
+	 * 
+	 * @return String
+	 */
+	private String getwhen() {
+		return this.whenField.getValue();
+	}
 	
-	private Button createaddtomedicalreportbutton() {
-		Button btn = new Button("Add to medical report");
-		btn.addClickListener(new Button.ClickListener() {
+	/**
+	 * Returns the value of the What-TextField.
+	 * 
+	 * @return String
+	 */
+	private String getwhat() {
+		return this.whatField.getValue();
+	}
+	
+	/**
+	 * Creates the "Add to medical report" Button and adds a ClickListener to
+	 * generate the output.
+	 * 
+	 * @return Button
+	 */
+	public Button createAddtoMedicalReportButton() {
+		Button addtoMedicalReportButton = new Button("Add to medical report");
+		addtoMedicalReportButton.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;
 
 			public void buttonClick(ClickEvent event) {
-				
+				// check whether the input data is valid or not. Update the csv
+				// file if
+				// the input is correct, and show the error message in the
+				// infoArea field
+				// if the input is incorrect.
+				if (checkInputValues()) {
+					String when = getwhen();
+					String what = getwhat();
+					new CSVCreator(when + ";" + what + ";\n", "denial.txt");
+					infoArea.setValue("the database update was successful.");
+				} else {
+					infoArea.setValue("the database update failed.");
+				}
 			}
 		});
-		return btn;
+		return addtoMedicalReportButton;
+	}
+	
+	/**
+	 * This private method returns true if and only if all input is correct. It
+	 * checks the When and the What Field, if they are filled.
+	 * 
+	 * @return boolean
+	 */
+	private boolean checkInputValues() {
+
+		// set defaults for the booleans validPID, validStrings
+		boolean validwhen = false;
+		boolean validwhat = false;
+
+		// check whether the when field is filled like the format dd.mm.yyyy. if yes,
+				// the boolean validwhen is set true. if not, a notification
+				// is shown and the field will be set empty.
+				if (!getwhen().matches("\\d\\d\\p{Punct}\\d\\d\\p{Punct}\\d\\d\\d\\d")) {
+					Notification notif = new Notification("Input failure",
+							"Please enter a valid date (integer, format: dd.mm.yyyy)",
+							Notification.Type.WARNING_MESSAGE);
+		        	notif.setDelayMsec(5000);
+		        	notif.setPosition(Position.BOTTOM_RIGHT);
+					notif.show(Page.getCurrent());
+					this.whenField.setValue("");
+				} else
+					validwhen = true;
+
+		if (getwhat().isEmpty()) {
+			Notification notif = new Notification("Input failure",
+					"Text field can't be empty.",
+					Notification.Type.WARNING_MESSAGE);
+			notif.setDelayMsec(5000);
+			notif.setPosition(Position.MIDDLE_RIGHT);
+			notif.show(Page.getCurrent());
+		} else
+			validwhat = true;
+
+		// returns true, if and only if both booleans are true.
+		return validwhen && validwhat;
 	}
 
-//	/**
-//	 * Creates the "Add to medical report" Button and adds a ClickListener to
-//	 * generate the output.
-//	 * 
-//	 * @return Button
-//	 */
-//	public Button createAddtoMedicalReportButton() {
-//		Button addtoMedicalReportButton = new Button("Add to medical report");
-//		addtoMedicalReportButton.addClickListener(new Button.ClickListener() {
-//			private static final long serialVersionUID = 1L;
-//
-//			public void buttonClick(ClickEvent event) {
-//				// check whether the input data is valid or not. Update the csv
-//				// file if
-//				// the input is correct, and show the error message in the
-//				// infoArea field
-//				// if the input is incorrect.
-//				if (checkInputValues()) {
-//					String when = getwhen();
-//					String what = getwhat();
-//					new CSVGenerator(when + ";" + what + ";\n");
-//					infoArea.setValue("the database update was successful.");
-//				} else {
-//					infoArea.setValue("the database update failed.");
-//				}
-//			}
-//		});
-//		return addtoMedicalReportButton;
-//	}
-
-//	/**
-//	 * Returns the value of the When-TextField.
-//	 * 
-//	 * @return String
-//	 */
-//	private String getwhen() {
-//		return this.whenField.getValue();
-//	}
-//	
-//	/**
-//	 * Returns the value of the What-TextField.
-//	 * 
-//	 * @return String
-//	 */
-//	private String getwhat() {
-//		return this.whatField.getValue();
-//	}
-//	
-//	/**
-//	 * This private method returns true if and only if all input is correct. It
-//	 * checks the When and the What Field, if they are filled.
-//	 * 
-//	 * @return boolean
-//	 */
-//	private boolean checkInputValues() {
-//
-//		// set defaults for the booleans validPID, validStrings
-//		boolean validwhen = false;
-//		boolean validwhat = false;
-//
-//		// check whether the when field is filled like the format dd.mm.yyyy. if yes,
-//				// the boolean validwhen is set true. if not, a notification
-//				// is shown and the field will be set empty.
-//				if (!getwhen().matches("\\d\\d\\p{Punct}\\d\\d\\p{Punct}\\d\\d\\d\\d")) {
-//					Notification notif = new Notification("Input failure",
-//							"Please enter a valid date (integer, format: dd.mm.yyyy)",
-//							Notification.Type.WARNING_MESSAGE);
-//		        	notif.setDelayMsec(5000);
-//		        	notif.setPosition(Position.BOTTOM_RIGHT);
-//					notif.show(Page.getCurrent());
-//					this.whenField.setValue("");
-//				} else
-//					validwhen = true;
-//
-//		if (getwhat().isEmpty()) {
-//			Notification notif = new Notification("Input failure",
-//					"Text field can't be empty.",
-//					Notification.Type.WARNING_MESSAGE);
-//			notif.setDelayMsec(5000);
-//			notif.setPosition(Position.MIDDLE_RIGHT);
-//			notif.show(Page.getCurrent());
-//		} else
-//			validwhat = true;
-//
-//		// returns true, if and only if both booleans are true.
-//		return validwhen && validwhat;
-//	}
-//
 }
