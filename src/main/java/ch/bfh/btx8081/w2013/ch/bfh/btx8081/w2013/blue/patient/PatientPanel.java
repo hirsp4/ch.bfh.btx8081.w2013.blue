@@ -4,10 +4,7 @@ import java.util.ArrayList;
 
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.DatabaseHandler;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.PersonNotFoundException;
-//import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.PersonNotFoundException;
-//import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.event.Alert;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.person.Patient;
-import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.statedesign.Dangerous;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.statedesign.Normal;
 
 import com.vaadin.data.Property;
@@ -122,50 +119,5 @@ public class PatientPanel extends Panel {
         });
         return combobox;
 	}
-
-	
-//
-//	/**
-//	 * This private method returns true if and only if all input is correct. It
-//	 * checks the PID Field, if the input is a valid integer and the String
-//	 * Fields if they are filled.
-//	 * 
-//	 * @return boolean
-//	 */
-//	private boolean checkInputValues() {
-//
-//		// set defaults for the booleans validPID, validStrings
-//		boolean validPID = false;
-//		boolean validStrings = false;
-//
-//		// check whether the PID field is filled with numbers. if yes,
-//		// the boolean valid PID is set true. if not, a notification
-//		// is shown and the field will be set empty.
-//		if (!getPID().matches("\\d*")) {
-//			Notification notif = new Notification("Input failure",
-//					"Please enter a valid PID (integer)",
-//					Notification.Type.WARNING_MESSAGE);
-//        	notif.setDelayMsec(5000);
-//        	notif.setPosition(Position.BOTTOM_RIGHT);
-//			notif.show(Page.getCurrent());
-//			this.pidField.setValue("");
-//		} else
-//			validPID = true;
-//
-//		// check whether the Name and Forename fields are filled. if yes,
-//		// the boolean valid PID is set true. if not, a notification
-//		// is shown.
-//		if (getName().isEmpty() || getForename().isEmpty()) {
-//			Notification notif = new Notification("Input failure", "Text fields can't be empty.",
-//					Notification.Type.WARNING_MESSAGE);
-//        	notif.setDelayMsec(5000);
-//        	notif.setPosition(Position.MIDDLE_RIGHT);
-//			notif.show(Page.getCurrent());
-//		} else
-//			validStrings = true;
-//
-//		// returns true, if and only if both booleans are true.
-//		return validPID && validStrings;
-//	}
 
 }
