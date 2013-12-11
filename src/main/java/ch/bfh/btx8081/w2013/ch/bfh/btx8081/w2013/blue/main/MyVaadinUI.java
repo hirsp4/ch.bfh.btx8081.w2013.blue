@@ -6,6 +6,7 @@ import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.alert.AlertView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.denial.DenialView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.index.IndexView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.patient.PatientView;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.referral.ReferralView;
 
 import com.vaadin.annotations.Push;
 import com.vaadin.annotations.Theme;
@@ -67,5 +68,10 @@ public class MyVaadinUI extends UI
     	navi.navigateTo("Denial");
 	}
 	
+	public static void setReferralView(ReferralView rv) {
+		rv.setImmediate(true);
+		navi.addView("Referral", rv);
+		navi.navigateTo("Referral");
+	}
 
 }
