@@ -2,9 +2,13 @@ package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.referral;
 
 
 
+import java.util.Date;
+
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.index.IndexView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.main.MyVaadinUI;
 
+import com.vaadin.data.Property;
+import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.server.Page;
 import com.vaadin.shared.Position;
 import com.vaadin.ui.Button;
@@ -15,9 +19,9 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.OptionGroup;
 import com.vaadin.ui.Panel;
+import com.vaadin.ui.PopupDateField;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.TextField;
 import com.vaadin.ui.themes.ChameleonTheme;
 
 /**
@@ -39,8 +43,8 @@ public class ReferralPanel extends Panel {
 	private static final long serialVersionUID = 1L;
 	private ComboBox referralComboBox;
 	private OptionGroup referralTypeGroup;
-	private TextField dateField;
-	private TextField dateField2;
+	private PopupDateField dateField;
+	private PopupDateField dateField2;
 	private TextArea textReferralMessage;
 	private TextArea infoArea;
 	private ComboBox clinicComboBox;
@@ -60,10 +64,14 @@ public class ReferralPanel extends Panel {
 		this.referralComboBox = new ComboBox();
 		this.referralComboBox.addItem("Stationery Therapy");
 		this.referralComboBox.addItem("Diagnoses");
-		this.dateField = new TextField("From:");
-		this.dateField.setInputPrompt("dd.mm.yyyy");
-		this.dateField2 = new TextField("To:");
-		this.dateField2.setInputPrompt("dd.mm.yyyy");
+		this.dateField = new PopupDateField("From:");
+		this.dateField.setInputPrompt("Selcet a date");
+		this.dateField.setDateFormat("dd.MM.yyyy");
+		this.dateField.setRangeStart(new Date());
+		this.dateField2 = new PopupDateField("To:");
+		this.dateField2.setInputPrompt("Select a date");
+		this.dateField2.setDateFormat("dd.MM.yyyy");
+		this.dateField2.setRangeStart(new Date());
 		this.referralTypeGroup = new OptionGroup();
 		referralTypeGroup.addItem("FU");
 		referralTypeGroup.addItem("Normal");
@@ -119,7 +127,23 @@ public class ReferralPanel extends Panel {
 		content.addComponent(this.infoArea);
 		this.setContent(content);
 		
+		clinicComboBox.setImmediate(true);
+		clinicComboBox.addValueChangeListener(new Property.ValueChangeListener() {
+			private static final long serialVersionUID = 1L;
+			@Override
+			public void valueChange(ValueChangeEvent event) {
+				doctorofficeComboBox.setEnabled(false);
+			}
+		});
 		
+		doctorofficeComboBox.setImmediate(true);
+		doctorofficeComboBox.addValueChangeListener(new Property.ValueChangeListener() {
+			private static final long serialVersionUID = 1L;
+			@Override
+			public void valueChange(ValueChangeEvent event) {
+				clinicComboBox.setEnabled(false);
+			}
+		});
 	}
 
 	
@@ -158,8 +182,8 @@ public class ReferralPanel extends Panel {
 			// if the input is incorrect.
 			if (checkInputValues()) {
 				String referral = getReferral();
-				String dateFrom = getDateFrom();
-				String dateTo = getDateTo();
+				Date dateFrom = getDateFrom();
+				Date dateTo = getDateTo();
 				String referralType = getReferralType();
 				String referralMessage = getReferralMessage();
 				String clinic = getClinic();
@@ -191,7 +215,7 @@ public class ReferralPanel extends Panel {
 	 * 
 	 * @return Date
 	 */
-	private String getDateFrom() {
+	private Date getDateFrom() {
 		return this.dateField.getValue();
 	}
 	
@@ -200,7 +224,7 @@ public class ReferralPanel extends Panel {
 	 * 
 	 * @return Date
 	 */
-	private String getDateTo() {
+	private Date getDateTo() {
 		return this.dateField2.getValue();
 	}
 	
@@ -264,50 +288,47 @@ public class ReferralPanel extends Panel {
 		boolean validdateFrom = false;
 		boolean validdateTo = false;
 		boolean validreferralMessage = false;
-		boolean validclinic = false;
-		boolean validdoctoroffice = false;
+		boolean validclinicdoctoroffice = false;
 		boolean validdoctor = false;
 
 		
 		// check whether the Referral field is filled. if yes,
 		// the boolean valid referral is set true. if not, a notification
 		// is shown.
-		if (getReferral().isEmpty())  {
-			Notification notif = new Notification("Input failure", "Text fields can't be empty.",
+		if (getReferral() == null)  {
+			Notification notif = new Notification("Input failure", 
+					"Select one reason for referral from the dropdown menu.",
 					Notification.Type.WARNING_MESSAGE);
         	notif.setDelayMsec(5000);
-        	notif.setPosition(Position.MIDDLE_RIGHT);
+        	notif.setPosition(Position.BOTTOM_RIGHT);
 			notif.show(Page.getCurrent());
 		} else
 			validreferral = true;
 
-		// check whether the Date field From is filled. if yes,
-				// the boolean valid referral is set true. if not, a notification
-				// is shown.
-		if (!getDateFrom().matches("\\d\\d\\p{Punct}\\d\\d\\p{Punct}\\d\\d\\d\\d")) {
-			Notification notif = new Notification("Input failure",
-					"Please enter a valid date (integer, format: dd.mm.yyyy)",
-					Notification.Type.WARNING_MESSAGE);
-        	notif.setDelayMsec(5000);
-        	notif.setPosition(Position.BOTTOM_RIGHT);
-			notif.show(Page.getCurrent());
-			this.dateField.setValue("");
-		} else
-			validdateFrom = true;
 		
-		// check whether the Date Field To is filled. if yes,
-				// the boolean valid referral is set true. if not, a notification
-				// is shown.
-		if (!getDateTo().matches("\\d\\d\\p{Punct}\\d\\d\\p{Punct}\\d\\d\\d\\d")) {
+		// check whether the Date Fields From and To are filled 
+				// and if the  Date From is before the Date To.
+				// if yes, the boolean valid referral is set true. 
+				// if not, a notification is shown.
+		if (getDateFrom() == null && getDateTo() == null) {
 			Notification notif = new Notification("Input failure",
-					"Please enter a valid date (integer, format: dd.mm.yyyy)",
+					"Please select a date",
 					Notification.Type.WARNING_MESSAGE);
         	notif.setDelayMsec(5000);
         	notif.setPosition(Position.BOTTOM_RIGHT);
-			notif.show(Page.getCurrent());
-			this.dateField2.setValue("");
-		} else
+			notif.show(Page.getCurrent());}
+		else if (!getDateFrom().before(getDateTo())) {
+			Notification notif = new Notification("Input failure",
+					"Date From has to be before Date To",
+					Notification.Type.WARNING_MESSAGE);
+        	notif.setDelayMsec(5000);
+        	notif.setPosition(Position.BOTTOM_RIGHT);
+			notif.show(Page.getCurrent());}	
+		 else {
+			validdateFrom = true;
 			validdateTo = true;
+		}
+		
 		
 		// check whether the Referral Message field is filled. if yes,
 				// the boolean valid referral is set true. if not, a notification
@@ -316,50 +337,42 @@ public class ReferralPanel extends Panel {
 			Notification notif = new Notification("Input failure", "Text fields can't be empty.",
 					Notification.Type.WARNING_MESSAGE);
         	notif.setDelayMsec(5000);
-        	notif.setPosition(Position.MIDDLE_RIGHT);
+        	notif.setPosition(Position.BOTTOM_RIGHT);
 			notif.show(Page.getCurrent());
 		} else
 			validreferralMessage = true;
 
-		// check whether the Clinic field is filled. if yes,
-				// the boolean valid referral is set true. if not, a notification
-				// is shown.
-		if (getClinic().isEmpty()) {
-			Notification notif = new Notification("Input failure", "Text fields can't be empty.",
-					Notification.Type.WARNING_MESSAGE);
-        	notif.setDelayMsec(5000);
-        	notif.setPosition(Position.MIDDLE_RIGHT);
-			notif.show(Page.getCurrent());
-		} else
-			validclinic = true;
 			
 		// check whether the DoctorOffice field is filled. if yes,
 				// the boolean valid referral is set true. if not, a notification
 				// is shown.
-		if (getDoctorOffice().isEmpty())  {
-			Notification notif = new Notification("Input failure", "Text fields can't be empty.",
+		if (getDoctorOffice() == null && getClinic() == null)  {
+			Notification notif = new Notification("Input failure", 
+					"Select a Clinic or a Doctor Office from the dropdown menu.",
 					Notification.Type.WARNING_MESSAGE);
 	       	notif.setDelayMsec(5000);
-	       	notif.setPosition(Position.MIDDLE_RIGHT);
+	       	notif.setPosition(Position.BOTTOM_RIGHT);
 			notif.show(Page.getCurrent());
 		} else
-			validdoctoroffice = true;
+			validclinicdoctoroffice = true;
+		
 			
 		// check whether the Doctor field is filled. if yes,
 				// the boolean valid referral is set true. if not, a notification
 				// is shown.
-		if (getDoctor().isEmpty())  {
-			Notification notif = new Notification("Input failure", "Text fields can't be empty.",
+		if (getDoctor() == null)  {
+			Notification notif = new Notification("Input failure", 
+					"Select a Doctor from the dropdown menu.",
 					Notification.Type.WARNING_MESSAGE);
 			notif.setDelayMsec(5000);
-		   	notif.setPosition(Position.MIDDLE_RIGHT);
+		   	notif.setPosition(Position.BOTTOM_RIGHT);
 			notif.show(Page.getCurrent());
 		} else
 			validdoctor = true;
 
 		// returns true, if and only if both booleans are true.
-		return validreferral && validdateFrom && validdateTo && validreferralMessage && validclinic
-				&& validdoctoroffice && validdoctor;
+		return validreferral && validdateFrom && validdateTo && validreferralMessage
+				&& validclinicdoctoroffice && validdoctor;
 	}
 }
 
