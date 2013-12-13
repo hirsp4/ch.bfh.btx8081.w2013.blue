@@ -26,7 +26,7 @@ public class MyVaadinUI extends UI
 	private static Navigator navi;
 	
     @WebServlet(value = "/*", asyncSupported = true)
-    @VaadinServletConfiguration(productionMode = false, ui = MyVaadinUI.class, widgetset = "ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.alert.AppWidgetSet")
+    @VaadinServletConfiguration(productionMode = false, ui = MyVaadinUI.class, widgetset = "ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.alert.AppWidgetSet")
     public static class Servlet extends VaadinServlet {
     }
 

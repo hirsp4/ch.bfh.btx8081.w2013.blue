@@ -17,8 +17,6 @@ public class IndexView extends VerticalLayout implements View {
 	private static final long serialVersionUID = 1L;
 	
 	
-	
-	
 	public IndexView() {
 		VerticalLayout layout = new VerticalLayout();
 		setSizeFull();
