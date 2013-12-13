@@ -4,7 +4,7 @@ import com.vaadin.server.Page;
 import com.vaadin.shared.Position;
 import com.vaadin.ui.Notification;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.main.MyVaadinUI;
-import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.patient.PatientView;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.patient.PatientView;
 
 /**
  * 

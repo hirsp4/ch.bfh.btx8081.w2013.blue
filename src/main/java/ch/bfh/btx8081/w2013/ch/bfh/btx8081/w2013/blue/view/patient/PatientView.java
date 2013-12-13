@@ -1,4 +1,4 @@
-package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.patient;
+package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.patient;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;

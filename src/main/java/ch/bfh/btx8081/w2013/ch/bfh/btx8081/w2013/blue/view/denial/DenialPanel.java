@@ -1,12 +1,12 @@
-package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.denial;
+package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.denial;
 
-import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.index.IndexView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.main.MyVaadinUI;
 
 
 
 
-import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.referral.CSVCreator;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.index.IndexView;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.referral.CSVCreator;
 
 import com.vaadin.server.Page;
 import com.vaadin.shared.Position;

@@ -1,4 +1,4 @@
-package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.alert;
+package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.alert;
 
 
 import com.vaadin.navigator.View;
