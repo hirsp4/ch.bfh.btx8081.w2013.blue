@@ -5,6 +5,7 @@ package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.referral;
 import java.util.Date;
 
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.main.MyVaadinUI;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.index.BorderPanel;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.index.IndexView;
 
 import com.vaadin.data.Property;
@@ -18,11 +19,9 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.OptionGroup;
-import com.vaadin.ui.Panel;
 import com.vaadin.ui.PopupDateField;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.themes.ChameleonTheme;
 
 /**
  * 
@@ -38,7 +37,7 @@ import com.vaadin.ui.themes.ChameleonTheme;
  * 
  */
 
-public class ReferralPanel extends Panel {
+public class ReferralPanel extends BorderPanel {
 
 	private static final long serialVersionUID = 1L;
 	private ComboBox referralComboBox;
@@ -57,10 +56,6 @@ public class ReferralPanel extends Panel {
 	private Label lab5;
 	
 	public ReferralPanel() {
-
-		this.addStyleName(ChameleonTheme.PANEL_LIGHT);
-		this.setWidth("500px");
-		this.setHeight("950px");
 		this.referralComboBox = new ComboBox();
 		this.referralComboBox.addItem("Stationery Therapy");
 		this.referralComboBox.addItem("Diagnoses");
@@ -68,10 +63,12 @@ public class ReferralPanel extends Panel {
 		this.dateField.setInputPrompt("Selcet a date");
 		this.dateField.setDateFormat("dd.MM.yyyy");
 		this.dateField.setRangeStart(new Date());
+		this.dateField.setWidth("150px");
 		this.dateField2 = new PopupDateField("To:");
 		this.dateField2.setInputPrompt("Select a date");
 		this.dateField2.setDateFormat("dd.MM.yyyy");
 		this.dateField2.setRangeStart(new Date());
+		this.dateField2.setWidth("150px");
 		this.referralTypeGroup = new OptionGroup();
 		referralTypeGroup.addItem("FU");
 		referralTypeGroup.addItem("Normal");
@@ -86,10 +83,12 @@ public class ReferralPanel extends Panel {
 		this.clinicComboBox = new ComboBox("Clinic:");
 		this.clinicComboBox.addItem("Psychiatrische Klinik Bern");
 		this.clinicComboBox.addItem("Psychiatrische Klink Basel");
+		this.clinicComboBox.setWidth("150px");
 		this.doctorofficeComboBox = new ComboBox("Doctor Office:");
 		this.doctorofficeComboBox.addItem("Doctor Office - Dr. Rolf Meyer, Basel");
 		this.doctorofficeComboBox.addItem("Doctor Office - Group Office Blue");
 		this.doctorofficeComboBox.addItem("Doctor Office - Group Office Red");
+		this.doctorofficeComboBox.setWidth("150px");
 		this.doctorComboBox = new ComboBox();
 		this.doctorComboBox.addItem("Dr. Helen Fischer");
 		this.doctorComboBox.addItem("Dr. Markus Vetsch");
@@ -106,7 +105,7 @@ public class ReferralPanel extends Panel {
 		content.addComponent(lab1);
 		content.addComponent(this.referralComboBox);
 		content.addComponent(this.lab2);
-		hlayout.setWidth("390px");
+		hlayout.setWidth("360px");
 		hlayout.addComponent(this.dateField);
 		hlayout.addComponent(this.dateField2);
 		content.addComponent(hlayout);
@@ -114,7 +113,7 @@ public class ReferralPanel extends Panel {
 		content.addComponent(this.referralTypeGroup);
 		content.addComponent(this.textReferralMessage);
 		content.addComponent(lab4);
-		hlayout2.setWidth("390px");
+		hlayout2.setWidth("360px");
 		hlayout2.addComponent(this.clinicComboBox);
 		hlayout2.addComponent(this.doctorofficeComboBox);
 		content.addComponent(hlayout2);

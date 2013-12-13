@@ -2,6 +2,7 @@ package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.denial;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.VerticalLayout;
 
 public class DenialView extends VerticalLayout implements View{
@@ -20,8 +21,10 @@ public class DenialView extends VerticalLayout implements View{
 	private static final long serialVersionUID = 1L;	
 	public DenialView(){
 		setMargin(true);
-		addComponent(new DenialPanel()); // create the denial panel and
+		DenialPanel denialPanel = new DenialPanel();
+		addComponent(denialPanel); // create the denial panel and
 										 // add it to the denial view.
+		this.setComponentAlignment(denialPanel, Alignment.TOP_CENTER);
 	}
 	
 	@Override

@@ -2,4 +2,11 @@
 @mixin mytheme {
   @include chameleon;
   
+ .v-panel-borderpanel{
+ border-style:solid;
+ border-width:thick;
+ border-color:black;
+ overflow:hidden;
+}
+  
 }

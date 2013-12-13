@@ -5,6 +5,7 @@ package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.referral;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.VerticalLayout;
 
 /**
@@ -22,7 +23,9 @@ public class ReferralView extends VerticalLayout implements View{
 	private static final long serialVersionUID = 1L;
 	public ReferralView(){
 		setMargin(true);
-		addComponent(new ReferralPanel()); // create the referral panel and add it to the	
+		ReferralPanel referralPanel = new ReferralPanel();
+		addComponent(referralPanel); // create the referral panel and add it to the
+		this.setComponentAlignment(referralPanel, Alignment.TOP_CENTER);
 	}
 
 	

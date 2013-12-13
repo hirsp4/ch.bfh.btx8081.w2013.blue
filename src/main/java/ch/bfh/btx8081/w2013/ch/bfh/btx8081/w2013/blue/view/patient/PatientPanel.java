@@ -6,13 +6,13 @@ import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.DatabaseHandler;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.PersonNotFoundException;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.person.Patient;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.statedesign.Normal;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.index.BorderPanel;
 
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.Panel;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.themes.ChameleonTheme;
@@ -33,7 +33,7 @@ import com.vaadin.ui.themes.ChameleonTheme;
  * 
  */
 
-public class PatientPanel extends Panel {
+public class PatientPanel extends BorderPanel {
 
 	private static final long serialVersionUID = 1L;
 	private ComboBox combobox;
@@ -42,10 +42,6 @@ public class PatientPanel extends Panel {
 
 	public PatientPanel() {
 		this.infoArea = new TextArea();
-		this.addStyleName(ChameleonTheme.PANEL_BORDERLESS);
-		this.setWidth("290px");
-		this.setHeight("450px");
-		
 
 		FormLayout content = new FormLayout();
 		content.addComponent(this.createComboBox());

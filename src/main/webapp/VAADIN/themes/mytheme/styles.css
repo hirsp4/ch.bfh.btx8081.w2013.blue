@@ -5853,3 +5853,10 @@ body .mytheme.v-app .v-app-loading {
 .mytheme .v-csslayout-toolbar .segment .v-button {
 	margin-right: 0;
 }
+
+.mytheme .v-panel-borderpanel {
+	border-style: solid;
+	border-width: thick;
+	border-color: black;
+	overflow: hidden;
+}

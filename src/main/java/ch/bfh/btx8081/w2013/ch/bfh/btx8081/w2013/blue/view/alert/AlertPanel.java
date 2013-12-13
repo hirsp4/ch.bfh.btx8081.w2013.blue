@@ -2,6 +2,7 @@ package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.alert;
 
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.countdown.Counter;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.main.MyVaadinUI;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.index.BorderPanel;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.index.IndexView;
 
 import com.vaadin.data.Property;
@@ -9,9 +10,10 @@ import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.server.Page;
 import com.vaadin.server.ThemeResource;
 import com.vaadin.shared.Position;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
-import com.vaadin.ui.Panel;
 import com.vaadin.ui.Slider;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Button.ClickEvent;
@@ -30,28 +32,28 @@ import com.vaadin.ui.themes.ChameleonTheme;
  *stop the alertion.
  */
 
-public class AlertPanel extends Panel{
+public class AlertPanel extends BorderPanel{
 	
 	private static final long serialVersionUID = 1L;
 	private final Slider slider;
 	private Counter counter;
 	
 	public AlertPanel(){
-		this.addStyleName(ChameleonTheme.PANEL_LIGHT);
-		this.setWidth("290");
 		this.counter = new Counter();
 		this.slider = createSlider();
-		this.setWidth("290px");
-		this.setHeight("450px");
-
 		VerticalLayout layout = new VerticalLayout();
 		layout.setSizeUndefined();
 		layout.setMargin(true);
 		layout.addComponent(this.slider);
+		Label emptyLabel = new Label();
+		emptyLabel.setHeight("100px");
+		layout.addComponent(emptyLabel);
 		layout.addComponent(createButton());
 		layout.addComponent(createBackButton());
-		setContent(layout);
-
+		VerticalLayout layout2 = new VerticalLayout();
+		layout2.addComponent(layout);
+		layout2.setComponentAlignment(layout, Alignment.MIDDLE_CENTER);
+		setContent(layout2);
 	}
 	
 	/**

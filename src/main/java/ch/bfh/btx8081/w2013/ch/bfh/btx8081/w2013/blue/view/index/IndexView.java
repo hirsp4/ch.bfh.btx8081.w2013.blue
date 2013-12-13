@@ -7,29 +7,42 @@ import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.referral.ReferralView
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.themes.ChameleonTheme;
 
 public class IndexView extends VerticalLayout implements View {
 
 	
 	private static final long serialVersionUID = 1L;
+	private BorderPanel borderPanel;
 	
 	
 	public IndexView() {
-		VerticalLayout layout = new VerticalLayout();
-		setSizeFull();
+		this.setSizeFull();
 		this.setMargin(true);
-		layout.setSpacing(true);
-		layout.addComponent(createAvButton());
-		layout.addComponent(createDvButton());
-		layout.addComponent(createRvButton());
-		addComponent(layout);
+		this.borderPanel = buildPanel();
+		this.addComponent(this.borderPanel);
+		this.setComponentAlignment(this.borderPanel, Alignment.TOP_CENTER);
+	}
+	
+	private BorderPanel buildPanel(){
+		BorderPanel panel = new BorderPanel();
+		VerticalLayout vLayout = new VerticalLayout();
+		vLayout.setMargin(true);
+		vLayout.addComponent(createAvButton());
+		vLayout.addComponent(createDvButton());
+		vLayout.addComponent(createRvButton());
+		panel.setContent(vLayout);
+		return panel;
 	}
 	
 	private Button createAvButton(){
 		Button btn = new Button("Alert");
+		btn.addStyleName(ChameleonTheme.BUTTON_BIG);
+		btn.setWidth("300px");
 		btn.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;
 			public void buttonClick(ClickEvent event) {
@@ -41,6 +54,8 @@ public class IndexView extends VerticalLayout implements View {
 
 	private Button createDvButton(){
 		Button btn = new Button("Denial");
+		btn.addStyleName(ChameleonTheme.BUTTON_BIG);
+		btn.setWidth("300px");
 		btn.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;
 			public void buttonClick(ClickEvent event) {
@@ -51,15 +66,18 @@ public class IndexView extends VerticalLayout implements View {
 	}
 
 	private Button createRvButton(){
-		Button btn2 = new Button("Referral");
-		btn2.addClickListener(new Button.ClickListener() {
+		Button btn = new Button("Referral");
+		btn.addStyleName(ChameleonTheme.BUTTON_BIG);
+		btn.setWidth("300px");
+		btn.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;
 			public void buttonClick(ClickEvent event) {
 				MyVaadinUI.setReferralView(new ReferralView());
 			}
 		});
-		return btn2;
+		return btn;
 	}
+	
 
 	@Override
 	public void enter(ViewChangeEvent event) {

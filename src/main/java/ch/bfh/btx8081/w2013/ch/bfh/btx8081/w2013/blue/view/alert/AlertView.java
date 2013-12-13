@@ -3,6 +3,7 @@ package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.alert;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.VerticalLayout;
 
 
@@ -25,7 +26,9 @@ public class AlertView extends VerticalLayout implements View{
 	private static final long serialVersionUID = 1L;	
 	public AlertView(){
 		setMargin(true);
-		addComponent(new AlertPanel());
+		AlertPanel alertPanel = new AlertPanel();
+		addComponent(alertPanel);
+		this.setComponentAlignment(alertPanel, Alignment.TOP_CENTER);
 	}
 	
 	@Override

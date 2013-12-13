@@ -5,6 +5,7 @@ import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.main.MyVaadinUI;
 
 
 
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.index.BorderPanel;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.index.IndexView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.referral.CSVCreator;
 
@@ -18,13 +19,12 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 //import com.vaadin.ui.Notification;
-import com.vaadin.ui.Panel;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.themes.ChameleonTheme;
 
-public class DenialPanel extends Panel {
+public class DenialPanel extends BorderPanel {
 
 	/**
 	 * 
@@ -48,9 +48,6 @@ public class DenialPanel extends Panel {
 
 	public DenialPanel() {
 
-		this.addStyleName(ChameleonTheme.PANEL_LIGHT);
-		this.setWidth("450px");
-		this.setHeight("450px");
 		this.denial = new Label("Denial");
 		this.whenField = new TextField("When:");
 		this.whenField.setInputPrompt("dd.mm.yyyy");
