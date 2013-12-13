@@ -26,22 +26,17 @@ public class MyVaadinUI extends UI
 	private static Navigator navi;
 	
     @WebServlet(value = "/*", asyncSupported = true)
-    @VaadinServletConfiguration(productionMode = false, ui = MyVaadinUI.class, widgetset = "ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.AppWidgetSet")
+    @VaadinServletConfiguration(productionMode = false, ui = MyVaadinUI.class, widgetset = "ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.alert.AppWidgetSet")
     public static class Servlet extends VaadinServlet {
     }
 
     @Override
-    protected void init(VaadinRequest request) {
-    	
-    	getPage().setTitle("iDoctor Web-Application");
-    	
-    	navi = new Navigator(this, this);
-    	
+    protected void init(VaadinRequest request) {   	
+    	getPage().setTitle("iDoctor Web-Application");    	
+    	navi = new Navigator(this, this);    	
     	IndexView indexView = new IndexView();
     	navi.addView("Index", indexView);
-    	navi.navigateTo("Index");
-    	
-    	
+    	navi.navigateTo("Index"); 	
     }
     
     public static void setIndexView(IndexView iv) {
