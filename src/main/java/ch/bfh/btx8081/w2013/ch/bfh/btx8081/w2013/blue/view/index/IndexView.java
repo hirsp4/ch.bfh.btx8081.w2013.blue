@@ -32,6 +32,7 @@ public class IndexView extends VerticalLayout implements View {
 		BorderPanel panel = new BorderPanel();
 		VerticalLayout vLayout = new VerticalLayout();
 		vLayout.setMargin(true);
+		vLayout.setSpacing(true);
 		vLayout.addComponent(createAvButton());
 		vLayout.addComponent(createDvButton());
 		vLayout.addComponent(createRvButton());

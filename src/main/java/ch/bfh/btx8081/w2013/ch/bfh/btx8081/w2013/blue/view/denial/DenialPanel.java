@@ -1,5 +1,7 @@
 package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.denial;
 
+import java.util.Date;
+
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.main.MyVaadinUI;
 
 
@@ -11,18 +13,14 @@ import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.referral.CSVCreator;
 
 import com.vaadin.server.Page;
 import com.vaadin.shared.Position;
-//import com.vaadin.server.Page;
-//import com.vaadin.shared.Position;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
-//import com.vaadin.ui.Notification;
+import com.vaadin.ui.PopupDateField;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.themes.ChameleonTheme;
 
 public class DenialPanel extends BorderPanel {
 
@@ -40,33 +38,37 @@ public class DenialPanel extends BorderPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private TextField whenField;
+	private PopupDateField whenField;
 	private TextField whatField;
 	private TextArea infoArea;
-	private Label denial;
 
 
 	public DenialPanel() {
 
-		this.denial = new Label("Denial");
-		this.whenField = new TextField("When:");
-		this.whenField.setInputPrompt("dd.mm.yyyy");
-		this.whenField.setStyleName(ChameleonTheme.TEXTFIELD_BIG);
-		this.whatField = new TextField("What:");
-		this.whatField.setInputPrompt("dd.mm.yyyy");
-		this.whatField.setStyleName(ChameleonTheme.TEXTFIELD_BIG);
+		this.whenField = new PopupDateField("Date of denial:");
+		this.whenField.setInputPrompt("Select a date");
+		this.whenField.setDateFormat("dd.MM.yyyy");
+		this.whenField.setWidth("150px");
+		this.whatField = new TextField("Name of denied medicine:");
+		this.whatField.setWidth("150px");
 		this.infoArea = new TextArea();
 
 		FormLayout layout = new FormLayout();
 		HorizontalLayout hlayout = new HorizontalLayout();
+		HorizontalLayout hlayout2 = new HorizontalLayout();
+		HorizontalLayout hlayout3 = new HorizontalLayout();
 		layout.setSizeUndefined();
 		layout.setMargin(true);
 		layout.setSpacing(true);
 		hlayout.setWidth("350px");
 		hlayout.addComponent(createAddtoMedicalReportButton());
-		layout.addComponent(denial);
-		layout.addComponent(this.whenField);
-		layout.addComponent(this.whatField);
+		hlayout2.setWidth("150px");
+		hlayout2.addComponent(whenField);
+		hlayout3.setWidth("150px");
+		hlayout3.addComponent(whatField);
+		hlayout3.addComponent(whatField);
+		layout.addComponent(hlayout2);
+		layout.addComponent(hlayout3);
 		layout.addComponent(this.infoArea);
 		layout.addComponent(hlayout);
 		layout.addComponent(createBackButton());
@@ -96,7 +98,7 @@ public class DenialPanel extends BorderPanel {
 	 * 
 	 * @return String
 	 */
-	private String getwhen() {
+	private Date getwhen() {
 		return this.whenField.getValue();
 	}
 	
@@ -127,7 +129,7 @@ public class DenialPanel extends BorderPanel {
 				// infoArea field
 				// if the input is incorrect.
 				if (checkInputValues()) {
-					String when = getwhen();
+					Date when = getwhen();
 					String what = getwhat();
 					new CSVCreator(when + ";" + what + ";\n", "denial.txt");
 					infoArea.setValue("the database update was successful.");
@@ -154,14 +156,13 @@ public class DenialPanel extends BorderPanel {
 		// check whether the when field is filled like the format dd.mm.yyyy. if yes,
 				// the boolean validwhen is set true. if not, a notification
 				// is shown and the field will be set empty.
-				if (!getwhen().matches("\\d\\d\\p{Punct}\\d\\d\\p{Punct}\\d\\d\\d\\d")) {
+				if (getwhen() == null) {
 					Notification notif = new Notification("Input failure",
-							"Please enter a valid date (integer, format: dd.mm.yyyy)",
+							"Please select a date",
 							Notification.Type.WARNING_MESSAGE);
 		        	notif.setDelayMsec(5000);
 		        	notif.setPosition(Position.BOTTOM_RIGHT);
-					notif.show(Page.getCurrent());
-					this.whenField.setValue("");
+					notif.show(Page.getCurrent());		
 				} else
 					validwhen = true;
 
