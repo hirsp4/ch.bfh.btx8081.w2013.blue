@@ -25,7 +25,6 @@ public class DenialPanel extends BorderPanel {
 	 * 
 	 * @author Saskia Basler
 	 * 
-	 * 
 	 *         DenialPanel v1.0 08.12.2013/v2.0 18.12.2013
 	 * 
 	 *         Creates the panel for our DenialView with the description when
