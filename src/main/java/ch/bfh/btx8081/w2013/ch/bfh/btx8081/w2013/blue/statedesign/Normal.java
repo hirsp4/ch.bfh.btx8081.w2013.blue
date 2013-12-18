@@ -44,7 +44,13 @@ public class Normal extends State {
 			p.setState(new Dangerous(this.p));
 			dbh.addPatient(this.p);
 
-		} catch (FileIsEmptyException | IOException | PersonNotFoundException e) {
+		} catch (FileIsEmptyException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (PersonNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

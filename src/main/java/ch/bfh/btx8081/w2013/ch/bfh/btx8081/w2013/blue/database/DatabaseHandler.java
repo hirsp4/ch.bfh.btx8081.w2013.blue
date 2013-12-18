@@ -92,7 +92,9 @@ public class DatabaseHandler {
 
 			try {
 				lineChecker(splitted[0]);
-			} catch (InvalideLineException | OutOfBoundsException e) {
+			} catch (InvalideLineException e) {
+				e.printStackTrace();
+			} catch (OutOfBoundsException e) {
 				e.printStackTrace();
 			}
 
@@ -240,7 +242,10 @@ public class DatabaseHandler {
 			treeFoundPerson = this.searchPatients(
 					this.buildMapFromFile(this.DATABASE), delemitter, data);
 
-		} catch (FileNotFoundException | FileIsEmptyException e) {
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (FileIsEmptyException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		foundPerson = writeMapToList(treeFoundPerson);
@@ -359,7 +364,10 @@ public class DatabaseHandler {
 		TreeMap<Integer, HashMap<String, String>> tm = null; 
 		try {
 			tm = buildMapFromFile(DATABASE);
-		} catch (FileNotFoundException | FileIsEmptyException e) {
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (FileIsEmptyException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return writeMapToList(tm);
