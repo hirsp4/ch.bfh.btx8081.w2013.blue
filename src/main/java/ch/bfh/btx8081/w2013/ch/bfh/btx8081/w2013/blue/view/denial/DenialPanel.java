@@ -55,9 +55,9 @@ public class DenialPanel extends BorderPanel {
 
 		layout.addComponent(hlayout);
 		layout.addComponent(hlayout2);
-		layout.addComponent(createInfoArea());
 		layout.addComponent(createAddtoMedicalReportButton());
 		layout.addComponent(createBackButton());
+		layout.addComponent(createInfoArea());
 		setContent(layout);
 	}
 
