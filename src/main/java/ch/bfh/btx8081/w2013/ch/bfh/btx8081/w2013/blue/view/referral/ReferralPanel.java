@@ -2,6 +2,7 @@ package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.referral;
 
 
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.main.MyVaadinUI;
@@ -22,7 +23,6 @@ import com.vaadin.ui.OptionGroup;
 import com.vaadin.ui.PopupDateField;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.themes.ChameleonTheme;
 
 /**
  * 
@@ -58,9 +58,6 @@ public class ReferralPanel extends BorderPanel {
 	private Label lab5;
 	
 	public ReferralPanel() {
-		this.addStyleName(ChameleonTheme.PANEL_BORDERLESS);
-		this.setWidth("390px");
-		this.setHeight("600px");
 		this.lab1 = new Label("Reason for referral:");
 		this.lab2 = new Label("Possible Timeframe:");
 		this.lab3 = new Label("Referral type:");
@@ -68,7 +65,6 @@ public class ReferralPanel extends BorderPanel {
 		this.lab5 = new Label("Choose responsible Doctor:");
 		this.infoArea = new TextArea();
 		
-
 		FormLayout content = new FormLayout();
 		HorizontalLayout hlayout = new HorizontalLayout();
 		HorizontalLayout hlayout2 = new HorizontalLayout();
@@ -122,7 +118,7 @@ public class ReferralPanel extends BorderPanel {
 	
 	/**
 	 * Creates the "Send Referral" Button and adds a ClickListener to generate the
-	 * output.
+	 * output referral.txt.
 	 * 
 	 * @return Button
 	 */
@@ -139,8 +135,8 @@ public class ReferralPanel extends BorderPanel {
 			// if the input is incorrect.
 			if(checkInputValues()){
 				Object referral = referralComboBox.getValue();
-				Date dateFrom = dateField.getValue();
-				Date dateTo = dateField2.getValue();
+				String dateFrom = getDateFrom();
+				String dateTo = getDateTo();
 				Object referralType = referralTypeGroup.getValue();
 				String referralMessage = textReferralMessage.getValue();
 				Object clinic = clinicComboBox.getValue();
@@ -159,6 +155,11 @@ public class ReferralPanel extends BorderPanel {
 	}
 	
 	
+	/**
+	 * Creates a ComboBox to choose a referral reason.
+	 * 
+	 * @return ComboBox
+	 */
 	private ComboBox createReferralComboBox(){
 		referralComboBox = new ComboBox();
 		referralComboBox.addItem("Stationery Therapy");
@@ -169,19 +170,46 @@ public class ReferralPanel extends BorderPanel {
 	}
 
 	
+	/**
+	 * Creates a DateField where you can choose a date from a Popupfield.
+	 * The selected date should be the current date (today's date) or a date in the future.
+	 * It is not possible to select/enter a date in the past.
+	 * 
+	 * @return PopupDateField
+	 */
 	private PopupDateField createDateField1(){
 		dateField = new PopupDateField("From:");
-		dateField.setInputPrompt("Selcet a date");
+		dateField.setInputPrompt("Selecet a date");
 		dateField.setDateFormat("dd.MM.yyyy");
 		dateField.setRangeStart(new Date());
-		dateField.setWidth("150px");		
+		dateField.setWidth("150px");
 		return dateField;
 	}
 	
 	
+	/**
+	 * Returns the value of the datefield-PopupDateField as a String in the format
+	 * dd.MM.yyyy
+	 * 
+	 * @return String
+	 */
+	private String getDateFrom() {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+		String date = formatter.format(this.dateField.getValue());
+		return date;
+	}
+	
+	
+	/**
+	 * Creates a DateField where you can choose a date from a Popupfield.
+	 * The selected date should be the current date (today's date) or a date in the future.
+	 * It is not possible to select/enter a date in the past.
+	 * 
+	 * @return PopupDateField
+	 */
 	private PopupDateField createDateField2(){
 		dateField2 = new PopupDateField("To:");
-		dateField2.setInputPrompt("Selcet a date");
+		dateField2.setInputPrompt("Selecet a date");
 		dateField2.setDateFormat("dd.MM.yyyy");
 		dateField2.setRangeStart(new Date());
 		dateField2.setWidth("150px");
@@ -189,14 +217,38 @@ public class ReferralPanel extends BorderPanel {
 	}
 	
 	
+	/**
+	 * Returns the value of the datefield2-PopupDateField as a String in the format
+	 * dd.MM.yyyy.
+	 * 
+	 * @return String
+	 */
+	private String getDateTo() {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+		String date = formatter.format(this.dateField2.getValue());
+		return date;
+	}
+	
+	
+	/**
+	 * Creates two RadioButtons (OptionGroup) where you can select
+	 * 1 Button at the moment.
+	 * 
+	 * @return OptionGroup
+	 */
 	private OptionGroup createOptionGroup(){
 		referralTypeGroup = new OptionGroup();
 		referralTypeGroup.addItem("FU");
 		referralTypeGroup.addItem("Normal");
 		return referralTypeGroup;
 	}
-		
 	
+	
+	/**
+	 * Creates a TextArea where you can write additional notes for the referral.
+	 * 
+	 * @return TextArea
+	 */
 	private TextArea createMessageTextArea(){
 		textReferralMessage = new TextArea();
 		textReferralMessage.setInputPrompt("Additional Notes");
@@ -204,11 +256,17 @@ public class ReferralPanel extends BorderPanel {
 	}
 	
 	
+	/**
+	 * Creates a ComboBox to choose a clinic for the referral.
+	 * 
+	 * @return ComboBox
+	 */
 	private ComboBox createClinicComboBox(){
 		clinicComboBox = new ComboBox("Clinic:");
 		clinicComboBox.addItem("Psychiatrische Klinik Bern");
 		clinicComboBox.addItem("Psychiatrische Klink Basel");
 		clinicComboBox.setInvalidAllowed(false);
+		clinicComboBox.setNullSelectionAllowed(false);
 		clinicComboBox.setWidth("150px");
 		clinicComboBox.setImmediate(true);
 		clinicComboBox.addValueChangeListener(new Property.ValueChangeListener() {
@@ -222,12 +280,18 @@ public class ReferralPanel extends BorderPanel {
 	}
 	
 	
+	/**
+	 * Creates a ComboBox to choose a doctoroffice for the referral.
+	 * 
+	 * @return ComboBox
+	 */
 	private ComboBox createDoctorOfficeComboBox() {
 		doctorofficeComboBox = new ComboBox("Doctor Office:");
 		doctorofficeComboBox.addItem("Doctor Office - Dr. Rolf Meyer, Basel");
 		doctorofficeComboBox.addItem("Doctor Office - Group Office Blue");
 		doctorofficeComboBox.addItem("Doctor Office - Group Office Red");
 		doctorofficeComboBox.setInvalidAllowed(false);
+		doctorofficeComboBox.setNullSelectionAllowed(false);
 		doctorofficeComboBox.setWidth("150px");
 		doctorofficeComboBox.setImmediate(true);
 		doctorofficeComboBox.addValueChangeListener(new Property.ValueChangeListener() {
@@ -241,6 +305,12 @@ public class ReferralPanel extends BorderPanel {
 	}	
 	
 	
+	/**
+	 * Creates a ComboBox to choose a doctor which is responsible for the referral 
+	 * in the external institution.
+	 * 
+	 * @return ComboBox
+	 */
 	private ComboBox createDoctorComboBox() {
 		doctorComboBox = new ComboBox();
 		doctorComboBox.addItem("Dr. Helen Fischer");
@@ -254,7 +324,7 @@ public class ReferralPanel extends BorderPanel {
 
 	/**
 	 * This private method returns true if and only if all input is correct. It
-	 * checks the if all Fields are filled out.
+	 * checks the if all Fields and ComboBoxes are filled out.
 	 * 
 	 * @return boolean
 	 */
@@ -270,9 +340,9 @@ public class ReferralPanel extends BorderPanel {
 		boolean validdoctor = false;
 
 		
-		// check whether the Referral field is filled. if yes,
-		// the boolean valid referral is set true. if not, a notification
-		// is shown.
+		// check whether one Item of the Referral ComboBox is selected. if yes,
+				// the boolean valid referral is set true. if not, a notification
+			// is shown.
 		if (referralComboBox.getValue() == null)  {
 			Notification notif = new Notification("Input failure", 
 					"Select one reason for referral from the dropdown menu.",
@@ -306,16 +376,21 @@ public class ReferralPanel extends BorderPanel {
 			validdateFrom = true;
 			validdateTo = true;
 
-			if(referralTypeGroup.getValue() == null) {
-				Notification notif = new Notification("Input failure", 
-						"Please select one referral type.",
-						Notification.Type.WARNING_MESSAGE);
-	        	notif.setDelayMsec(5000);
-	        	notif.setPosition(Position.BOTTOM_RIGHT);
-				notif.show(Page.getCurrent());
-			} else 
-				validreferralType = true;
 			
+		// check whether one Button of the Referral Type is selected. if yes,
+				// the boolean valid referral is set true. if not, a notification
+				// is shown.
+		if(referralTypeGroup.getValue() == null) {
+			Notification notif = new Notification("Input failure", 
+					"Please select one referral type.",						
+					Notification.Type.WARNING_MESSAGE);
+	        notif.setDelayMsec(5000);
+	       	notif.setPosition(Position.BOTTOM_RIGHT);
+			notif.show(Page.getCurrent());
+		} else 
+			validreferralType = true;
+			
+		
 		// check whether the Referral Message field is filled. if yes,
 				// the boolean valid referral is set true. if not, a notification
 				// is shown.
@@ -329,7 +404,7 @@ public class ReferralPanel extends BorderPanel {
 			validreferralMessage = true;
 
 			
-		// check whether the DoctorOffice field is filled. if yes,
+		// check whether one Item of the Doctor Office ComboBox is selected. if yes,
 				// the boolean valid referral is set true. if not, a notification
 				// is shown.
 		if (doctorofficeComboBox.getValue() == null && clinicComboBox.getValue() == null)  {
@@ -343,7 +418,7 @@ public class ReferralPanel extends BorderPanel {
 			validclinicdoctoroffice = true;
 		
 			
-		// check whether the Doctor field is filled. if yes,
+		// check whether one Item of the Doctor ComboBox is selected. if yes,
 				// the boolean valid referral is set true. if not, a notification
 				// is shown.
 		if (doctorComboBox.getValue() == null)  {
@@ -362,7 +437,3 @@ public class ReferralPanel extends BorderPanel {
 				&& validclinicdoctoroffice && validdoctor;
 	}
 }
-
-
-		
-
