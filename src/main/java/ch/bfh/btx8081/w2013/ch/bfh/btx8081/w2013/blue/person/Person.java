@@ -1,6 +1,5 @@
 package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.person;
 
-import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.event.IEvent;
 
 public abstract class Person {
 
@@ -16,10 +15,6 @@ public abstract class Person {
 		this.setAddress(address);
 		this.setGender(gender);
 		this.setBirthdate(birthdate);
-	}
-
-	public void addEvent(IEvent event) {
-
 	}
 
 	public Address getAddress() {

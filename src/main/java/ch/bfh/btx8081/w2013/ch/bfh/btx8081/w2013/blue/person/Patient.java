@@ -2,7 +2,6 @@ package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.person;
 
 import java.util.ArrayList;
 
-import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.event.IEvent;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.statedesign.State;
 
 public class Patient extends Person {
@@ -32,10 +31,6 @@ public class Patient extends Person {
 		return this.medication;
 	}
 
-	@Override
-	public void addEvent(IEvent event) {
-
-	}
 
 	public String toString() {
 		return super.toString() + " " + this.getPid();
