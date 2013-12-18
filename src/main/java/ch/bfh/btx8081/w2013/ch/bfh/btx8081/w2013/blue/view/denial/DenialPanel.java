@@ -28,7 +28,6 @@ public class DenialPanel extends BorderPanel {
 	 * 
 	 *         DenialPanel v1.0 08.12.2013/v2.0 18.12.2013
 	 * 
-	 * 
 	 *         Creates the panel for our DenialView with the description when
 	 *         does the patient deny a drug and which drug. Button "Add to
 	 *         medical report" writes the information from the field when and
