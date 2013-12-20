@@ -22,9 +22,8 @@ public class DatabaseHandlerTester {
 		Doctor d1 = new Doctor(2201, "Fritzel", "Horst", new Address("Strasse", 3, 4302, "Ort"), 'm', "09.12.1950", "Medizentrum Ins");
 		
 		Patient p1 = null;
-		State s1 = null;
+		State s1 = new Normal(p1);
 		p1 = new Patient(9171, "Unser", "Patient", new Address("Wohnt", 4, 8191, "IN"), 'w', "11.08.1999", s1);
-		s1= new Normal(p1);
 		
 		System.out.println("made patient, clinic, doctor");
 		

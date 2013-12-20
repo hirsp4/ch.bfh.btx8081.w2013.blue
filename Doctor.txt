@@ -1,0 +1,2 @@
+2010;Karin;Lauch;Spitalstrasse;22;4000;Gümligen;w;09.09.1940;2010;Medizentrum Gümligen
+2201;Fritzel;Horst;Strasse;3;4302;Ort;m;09.12.1950;2201;Medizentrum Ins

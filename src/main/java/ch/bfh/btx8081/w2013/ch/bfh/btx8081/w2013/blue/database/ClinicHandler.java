@@ -135,7 +135,7 @@ public class ClinicHandler {
 			printer.print(treeMap.get(i).get(CITY));
 			printer.print(";");
 			printer.print(treeMap.get(i).get(CID));
-			printer.print(";");
+			printer.println();
 		}
 		printer.close();
 	}
