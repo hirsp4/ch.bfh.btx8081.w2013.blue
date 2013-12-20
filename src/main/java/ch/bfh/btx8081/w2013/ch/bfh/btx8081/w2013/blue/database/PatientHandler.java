@@ -25,7 +25,7 @@ import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.statedesign.State;
  *         verwaltet txt CSV files. V1.0 nur für Patients, offen für
  *         erweiterungen!
  */
-public class DatabaseHandler {
+public class PatientHandler {
 
 	public final static String NAME = "n:";
 	public final static String FORENAME = "f:";
@@ -46,7 +46,7 @@ public class DatabaseHandler {
 	 * 
 	 * @param selectDatabase
 	 */
-	public DatabaseHandler(String selectDatabase) {
+	public PatientHandler(String selectDatabase) {
 		if (selectDatabase.equals("Patient")) {
 			this.DATABASE = new File("Patient.txt");
 		} else {

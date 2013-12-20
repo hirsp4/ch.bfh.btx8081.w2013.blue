@@ -2,7 +2,7 @@ package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.patient;
 
 import java.util.ArrayList;
 
-import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.DatabaseHandler;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.PatientHandler;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.PersonNotFoundException;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.person.Patient;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.statedesign.Normal;
@@ -70,10 +70,10 @@ public class PatientPanel extends BorderPanel {
 			public void buttonClick(ClickEvent event) {
 				infoArea.setValue((String) combobox.getValue());
 				
-				DatabaseHandler dbh = new DatabaseHandler("Patient");
+				PatientHandler dbh = new PatientHandler("Patient");
 				Patient selectedPatient;
 				try {
-					selectedPatient = dbh.getPatient(DatabaseHandler.PID, ((String) combobox.getValue()).split(" ")[2]);
+					selectedPatient = dbh.getPatient(PatientHandler.PID, ((String) combobox.getValue()).split(" ")[2]);
 					if(selectedPatient.getState().getStateDescription().equals("NORMAL")){
 						
 						Normal normal = new Normal(selectedPatient);
@@ -97,7 +97,7 @@ public class PatientPanel extends BorderPanel {
 		combobox.setInvalidAllowed(false);
         combobox.setNullSelectionAllowed(false);
         
-        DatabaseHandler dbh = new DatabaseHandler("Patient");
+        PatientHandler dbh = new PatientHandler("Patient");
         ArrayList<Patient> list = dbh.getAll();
         
         for(int i = 0; i<list.size(); i++){
