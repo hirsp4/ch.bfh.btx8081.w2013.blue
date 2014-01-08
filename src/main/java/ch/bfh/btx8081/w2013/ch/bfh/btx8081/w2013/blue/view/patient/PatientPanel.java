@@ -4,22 +4,27 @@ import java.util.ArrayList;
 
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.PatientHandler;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.PersonNotFoundException;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.main.MyVaadinUI;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.person.Patient;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.statedesign.Normal;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.index.BorderPanel;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.index.IndexView;
 
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
+import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
+import com.vaadin.ui.Panel;
 import com.vaadin.ui.TextArea;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.themes.ChameleonTheme;
 
 /**
  * 
- * @author Patrick Hirschi / Rafael Kapp
  * 
  * 
  *         TextFieldPanel v1.0 29.11.2013
@@ -39,20 +44,56 @@ public class PatientPanel extends BorderPanel {
 	private ComboBox combobox;
 	private TextArea infoArea;
 	private Button addPatientButton;
+	private Panel panel;
 
 	public PatientPanel() {
+		this.panel = new Panel(" Alert");
+		this.panel.setIcon(new ThemeResource("alarmKlein.jpg"));
+		this.panel.setStyleName("borderless");
+		this.panel.setSizeFull();
+		
+		Label label = new Label("Select a patient:");
+		label.addStyleName("h3");
+		
 		this.infoArea = new TextArea();
 
 		FormLayout content = new FormLayout();
 		content.addComponent(this.createComboBox());
-		content.addComponent(this.createAddPatientButton());
 		content.addComponent(this.infoArea);
+		
+		HorizontalLayout hlayout = new HorizontalLayout();
+		hlayout.setWidth("340px");
+		hlayout.addComponent(createAddPatientButton());
+		hlayout.addComponent(createIndexButton());
+		content.addComponent(hlayout);
 		
 		content.setSizeUndefined();
 		content.setMargin(true);
-		this.setContent(content);
+		this.panel.setContent(content);
+		setContent(panel);
 	}
 
+	/**
+	 * Creates the "Index" Button to go back to the Index-View.
+	 * 
+	 * @return Button
+	 */
+	public Button createIndexButton() {
+		Button btn = new Button("Index");
+		btn.setWidth("100px");
+		btn.setHeight("75px");
+		btn.addStyleName("borderless icon-on-top");
+		btn.setIcon(new ThemeResource("index.png"));
+		btn.addClickListener(new Button.ClickListener() {
+			private static final long serialVersionUID = 1L;
+
+			public void buttonClick(ClickEvent event) {
+				MyVaadinUI.setIndexView(new IndexView());
+			}
+		});
+		return btn;
+	}
+	
 	/**
 	 * Creates the "Add Patient" Button and adds a ClickListener to generate the
 	 * output.
@@ -62,8 +103,12 @@ public class PatientPanel extends BorderPanel {
 	 */
 	public Button createAddPatientButton() {
 		addPatientButton = new Button("Add Patient");
+		addPatientButton.setWidth("100px");
+		addPatientButton.setHeight("75px");
+		addPatientButton.addStyleName("borderless icon-on-top");
+		addPatientButton.addStyleName(ChameleonTheme.BUTTON_SMALL);
+		addPatientButton.setIcon(new ThemeResource("Add-user.png"));
 		addPatientButton.setEnabled(false);
-		addPatientButton.setStyleName(ChameleonTheme.BUTTON_BIG);
 		addPatientButton.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;
 
@@ -93,7 +138,7 @@ public class PatientPanel extends BorderPanel {
 	}
 	
 	private ComboBox createComboBox(){
-		combobox = new ComboBox("Select a Patient");
+		combobox = new ComboBox();
 		combobox.setInvalidAllowed(false);
         combobox.setNullSelectionAllowed(false);
         
