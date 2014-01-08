@@ -12,8 +12,10 @@ import com.vaadin.server.ThemeResource;
 import com.vaadin.shared.Position;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
+import com.vaadin.ui.Panel;
 import com.vaadin.ui.Slider;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Button.ClickEvent;
@@ -37,23 +39,35 @@ public class AlertPanel extends BorderPanel{
 	private static final long serialVersionUID = 1L;
 	private final Slider slider;
 	private Counter counter;
+	private Panel panel;
 	
 	public AlertPanel(){
+		this.panel = new Panel(" Alert");
+		this.panel.setIcon(new ThemeResource("alarmKlein.jpg"));
+		this.panel.setStyleName("borderless");
+		this.panel.setSizeFull();
+		
 		this.counter = new Counter();
 		this.slider = createSlider();
 		VerticalLayout layout = new VerticalLayout();
 		layout.setSizeUndefined();
 		layout.setMargin(true);
+		layout.setSpacing(true);
 		layout.addComponent(this.slider);
 		Label emptyLabel = new Label();
-		emptyLabel.setHeight("100px");
+		emptyLabel.setHeight("50px");
 		layout.addComponent(emptyLabel);
-		layout.addComponent(createButton());
-		layout.addComponent(createBackButton());
+		
+		HorizontalLayout hlayout = new HorizontalLayout();
+		hlayout.setWidth("340px");
+		hlayout.addComponent(createButton());
+		hlayout.addComponent(createIndexButton());
+		
+		layout.addComponent(hlayout);
 		VerticalLayout layout2 = new VerticalLayout();
 		layout2.addComponent(layout);
-		layout2.setComponentAlignment(layout, Alignment.MIDDLE_CENTER);
-		setContent(layout2);
+		this.panel.setContent(layout);
+		setContent(panel);	
 	}
 	
 	/**
@@ -102,8 +116,10 @@ public class AlertPanel extends BorderPanel{
 	private Button createButton(){
 		//create the button
 		Button btn = new Button("Stop Alert");
-		btn.setStyleName(ChameleonTheme.BUTTON_BIG);
-		btn.setWidth("260");
+		btn.setWidth("100px");
+		btn.setHeight("75px");	
+		btn.addStyleName("borderless icon-on-top");
+		btn.setIcon(new ThemeResource("StopAlert.png"));
 		//add the click listener
 		btn.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;
@@ -121,14 +137,15 @@ public class AlertPanel extends BorderPanel{
 	 * to index view. 
 	 * @return BackButton
 	 */
-	private Button createBackButton(){
-		// create the button
+	public Button createIndexButton() {
 		Button btn = new Button("Index");
-		// add the click listener
+		btn.setWidth("100px");
+		btn.setHeight("75px");	
+		btn.addStyleName("borderless icon-on-top");
+		btn.setIcon(new ThemeResource("index.png"));
 		btn.addClickListener(new Button.ClickListener() {
-			private static final long serialVersionUID = 1L;
+			private static final long serialVersionUID =1L;
 			public void buttonClick(ClickEvent event) {
-				//if clicked, change to index view
 				MyVaadinUI.setIndexView(new IndexView());
 			}
 		});

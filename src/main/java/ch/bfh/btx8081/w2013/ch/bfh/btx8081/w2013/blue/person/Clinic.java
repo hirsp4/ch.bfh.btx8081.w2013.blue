@@ -34,4 +34,8 @@ public class Clinic {
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public String toString(){
+		return this.id + this.name;
+	}
 }
