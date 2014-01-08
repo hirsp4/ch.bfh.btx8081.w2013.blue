@@ -122,7 +122,7 @@ public class ReferralPanel extends BorderPanel {
 	 * @return Button
 	 */
 	public Button createLinkIndexButton() {
-		IndexButton = new Button();
+		IndexButton = new Button("Index");
 		IndexButton.setWidth("100px");
 		IndexButton.setHeight("65px");
 		IndexButton.addStyleName("borderless icon-on-top");
@@ -137,7 +137,7 @@ public class ReferralPanel extends BorderPanel {
 	}
 	
 	public Button createLinkAlarmButton() {
-		AlarmButton = new Button();
+		AlarmButton = new Button("Alert");
 		AlarmButton.setWidth("100px");
 		AlarmButton.setHeight("65px");
 		AlarmButton.addStyleName("borderless icon-on-top");
@@ -159,7 +159,7 @@ public class ReferralPanel extends BorderPanel {
 	 * @return Button
 	 */
 	public Button createSendReferralButton() {
-		SendReferralButton = new Button();
+		SendReferralButton = new Button("Send");
 		SendReferralButton.setWidth("100px");
 		SendReferralButton.setHeight("65px");
 		SendReferralButton.addStyleName("borderless icon-on-top");

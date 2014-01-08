@@ -1,2 +1,3 @@
 1234;Insel Bern;Spitalgasse;11;3000;Bern;1234
 2000;Lindenhofgruppe;Höhenweg;10;2240;Biel;2000
+4000;Psychiatrische Klinik Bern; Spitalgasse;12;3000;Bern;4000
