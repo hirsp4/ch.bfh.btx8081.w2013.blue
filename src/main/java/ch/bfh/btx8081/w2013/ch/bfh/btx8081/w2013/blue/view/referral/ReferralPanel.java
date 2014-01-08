@@ -90,7 +90,7 @@ public class ReferralPanel extends BorderPanel {
 		content.addComponent(lab1);
 		content.addComponent(this.createReferralComboBox());
 		content.addComponent(this.lab2);
-		hlayout.setWidth("360px");
+		hlayout.setWidth("340px");
 		hlayout.addComponent(this.createDateField1());
 		hlayout.addComponent(this.createDateField2());
 		content.addComponent(hlayout);
@@ -98,13 +98,13 @@ public class ReferralPanel extends BorderPanel {
 		content.addComponent(this.createOptionGroup());
 		content.addComponent(this.createMessageTextArea());
 		content.addComponent(lab4);
-		hlayout2.setWidth("360px");
+		hlayout2.setWidth("340px");
 		hlayout2.addComponent(this.createClinicComboBox());
 		hlayout2.addComponent(this.createDoctorOfficeComboBox());
 		content.addComponent(hlayout2);
 		content.addComponent(this.lab5);
 		content.addComponent(this.createDoctorComboBox());
-		hlayout3.setWidth("360px");
+		hlayout3.setWidth("340px");
 		hlayout3.setHeight("35px");
 		hlayout3.addComponent(this.createLinkIndexButton());
 		hlayout3.addComponent(this.createSendReferralButton());
@@ -126,7 +126,7 @@ public class ReferralPanel extends BorderPanel {
 	public Button createLinkIndexButton() {
 		IndexButton = new Button("Index");
 		IndexButton.setWidth("100px");
-		IndexButton.setHeight("65px");
+		IndexButton.setHeight("75px");
 		IndexButton.addStyleName("borderless icon-on-top");
 		IndexButton.setIcon(new ThemeResource("index.png"));
 		IndexButton.addClickListener(new Button.ClickListener() {
@@ -141,7 +141,7 @@ public class ReferralPanel extends BorderPanel {
 	public Button createLinkAlarmButton() {
 		AlarmButton = new Button("Alert");
 		AlarmButton.setWidth("100px");
-		AlarmButton.setHeight("65px");
+		AlarmButton.setHeight("75px");
 		AlarmButton.addStyleName("borderless icon-on-top");
 		AlarmButton.setIcon(new ThemeResource("alarm.jpg"));
 		AlarmButton.addClickListener(new Button.ClickListener() {
@@ -163,7 +163,7 @@ public class ReferralPanel extends BorderPanel {
 	public Button createSendReferralButton() {
 		SendReferralButton = new Button("Send");
 		SendReferralButton.setWidth("100px");
-		SendReferralButton.setHeight("65px");
+		SendReferralButton.setHeight("75px");
 		SendReferralButton.addStyleName("borderless icon-on-top");
 		SendReferralButton.setIcon(new ThemeResource("email.jpg"));
 		SendReferralButton.addClickListener(new Button.ClickListener() {
@@ -369,7 +369,7 @@ public class ReferralPanel extends BorderPanel {
 	 * @return ComboBox
 	 */
 	private ComboBox createDoctorComboBox() {
-		doctorComboBox = new ComboBox("Choose responsible Doctor");
+		doctorComboBox = new ComboBox();
 		doctorComboBox.setInvalidAllowed(false);
 		doctorComboBox.setNullSelectionAllowed(false);
 		
