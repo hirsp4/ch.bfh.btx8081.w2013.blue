@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.ClinicHandler;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.DoctorHandler;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.main.MyVaadinUI;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.person.Clinic;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.person.Doctor;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.alert.AlertView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.index.BorderPanel;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.index.IndexView;
@@ -309,35 +311,24 @@ public class ReferralPanel extends BorderPanel {
 	 */
 	private ComboBox createClinicComboBox(){
 		clinicComboBox = new ComboBox("Clinic:");
-		clinicComboBox.addItem("Psychiatrische Klinik Bern");
-		clinicComboBox.addItem("Psychiatrische Klink Basel");
 		clinicComboBox.setInvalidAllowed(false);
 		clinicComboBox.setNullSelectionAllowed(false);
 		clinicComboBox.setWidth("150px");
-		clinicComboBox.setImmediate(true);
-		clinicComboBox.addValueChangeListener(new Property.ValueChangeListener() {
-			private static final long serialVersionUID = 1L;
+		
+        ClinicHandler clinicHandler = new ClinicHandler("Clinic");
+        ArrayList<Clinic> list = clinicHandler.getAll();
+        
+        for(int i = 0; i<list.size(); i++){
+        	clinicComboBox.addItem(list.get(i).toString());
+        }
+        
+        clinicComboBox.addValueChangeListener(new Property.ValueChangeListener() {
+            private static final long serialVersionUID = -5188369735622627751L;
 			@Override
 			public void valueChange(ValueChangeEvent event) {
-				doctorofficeComboBox.setEnabled(false);
-				}
-		});
-//		ClinicHandler cdbh = new ClinicHandler("Clinic");
-//		ArrayList<Clinic> list = cdbh.getAll();
-//		
-//		 for(int i = 0; i<list.size(); i++){
-//	        	clinicComboBox.addItem(list.get(i).toString());
-//		 }
-//		 
-//	     clinicComboBox.addValueChangeListener(new Property.ValueChangeListener() {
-//	              private static final long serialVersionUID = -5188369735622627751L;
-//	     			@Override
-//	     			public void valueChange(ValueChangeEvent event) {
-//	     				if (clinicComboBox.getValue() == null) {
-//	     					SendReferralButton.setEnabled(true);
-//				}
-//	     	}
-//		});
+				doctorofficeComboBox.setEnabled(false);	
+			}
+        });
 		return clinicComboBox;	
 	}
 	
@@ -349,20 +340,24 @@ public class ReferralPanel extends BorderPanel {
 	 */
 	private ComboBox createDoctorOfficeComboBox() {
 		doctorofficeComboBox = new ComboBox("Doctor Office:");
-		doctorofficeComboBox.addItem("Doctor Office - Dr. Rolf Meyer, Basel");
-		doctorofficeComboBox.addItem("Doctor Office - Group Office Blue");
-		doctorofficeComboBox.addItem("Doctor Office - Group Office Red");
 		doctorofficeComboBox.setInvalidAllowed(false);
 		doctorofficeComboBox.setNullSelectionAllowed(false);
 		doctorofficeComboBox.setWidth("150px");
-		doctorofficeComboBox.setImmediate(true);
-		doctorofficeComboBox.addValueChangeListener(new Property.ValueChangeListener() {
-			private static final long serialVersionUID = 1L;
+		
+        DoctorHandler doctorHandler = new DoctorHandler("Doctor");
+        ArrayList<Doctor> list = doctorHandler.getAll();
+        
+        for(int i = 0; i<list.size(); i++){
+        	doctorofficeComboBox.addItem(list.get(i).getOfficeName().toString());
+        }
+        
+        clinicComboBox.addValueChangeListener(new Property.ValueChangeListener() {
+            private static final long serialVersionUID = -5188369735622627751L;
 			@Override
 			public void valueChange(ValueChangeEvent event) {
-				clinicComboBox.setEnabled(false);
-				}
-		});
+				clinicComboBox.setEnabled(false);	
+			}
+        });
 		return doctorofficeComboBox;
 	}	
 	
@@ -374,31 +369,117 @@ public class ReferralPanel extends BorderPanel {
 	 * @return ComboBox
 	 */
 	private ComboBox createDoctorComboBox() {
-		doctorComboBox = new ComboBox();
-		doctorComboBox.addItem("Dr. Helen Fischer");
-		doctorComboBox.addItem("Dr. Markus Vetsch");
-		doctorComboBox.addItem("Dr. Rolf Meyer");
+		doctorComboBox = new ComboBox("Choose responsible Doctor");
 		doctorComboBox.setInvalidAllowed(false);
 		doctorComboBox.setNullSelectionAllowed(false);
 		
-//		DoctorHandler ddbh = new DoctorHandler("Doctor");
-//		ArrayList<Doctor> list = ddbh.getAll();
-//		
-//		 for(int i = 0; i<list.size(); i++){
-//	        	doctorComboBox.addItem(list.get(i).toString());
-//		 }
-//		 
-//	     doctorComboBox.addValueChangeListener(new Property.ValueChangeListener() {
-//	              private static final long serialVersionUID = -5188369735622627751L;
-//	     			@Override
-//	     			public void valueChange(ValueChangeEvent event) {
-//	     				if (doctorComboBox.getValue() == null) {
-//	     					SendReferralButton.setEnabled(true);
-//	     				}
-//	     			}
-//	             });
+		DoctorHandler doctorHandler = new DoctorHandler("Doctor");
+        ArrayList<Doctor> list = doctorHandler.getAll();
+        
+        for(int i = 0; i<list.size(); i++){
+        	doctorComboBox.addItem(list.get(i).toString());
+        }
+        
 		return doctorComboBox;
 	}
+	
+//	/**
+//	 * Creates a ComboBox to choose a clinic for the referral.
+//	 * 
+//	 * @return ComboBox
+//	 */
+//	private ComboBox createClinicComboBox(){
+//		clinicComboBox = new ComboBox("Clinic:");
+//		clinicComboBox.addItem("Psychiatrische Klinik Bern");
+//		clinicComboBox.addItem("Psychiatrische Klink Basel");
+//		clinicComboBox.setInvalidAllowed(false);
+//		clinicComboBox.setNullSelectionAllowed(false);
+//		clinicComboBox.setWidth("150px");
+//		clinicComboBox.setImmediate(true);
+//		clinicComboBox.addValueChangeListener(new Property.ValueChangeListener() {
+//			private static final long serialVersionUID = 1L;
+//			@Override
+//			public void valueChange(ValueChangeEvent event) {
+//				doctorofficeComboBox.setEnabled(false);
+//				}
+//		});
+////		ClinicHandler cdbh = new ClinicHandler("Clinic");
+////		ArrayList<Clinic> list = cdbh.getAll();
+////		
+////		 for(int i = 0; i<list.size(); i++){
+////	        	clinicComboBox.addItem(list.get(i).toString());
+////		 }
+////		 
+////	     clinicComboBox.addValueChangeListener(new Property.ValueChangeListener() {
+////	              private static final long serialVersionUID = -5188369735622627751L;
+////	     			@Override
+////	     			public void valueChange(ValueChangeEvent event) {
+////	     				if (clinicComboBox.getValue() == null) {
+////	     					SendReferralButton.setEnabled(true);
+////				}
+////	     	}
+////		});
+//		return clinicComboBox;	
+//	}
+//	
+//	
+//	/**
+//	 * Creates a ComboBox to choose a doctoroffice for the referral.
+//	 * 
+//	 * @return ComboBox
+//	 */
+//	private ComboBox createDoctorOfficeComboBox() {
+//		doctorofficeComboBox = new ComboBox("Doctor Office:");
+//		doctorofficeComboBox.addItem("Doctor Office - Dr. Rolf Meyer, Basel");
+//		doctorofficeComboBox.addItem("Doctor Office - Group Office Blue");
+//		doctorofficeComboBox.addItem("Doctor Office - Group Office Red");
+//		doctorofficeComboBox.setInvalidAllowed(false);
+//		doctorofficeComboBox.setNullSelectionAllowed(false);
+//		doctorofficeComboBox.setWidth("150px");
+//		doctorofficeComboBox.setImmediate(true);
+//		doctorofficeComboBox.addValueChangeListener(new Property.ValueChangeListener() {
+//			private static final long serialVersionUID = 1L;
+//			@Override
+//			public void valueChange(ValueChangeEvent event) {
+//				clinicComboBox.setEnabled(false);
+//				}
+//		});
+//		return doctorofficeComboBox;
+//	}	
+//	
+//	
+//	/**
+//	 * Creates a ComboBox to choose a doctor which is responsible for the referral 
+//	 * in the external institution.
+//	 * 
+//	 * @return ComboBox
+//	 */
+//	private ComboBox createDoctorComboBox() {
+//		doctorComboBox = new ComboBox();
+//		doctorComboBox.addItem("Dr. Helen Fischer");
+//		doctorComboBox.addItem("Dr. Markus Vetsch");
+//		doctorComboBox.addItem("Dr. Rolf Meyer");
+//		doctorComboBox.setInvalidAllowed(false);
+//		doctorComboBox.setNullSelectionAllowed(false);
+//		
+////		DoctorHandler ddbh = new DoctorHandler("Doctor");
+////		ArrayList<Doctor> list = ddbh.getAll();
+////		
+////		 for(int i = 0; i<list.size(); i++){
+////	        	doctorComboBox.addItem(list.get(i).toString());
+////		 }
+////		 
+////	     doctorComboBox.addValueChangeListener(new Property.ValueChangeListener() {
+////	              private static final long serialVersionUID = -5188369735622627751L;
+////	     			@Override
+////	     			public void valueChange(ValueChangeEvent event) {
+////	     				if (doctorComboBox.getValue() == null) {
+////	     					SendReferralButton.setEnabled(true);
+////	     				}
+////	     			}
+////	             });
+//		return doctorComboBox;
+//	}
 				
 
 	/**
