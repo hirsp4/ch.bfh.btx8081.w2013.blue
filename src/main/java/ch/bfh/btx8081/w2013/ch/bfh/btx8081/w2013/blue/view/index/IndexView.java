@@ -7,6 +7,7 @@ import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.referral.ReferralView
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.VerticalLayout;
@@ -68,7 +69,8 @@ public class IndexView extends VerticalLayout implements View {
 
 	private Button createRvButton(){
 		Button btn = new Button("Referral");
-		btn.addStyleName(ChameleonTheme.BUTTON_BIG);
+		btn.addStyleName("icon-on-left");
+		btn.setIcon(new ThemeResource("Text-Edit-icon.png"));
 		btn.setWidth("300px");
 		btn.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;

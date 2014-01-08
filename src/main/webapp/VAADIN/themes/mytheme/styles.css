@@ -5859,7 +5859,7 @@ body .mytheme.v-app .v-app-loading {
 	border-width: thick;
 	border-color: black;
 	overflow: hidden;
-	background: url(background.png);
+	background-color: azure;
 }
 
 .mytheme .v-panel-borderpanel > div {

@@ -3,27 +3,32 @@ package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.referral;
 
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.ClinicHandler;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.main.MyVaadinUI;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.person.Clinic;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.alert.AlertView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.index.BorderPanel;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.index.IndexView;
 
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.server.Page;
+import com.vaadin.server.ThemeResource;
 import com.vaadin.shared.Position;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.OptionGroup;
+import com.vaadin.ui.Panel;
 import com.vaadin.ui.PopupDateField;
 import com.vaadin.ui.TextArea;
-import com.vaadin.ui.Button.ClickEvent;
-
 /**
  * 
  * @author Maja Kelterborn
@@ -42,12 +47,13 @@ public class ReferralPanel extends BorderPanel {
 
 	private static final long serialVersionUID = 1L;
 	private Button SendReferralButton;
+	private Button IndexButton;
+	private Button AlarmButton;
 	private ComboBox referralComboBox;
 	private OptionGroup referralTypeGroup;
 	private PopupDateField dateField;
 	private PopupDateField dateField2;
 	private TextArea textReferralMessage;
-	private TextArea infoArea;
 	private ComboBox clinicComboBox;
 	private ComboBox doctorofficeComboBox;
 	private ComboBox doctorComboBox;
@@ -56,14 +62,24 @@ public class ReferralPanel extends BorderPanel {
 	private Label lab3;
 	private Label lab4;
 	private Label lab5;
+	private Panel panel;
 	
 	public ReferralPanel() {
+		this.panel = new Panel(" Referral");
+		this.panel.setIcon(new ThemeResource("Text-Edit-icon.png"));
+		this.panel.setStyleName("borderless");
+		this.panel.setSizeFull();
 		this.lab1 = new Label("Reason for referral:");
+		this.lab1.addStyleName("h3");
 		this.lab2 = new Label("Possible Timeframe:");
+		this.lab2.addStyleName("h3");
 		this.lab3 = new Label("Referral type:");
+		this.lab3.addStyleName("h3");
 		this.lab4 = new Label("Choose referral Clinic or Doctor Office:");
+		this.lab4.addStyleName("h3");
 		this.lab5 = new Label("Choose responsible Doctor:");
-		this.infoArea = new TextArea();
+		this.lab5.addStyleName("h3");
+
 		
 		FormLayout content = new FormLayout();
 		HorizontalLayout hlayout = new HorizontalLayout();
@@ -86,16 +102,17 @@ public class ReferralPanel extends BorderPanel {
 		content.addComponent(hlayout2);
 		content.addComponent(this.lab5);
 		content.addComponent(this.createDoctorComboBox());
-		hlayout3.setWidth("130px");
+		hlayout3.setWidth("360px");
+		hlayout3.setHeight("35px");
 		hlayout3.addComponent(this.createLinkIndexButton());
 		hlayout3.addComponent(this.createSendReferralButton());
+		hlayout3.addComponent(this.createLinkAlarmButton());
 		content.addComponent(hlayout3);
-		content.addComponent(this.infoArea);
 		
 		content.setSizeUndefined();
-		content.setMargin(true);
-		content.setSpacing(true);
-		this.setContent(content);
+		
+		this.panel.setContent(content);
+		setContent(panel);	
 	}
 	
 	
@@ -105,7 +122,11 @@ public class ReferralPanel extends BorderPanel {
 	 * @return Button
 	 */
 	public Button createLinkIndexButton() {
-		Button IndexButton = new Button("Index");
+		IndexButton = new Button();
+		IndexButton.setWidth("100px");
+		IndexButton.setHeight("65px");
+		IndexButton.addStyleName("borderless icon-on-top");
+		IndexButton.setIcon(new ThemeResource("index.png"));
 		IndexButton.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID =1L;
 			public void buttonClick(ClickEvent event) {
@@ -113,6 +134,21 @@ public class ReferralPanel extends BorderPanel {
 			}
 		});
 		return IndexButton;
+	}
+	
+	public Button createLinkAlarmButton() {
+		AlarmButton = new Button();
+		AlarmButton.setWidth("100px");
+		AlarmButton.setHeight("65px");
+		AlarmButton.addStyleName("borderless icon-on-top");
+		AlarmButton.setIcon(new ThemeResource("alarm.jpg"));
+		AlarmButton.addClickListener(new Button.ClickListener() {
+			private static final long serialVersionUID =1L;
+			public void buttonClick(ClickEvent event) {
+				MyVaadinUI.setAlertView(new AlertView());
+			}
+		});
+		return AlarmButton;
 	}
 
 	
@@ -123,7 +159,11 @@ public class ReferralPanel extends BorderPanel {
 	 * @return Button
 	 */
 	public Button createSendReferralButton() {
-		SendReferralButton = new Button("Send referral");
+		SendReferralButton = new Button();
+		SendReferralButton.setWidth("100px");
+		SendReferralButton.setHeight("65px");
+		SendReferralButton.addStyleName("borderless icon-on-top");
+		SendReferralButton.setIcon(new ThemeResource("email.jpg"));
 		SendReferralButton.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;
 			
@@ -144,11 +184,17 @@ public class ReferralPanel extends BorderPanel {
 				Object doctor = doctorComboBox.getValue();
 				new CSVCreator(referral + ";" + dateFrom + ";" + dateTo + ";" + referralType + ";" + 
 				referralMessage + ";" + clinic + ";" + doctoroffice + ";" + doctor +";\n", "referral.txt");
-				infoArea.setValue("the referral message has been sent.");
+				Notification notif = new Notification("The referral message has been sent.",
+						Notification.Type.TRAY_NOTIFICATION);
+	        	notif.setDelayMsec(5000);
+	        	notif.setPosition(Position.BOTTOM_RIGHT);
+				notif.show(Page.getCurrent());
 				} else {
-					infoArea.setValue("the referral message was not sent.");
-				}
-				
+					Notification notif = new Notification("The referral message was not sent.",
+							Notification.Type.TRAY_NOTIFICATION);
+		        	notif.setDelayMsec(5000);
+		        	notif.setPosition(Position.BOTTOM_RIGHT);
+					notif.show(Page.getCurrent());}
 			}
 		});
 		return SendReferralButton;
@@ -179,7 +225,7 @@ public class ReferralPanel extends BorderPanel {
 	 */
 	private PopupDateField createDateField1(){
 		dateField = new PopupDateField("From:");
-		dateField.setInputPrompt("Selecet a date");
+		dateField.setInputPrompt("Select a date");
 		dateField.setDateFormat("dd.MM.yyyy");
 		dateField.setRangeStart(new Date());
 		dateField.setWidth("150px");
@@ -209,7 +255,7 @@ public class ReferralPanel extends BorderPanel {
 	 */
 	private PopupDateField createDateField2(){
 		dateField2 = new PopupDateField("To:");
-		dateField2.setInputPrompt("Selecet a date");
+		dateField2.setInputPrompt("Select a date");
 		dateField2.setDateFormat("dd.MM.yyyy");
 		dateField2.setRangeStart(new Date());
 		dateField2.setWidth("150px");
@@ -276,6 +322,22 @@ public class ReferralPanel extends BorderPanel {
 				doctorofficeComboBox.setEnabled(false);
 				}
 		});
+//		ClinicHandler cdbh = new ClinicHandler("Clinic");
+//		ArrayList<Clinic> list = cdbh.getAll();
+//		
+//		 for(int i = 0; i<list.size(); i++){
+//	        	clinicComboBox.addItem(list.get(i).toString());
+//		 }
+//		 
+//	     clinicComboBox.addValueChangeListener(new Property.ValueChangeListener() {
+//	              private static final long serialVersionUID = -5188369735622627751L;
+//	     			@Override
+//	     			public void valueChange(ValueChangeEvent event) {
+//	     				if (clinicComboBox.getValue() == null) {
+//	     					SendReferralButton.setEnabled(true);
+//				}
+//	     	}
+//		});
 		return clinicComboBox;	
 	}
 	
@@ -318,6 +380,23 @@ public class ReferralPanel extends BorderPanel {
 		doctorComboBox.addItem("Dr. Rolf Meyer");
 		doctorComboBox.setInvalidAllowed(false);
 		doctorComboBox.setNullSelectionAllowed(false);
+		
+//		DoctorHandler ddbh = new DoctorHandler("Doctor");
+//		ArrayList<Doctor> list = ddbh.getAll();
+//		
+//		 for(int i = 0; i<list.size(); i++){
+//	        	doctorComboBox.addItem(list.get(i).toString());
+//		 }
+//		 
+//	     doctorComboBox.addValueChangeListener(new Property.ValueChangeListener() {
+//	              private static final long serialVersionUID = -5188369735622627751L;
+//	     			@Override
+//	     			public void valueChange(ValueChangeEvent event) {
+//	     				if (doctorComboBox.getValue() == null) {
+//	     					SendReferralButton.setEnabled(true);
+//	     				}
+//	     			}
+//	             });
 		return doctorComboBox;
 	}
 				
