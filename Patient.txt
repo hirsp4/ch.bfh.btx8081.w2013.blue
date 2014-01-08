@@ -3,7 +3,7 @@
 1343;Wyss;Adrian;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;1333;NORMAL
 2223;Wyss;Adrian;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;1333;NORMAL
 2323;Hirschi;Patrick;Heimweg;22;5555;Hinternmond;m;22.03.1990;2323;DANGEROUS
-3333;Wyss;Adrian;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;3333;NORMAL
+3333;Wyss;Adrian;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;3333;DANGEROUS
 8333;Wyss;Adrian;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;8333;DANGEROUS
 9003;Wyss;Adrian;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;9003;DANGEROUS
 9171;Unser;Patient;Wohnt;4;8191;IN;w;11.08.1999;9171;NORMAL

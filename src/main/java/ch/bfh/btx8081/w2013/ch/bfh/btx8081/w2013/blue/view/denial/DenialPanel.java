@@ -210,14 +210,14 @@ public class DenialPanel extends BorderPanel {
 					Notification notif = new Notification(
 							"The database update was successful.",
 							Notification.Type.TRAY_NOTIFICATION);
-					notif.setDelayMsec(5000);
+					notif.setDelayMsec(1000);
 					notif.setPosition(Position.BOTTOM_RIGHT);
 					notif.show(Page.getCurrent());
 				} else {
 					Notification notif = new Notification(
 							"The database update failed.",
 							Notification.Type.TRAY_NOTIFICATION);
-					notif.setDelayMsec(5000);
+					notif.setDelayMsec(1000);
 					notif.setPosition(Position.BOTTOM_RIGHT);
 					notif.show(Page.getCurrent());
 				}
@@ -245,7 +245,7 @@ public class DenialPanel extends BorderPanel {
 			Notification notif = new Notification("Input failure",
 					"Date Field can't be empty.",
 					Notification.Type.WARNING_MESSAGE);
-			notif.setDelayMsec(5000);
+			notif.setDelayMsec(1000);
 			notif.setPosition(Position.BOTTOM_RIGHT);
 			notif.show(Page.getCurrent());
 		} else
@@ -258,7 +258,7 @@ public class DenialPanel extends BorderPanel {
 			Notification notif = new Notification("Input failure",
 					"Please select a medicine.",
 					Notification.Type.WARNING_MESSAGE);
-			notif.setDelayMsec(5000);
+			notif.setDelayMsec(1000);
 			notif.setPosition(Position.BOTTOM_RIGHT);
 			notif.show(Page.getCurrent());
 		} else

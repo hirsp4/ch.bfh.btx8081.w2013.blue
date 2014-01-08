@@ -58,6 +58,7 @@ public class PatientPanel extends BorderPanel {
 		this.infoArea = new TextArea();
 
 		FormLayout content = new FormLayout();
+		content.addComponent(label);
 		content.addComponent(this.createComboBox());
 		content.addComponent(this.infoArea);
 		
