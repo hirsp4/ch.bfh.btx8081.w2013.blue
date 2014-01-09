@@ -214,12 +214,12 @@ public class DenialPanel extends BorderPanel {
 					notif.setPosition(Position.BOTTOM_RIGHT);
 					notif.show(Page.getCurrent());
 				} else {
-					Notification notif = new Notification(
-							"The database update failed.",
-							Notification.Type.TRAY_NOTIFICATION);
-					notif.setDelayMsec(1000);
-					notif.setPosition(Position.BOTTOM_RIGHT);
-					notif.show(Page.getCurrent());
+//					Notification notif = new Notification(
+//							"The database update failed.",
+//							Notification.Type.TRAY_NOTIFICATION);
+//					notif.setDelayMsec(1000);
+//					notif.setPosition(Position.BOTTOM_RIGHT);
+//					notif.show(Page.getCurrent());
 				}
 			}
 		});
@@ -243,7 +243,7 @@ public class DenialPanel extends BorderPanel {
 		// is shown.
 		if (dateField.getValue() == null) {
 			Notification notif = new Notification("Input failure",
-					"Date Field can't be empty.",
+					"Please select a date.",
 					Notification.Type.WARNING_MESSAGE);
 			notif.setDelayMsec(1000);
 			notif.setPosition(Position.BOTTOM_RIGHT);
@@ -259,11 +259,11 @@ public class DenialPanel extends BorderPanel {
 					"Please select a medicine.",
 					Notification.Type.WARNING_MESSAGE);
 			notif.setDelayMsec(1000);
-			notif.setPosition(Position.BOTTOM_RIGHT);
+			notif.setPosition(Position.MIDDLE_LEFT);
 			notif.show(Page.getCurrent());
 		} else
 			validMedicine = true;
-
+	
 		// returns true, if and only if both booleans are true.
 		return validDate && validMedicine;
 	}
