@@ -25,7 +25,7 @@ public class ReferralView extends VerticalLayout implements View{
 		setMargin(true);
 		ReferralPanel referralPanel = new ReferralPanel();
 		addComponent(referralPanel); // create the referral panel and add it to the
-		this.setComponentAlignment(referralPanel, Alignment.TOP_CENTER);
+		this.setComponentAlignment(referralPanel, Alignment.MIDDLE_CENTER);
 	}
 
 	
