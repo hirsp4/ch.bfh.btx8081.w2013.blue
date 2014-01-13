@@ -70,6 +70,7 @@ public class ClinicHandler {
 		TreeMap<Integer, HashMap<String, String>> treeMap = new TreeMap<Integer, HashMap<String, String>>();
 		if (file.exists()) {
 			s = new Scanner(file);
+			s.reset();
 			if (!s.hasNext())
 				throw new FileIsEmptyException();
 		} else {

@@ -6,8 +6,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.ClinicHandler;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.PatientHandler;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.DoctorHandler;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.main.MyVaadinUI;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.person.Clinic;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.person.Doctor;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.person.Patient;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.alert.AlertView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.index.BorderPanel;
@@ -76,13 +80,13 @@ public class ReferralPanel extends BorderPanel {
 		this.lab.addStyleName("h3");
 		this.lab1 = new Label("Reason for referral:");
 		this.lab1.addStyleName("h3");
-		this.lab2 = new Label("Possible Timeframe:");
+		this.lab2 = new Label("Possible timeframe:");
 		this.lab2.addStyleName("h3");
 		this.lab3 = new Label("Referral type:");
 		this.lab3.addStyleName("h3");
-		this.lab4 = new Label("Choose referral Clinic or Doctor Office:");
+		this.lab4 = new Label("Choose referral clinic or doctor office:");
 		this.lab4.addStyleName("h3");
-		this.lab5 = new Label("Choose responsible Doctor:");
+		this.lab5 = new Label("Choose responsible doctor:");
 		this.lab5.addStyleName("h3");
 
 		
@@ -143,6 +147,12 @@ public class ReferralPanel extends BorderPanel {
 		return IndexButton;
 	}
 	
+	/**
+	 * Creates the "Alert" Button to go directly to the Alert.
+	 * 
+	 * @return Button
+	 */
+	
 	public Button createLinkAlarmButton() {
 		AlarmButton = new Button("Alert");
 		AlarmButton.setWidth("100px");
@@ -181,6 +191,7 @@ public class ReferralPanel extends BorderPanel {
 			// infoArea field
 			// if the input is incorrect.
 			if(checkInputValues()){
+				Object patient = patientComboBox.getValue();
 				Object referral = referralComboBox.getValue();
 				String dateFrom = getDateFrom();
 				String dateTo = getDateTo();
@@ -189,7 +200,7 @@ public class ReferralPanel extends BorderPanel {
 				Object clinic = clinicComboBox.getValue();
 				Object doctoroffice = doctorofficeComboBox.getValue();
 				Object doctor = doctorComboBox.getValue();
-				new CSVCreator(referral + ";" + dateFrom + ";" + dateTo + ";" + referralType + ";" + 
+				new CSVCreator(patient + ";" + referral + ";" + dateFrom + ";" + dateTo + ";" + referralType + ";" + 
 				referralMessage + ";" + clinic + ";" + doctoroffice + ";" + doctor +";\n", "referral.txt");
 				Notification notif = new Notification("The referral message has been sent.",
 						Notification.Type.TRAY_NOTIFICATION);
@@ -197,12 +208,12 @@ public class ReferralPanel extends BorderPanel {
 	        	notif.setPosition(Position.BOTTOM_RIGHT);
 				notif.show(Page.getCurrent());
 				} else {
-					Notification notif = new Notification("The referral message was not sent.",
-							Notification.Type.TRAY_NOTIFICATION);
-		        	notif.setDelayMsec(5000);
-		        	notif.setPosition(Position.BOTTOM_RIGHT);
-					notif.show(Page.getCurrent());}
-			}
+//					Notification notif = new Notification("The referral message was not sent.",
+//							Notification.Type.TRAY_NOTIFICATION);
+//		        	notif.setDelayMsec(5000);
+//		        	notif.setPosition(Position.BOTTOM_RIGHT);
+//					notif.show(Page.getCurrent());}
+				}}
 		});
 		return SendReferralButton;
 	}
@@ -233,8 +244,8 @@ public class ReferralPanel extends BorderPanel {
 	 */
 	private ComboBox createReferralComboBox(){
 		referralComboBox = new ComboBox();
-		referralComboBox.addItem("Stationery Therapy");
-		referralComboBox.addItem("Diagnoses");
+		referralComboBox.addItem("Hospital treatment");
+		referralComboBox.addItem("Diagnosis confirmation");
 		referralComboBox.setInvalidAllowed(false);
 		referralComboBox.setNullSelectionAllowed(false);
 		return referralComboBox;
@@ -333,144 +344,77 @@ public class ReferralPanel extends BorderPanel {
 	 * 
 	 * @return ComboBox
 	 */
-//	private ComboBox createClinicComboBox(){
-//		clinicComboBox = new ComboBox();
-//		clinicComboBox.setInvalidAllowed(false);
-//		clinicComboBox.setNullSelectionAllowed(false);
-//		clinicComboBox.setWidth("150px");
-//		
-//        ClinicHandler clinicHandler = new ClinicHandler("Clinic");
-//        ArrayList<Clinic> list = clinicHandler.getAll();
-//        
-//        for(int i = 0; i<list.size(); i++){
-//        	clinicComboBox.addItem(list.get(i).toString());
-//        }
-//        
-//        clinicComboBox.addValueChangeListener(new Property.ValueChangeListener() {
-//            private static final long serialVersionUID = -5188369735622627751L;
-//			@Override
-//			public void valueChange(ValueChangeEvent event) {
-//				doctorofficeComboBox.setEnabled(false);	
-//			}
-//        });
-//		return clinicComboBox;	
-//	}
-////	
-////	
-////	/**
-////	 * Creates a ComboBox to choose a doctoroffice for the referral.
-////	 * 
-////	 * @return ComboBox
-////	 */
-//	private ComboBox createDoctorOfficeComboBox() {
-//		doctorofficeComboBox = new ComboBox();
-//		doctorofficeComboBox.setInvalidAllowed(false);
-//		doctorofficeComboBox.setNullSelectionAllowed(false);
-//		doctorofficeComboBox.setWidth("150px");
-//		
-//        DoctorHandler doctorHandler = new DoctorHandler("Doctor");
-//        ArrayList<Doctor> list = doctorHandler.getAll();
-//        
-//        for(int i = 0; i<list.size(); i++){
-//        	doctorofficeComboBox.addItem(list.get(i).getOfficeName().toString());
-//        }
-//        
-//        clinicComboBox.addValueChangeListener(new Property.ValueChangeListener() {
-//            private static final long serialVersionUID = -5188369735622627751L;
-//			@Override
-//			public void valueChange(ValueChangeEvent event) {
-//				clinicComboBox.setEnabled(false);	
-//			}
-//        });
-//		return doctorofficeComboBox;
-//	}	
-////	
-////	
-////	/**
-////	 * Creates a ComboBox to choose a doctor which is responsible for the referral 
-////	 * in the external institution.
-////	 * 
-////	 * @return ComboBox
-////	 */
-//	private ComboBox createDoctorComboBox() {
-//		doctorComboBox = new ComboBox();
-//		doctorComboBox.setInvalidAllowed(false);
-//		doctorComboBox.setNullSelectionAllowed(false);
-//		
-//		DoctorHandler doctorHandler = new DoctorHandler("Doctor");
-//        ArrayList<Doctor> list = doctorHandler.getAll();
-//        
-//        for(int i = 0; i<list.size(); i++){
-//        	doctorComboBox.addItem(list.get(i).toString());
-//        }
-//        
-//		return doctorComboBox;
-//	}
-	
-	/**
-	 * Creates a ComboBox to choose a clinic for the referral.
-	 * 
-	 * @return ComboBox
-	 */
 	private ComboBox createClinicComboBox(){
 		clinicComboBox = new ComboBox();
-		clinicComboBox.addItem("Psychiatrische Klinik Bern");
-		clinicComboBox.addItem("Psychiatrische Klink Basel");
 		clinicComboBox.setInvalidAllowed(false);
 		clinicComboBox.setNullSelectionAllowed(false);
-		clinicComboBox.setWidth("150px");
-		clinicComboBox.setImmediate(true);
+		clinicComboBox.setWidth("150px");		
 		clinicComboBox.addValueChangeListener(new Property.ValueChangeListener() {
 			private static final long serialVersionUID = 1L;
 			@Override
 			public void valueChange(ValueChangeEvent event) {
-				doctorofficeComboBox.setEnabled(false);
+					doctorofficeComboBox.setEnabled(false);	
 				}
 		});
+		
+        ClinicHandler clinicHandler = new ClinicHandler("Clinic");
+        ArrayList<Clinic> list = clinicHandler.getAll();
+        
+        for(int i = 0; i<list.size(); i++){
+        	clinicComboBox.addItem(list.get(i).getName().toString());
+        }
+        
 		return clinicComboBox;	
 	}
-//	
 	
-//	/**
-//	 * Creates a ComboBox to choose a doctoroffice for the referral.
-//	 * 
-//	 * @return ComboBox
-//	 */
+	/**
+	 * Creates a ComboBox to choose a doctoroffice for the referral.
+	 * 
+	 * @return ComboBox
+	 */
 	private ComboBox createDoctorOfficeComboBox() {
 		doctorofficeComboBox = new ComboBox();
-		doctorofficeComboBox.addItem("Doctor Office - Dr. Rolf Meyer, Basel");
-		doctorofficeComboBox.addItem("Doctor Office - Group Office Blue");
-		doctorofficeComboBox.addItem("Doctor Office - Group Office Red");
 		doctorofficeComboBox.setInvalidAllowed(false);
 		doctorofficeComboBox.setNullSelectionAllowed(false);
 		doctorofficeComboBox.setWidth("150px");
-		doctorofficeComboBox.setImmediate(true);
 		doctorofficeComboBox.addValueChangeListener(new Property.ValueChangeListener() {
 			private static final long serialVersionUID = 1L;
 			@Override
 			public void valueChange(ValueChangeEvent event) {
-				clinicComboBox.setEnabled(false);
+					clinicComboBox.setEnabled(false);	
 				}
-				
-		});
+	        });
+		 
+		
+        DoctorHandler doctorHandler = new DoctorHandler("Doctor");
+        ArrayList<Doctor> list = doctorHandler.getAll();
+        
+        for(int i = 0; i<list.size(); i++){
+        	doctorofficeComboBox.addItem(list.get(i).getOfficeName().toString());
+        }
+        
 		return doctorofficeComboBox;
 	}	
+
 	
-//	
-//	/**
-//	 * Creates a ComboBox to choose a doctor which is responsible for the referral 
-//	 * in the external institution.
-//	 * 
-//	 * @return ComboBox
-//	 */
+	/**
+	 * Creates a ComboBox to choose a doctor which is responsible for the referral 
+	 * in the external institution.
+	 * 
+	 * @return ComboBox
+	 */
 	private ComboBox createDoctorComboBox() {
 		doctorComboBox = new ComboBox();
-		doctorComboBox.addItem("Dr. Helen Fischer");
-		doctorComboBox.addItem("Dr. Markus Vetsch");
-		doctorComboBox.addItem("Dr. Rolf Meyer");
 		doctorComboBox.setInvalidAllowed(false);
 		doctorComboBox.setNullSelectionAllowed(false);
-	
+		
+		DoctorHandler doctorHandler = new DoctorHandler("Doctor");
+        ArrayList<Doctor> list = doctorHandler.getAll();
+        
+        for(int i = 0; i<list.size(); i++){
+        	doctorComboBox.addItem(list.get(i).toString());
+        }
+        
 		return doctorComboBox;
 	}
 				
@@ -484,6 +428,7 @@ public class ReferralPanel extends BorderPanel {
 	private boolean checkInputValues() {
 
 		// set defaults for the booleans 
+		boolean validpatient = false;
 		boolean validreferral = false;
 		boolean validdateFrom = false;
 		boolean validdateTo = false;
@@ -492,6 +437,18 @@ public class ReferralPanel extends BorderPanel {
 		boolean validclinicdoctoroffice = false;
 		boolean validdoctor = false;
 
+		// check whether one Item of the Patient ComboBox is selected. if yes,
+			// the boolean valid referral is set true. if not, a notification
+			// is shown.
+		if (patientComboBox.getValue() == null)  {
+			Notification notif = new Notification("Input failure", 
+					"Select one patient from the dropdown menu.",
+					Notification.Type.WARNING_MESSAGE);
+        	notif.setDelayMsec(5000);
+        	notif.setPosition(Position.BOTTOM_RIGHT);
+			notif.show(Page.getCurrent());
+		} else
+			validpatient = true;
 		
 		// check whether one Item of the Referral ComboBox is selected. if yes,
 				// the boolean valid referral is set true. if not, a notification
@@ -586,7 +543,7 @@ public class ReferralPanel extends BorderPanel {
 
 		
 		// returns true, if and only if both booleans are true.
-		return  validreferral && validdateFrom && validdateTo && validreferralType && validreferralMessage
+		return  validpatient && validreferral && validdateFrom && validdateTo && validreferralType && validreferralMessage
 				&& validclinicdoctoroffice && validdoctor;
 	}
 }

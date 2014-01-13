@@ -19,7 +19,6 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.Slider;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.themes.ChameleonTheme;
 
 /**
  * @author Patrick Hirschi
@@ -40,6 +39,8 @@ public class AlertPanel extends BorderPanel{
 	private final Slider slider;
 	private Counter counter;
 	private Panel panel;
+	private Button btn;
+	private Button btn1;
 	
 	public AlertPanel(){
 		this.panel = new Panel(" Alert");
@@ -49,6 +50,8 @@ public class AlertPanel extends BorderPanel{
 		
 		this.counter = new Counter();
 		this.slider = createSlider();
+		this.btn = createButton();
+		this.btn1 = createIndexButton();
 		VerticalLayout layout = new VerticalLayout();
 		layout.setSizeUndefined();
 		layout.setMargin(true);
@@ -57,11 +60,15 @@ public class AlertPanel extends BorderPanel{
 		Label emptyLabel = new Label();
 		emptyLabel.setHeight("50px");
 		layout.addComponent(emptyLabel);
+		layout.setComponentAlignment(slider, Alignment.TOP_CENTER);
+		layout.setWidth("370px");
 		
 		HorizontalLayout hlayout = new HorizontalLayout();
-		hlayout.setWidth("340px");
-		hlayout.addComponent(createButton());
-		hlayout.addComponent(createIndexButton());
+		hlayout.setWidth("220px");
+		hlayout.addComponent(btn);
+		hlayout.addComponent(btn1);
+//		hlayout.setComponentAlignment(btn, Alignment.MIDDLE_LEFT);
+//		hlayout.setComponentAlignment(btn1, Alignment.MIDDLE_RIGHT);
 		
 		layout.addComponent(hlayout);
 		VerticalLayout layout2 = new VerticalLayout();
@@ -94,8 +101,8 @@ public class AlertPanel extends BorderPanel{
 		        }else{
 		        	Notification notif = new Notification("Alert will be released in "
 		        			+ "5 seconds" + "\n Press Button to stop", 
-		        			Notification.TYPE_WARNING_MESSAGE);
-		        	notif.setDelayMsec(1000);
+		        			Notification.Type.WARNING_MESSAGE);
+		        	notif.setDelayMsec(4);
 		        	notif.setPosition(Position.BOTTOM_RIGHT);
 		        	notif.show(Page.getCurrent());
 		        	//start the 5 seconds Counter thread.
@@ -138,18 +145,18 @@ public class AlertPanel extends BorderPanel{
 	 * @return BackButton
 	 */
 	public Button createIndexButton() {
-		Button btn = new Button("Index");
-		btn.setWidth("100px");
-		btn.setHeight("75px");	
-		btn.addStyleName("borderless icon-on-top");
-		btn.setIcon(new ThemeResource("index.png"));
-		btn.addClickListener(new Button.ClickListener() {
+		Button btn1 = new Button("Index");
+		btn1.setWidth("100px");
+		btn1.setHeight("75px");	
+		btn1.addStyleName("borderless icon-on-top");
+		btn1.setIcon(new ThemeResource("index.png"));
+		btn1.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID =1L;
 			public void buttonClick(ClickEvent event) {
 				MyVaadinUI.setIndexView(new IndexView());
 			}
 		});
-		return btn;
+		return btn1;
 	}
 	
 

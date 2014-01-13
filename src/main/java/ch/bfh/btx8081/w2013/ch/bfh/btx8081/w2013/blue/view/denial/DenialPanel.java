@@ -53,7 +53,7 @@ public class DenialPanel extends BorderPanel {
 		this.panel.setStyleName("borderless");
 		this.panel.setSizeFull();
 
-		Label label = new Label("Select a patient");
+		Label label = new Label("Select a patient:");
 		label.addStyleName("h3");
 		Label label1 = new Label("Date of denial:");
 		label1.addStyleName("h3");
@@ -85,7 +85,7 @@ public class DenialPanel extends BorderPanel {
 		hlayout3.addComponent(createAlertButton());
 
 		layout.addComponent(label);
-		
+		layout.addComponent(hlayout);
 		layout.addComponent(label1);
 		layout.addComponent(hlayout1);
 		layout.addComponent(label2);
@@ -236,9 +236,10 @@ public class DenialPanel extends BorderPanel {
 				// Update the csv file, if the input is correct,
 				// and show the error message, if the input is incorrect.
 				if (checkInputValues()) {
+					Object patient = patientComboBox.getValue();
 					String date = getDate();
 					Object medicine = getMedicine();
-					new CSVCreator(date + ";" + medicine + ";\n", "denial.txt");
+					new CSVCreator(patient + ";" + date + ";" + medicine + ";\n", "denial.txt");
 					Notification notif = new Notification(
 							"The database update was successful.",
 							Notification.Type.TRAY_NOTIFICATION);
@@ -267,8 +268,23 @@ public class DenialPanel extends BorderPanel {
 	private boolean checkInputValues() {
 
 		// set defaults for the booleans
+		boolean validPatient = false;
 		boolean validDate = false;
 		boolean validMedicine = false;
+		
+		
+		// check whether one Item of the Patient ComboBox is selected. if yes,
+					// the boolean valid referral is set true. if not, a notification
+					// is shown.
+		if (patientComboBox.getValue() == null)  {
+			Notification notif = new Notification("Input failure", 
+					"Select one patient from the dropdown menu.",
+					Notification.Type.WARNING_MESSAGE);
+        	notif.setDelayMsec(5000);
+        	notif.setPosition(Position.BOTTOM_RIGHT);
+			notif.show(Page.getCurrent());
+		} else
+			validPatient = true;
 
 		// check whether one Item of the dateField is selected. if yes,
 		// the boolean validDate is set true. if not, a notification
@@ -297,7 +313,7 @@ public class DenialPanel extends BorderPanel {
 			validMedicine = true;
 	
 		// returns true, if and only if both booleans are true.
-		return validDate && validMedicine;
+		return validPatient && validDate && validMedicine;
 	}
 
 }

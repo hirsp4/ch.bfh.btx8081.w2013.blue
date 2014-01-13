@@ -45,12 +45,14 @@ public class PatientPanel extends BorderPanel {
 	private TextArea infoArea;
 	private Button addPatientButton;
 	private Panel panel;
+	private Button btn;
 
 	public PatientPanel() {
 		this.panel = new Panel(" Alert");
 		this.panel.setIcon(new ThemeResource("alarmKlein.jpg"));
 		this.panel.setStyleName("borderless");
 		this.panel.setSizeFull();
+		this.btn = createIndexButton();
 		
 		Label label = new Label("Select a patient:");
 		label.addStyleName("h3");
@@ -80,11 +82,12 @@ public class PatientPanel extends BorderPanel {
 	 * @return Button
 	 */
 	public Button createIndexButton() {
-		Button btn = new Button("Index");
+		btn = new Button("Index");
 		btn.setWidth("100px");
 		btn.setHeight("75px");
 		btn.addStyleName("borderless icon-on-top");
 		btn.setIcon(new ThemeResource("index.png"));
+		btn.setEnabled(false);
 		btn.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;
 
@@ -109,7 +112,6 @@ public class PatientPanel extends BorderPanel {
 		addPatientButton.addStyleName("borderless icon-on-top");
 		addPatientButton.addStyleName(ChameleonTheme.BUTTON_SMALL);
 		addPatientButton.setIcon(new ThemeResource("Add-user.png"));
-		addPatientButton.setEnabled(false);
 		addPatientButton.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;
 
@@ -129,6 +131,7 @@ public class PatientPanel extends BorderPanel {
 					}
 					
 					infoArea.setValue(selectedPatient.getState().getStateDescription());
+					btn.setEnabled(true);
 				} catch (PersonNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
