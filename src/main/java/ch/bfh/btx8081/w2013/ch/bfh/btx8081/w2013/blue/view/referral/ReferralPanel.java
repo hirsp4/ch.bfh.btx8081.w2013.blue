@@ -6,11 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.ClinicHandler;
-import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.DoctorHandler;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.PatientHandler;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.main.MyVaadinUI;
-import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.person.Clinic;
-import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.person.Doctor;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.person.Patient;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.alert.AlertView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.index.BorderPanel;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.index.IndexView;
@@ -31,6 +29,7 @@ import com.vaadin.ui.OptionGroup;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.PopupDateField;
 import com.vaadin.ui.TextArea;
+
 /**
  * 
  * @author Maja Kelterborn
@@ -51,6 +50,7 @@ public class ReferralPanel extends BorderPanel {
 	private Button SendReferralButton;
 	private Button IndexButton;
 	private Button AlarmButton;
+	private ComboBox patientComboBox;
 	private ComboBox referralComboBox;
 	private OptionGroup referralTypeGroup;
 	private PopupDateField dateField;
@@ -59,6 +59,7 @@ public class ReferralPanel extends BorderPanel {
 	private ComboBox clinicComboBox;
 	private ComboBox doctorofficeComboBox;
 	private ComboBox doctorComboBox;
+	private Label lab;
 	private Label lab1;
 	private Label lab2;
 	private Label lab3;
@@ -71,6 +72,8 @@ public class ReferralPanel extends BorderPanel {
 		this.panel.setIcon(new ThemeResource("Text-Edit-icon.png"));
 		this.panel.setStyleName("borderless");
 		this.panel.setSizeFull();
+		this.lab = new Label("Select a patient:");
+		this.lab.addStyleName("h3");
 		this.lab1 = new Label("Reason for referral:");
 		this.lab1.addStyleName("h3");
 		this.lab2 = new Label("Possible Timeframe:");
@@ -87,6 +90,8 @@ public class ReferralPanel extends BorderPanel {
 		HorizontalLayout hlayout = new HorizontalLayout();
 		HorizontalLayout hlayout2 = new HorizontalLayout();
 		HorizontalLayout hlayout3 = new HorizontalLayout();
+		content.addComponent(lab);
+		content.addComponent(createPatientComboBox());
 		content.addComponent(lab1);
 		content.addComponent(this.createReferralComboBox());
 		content.addComponent(this.lab2);
@@ -202,6 +207,24 @@ public class ReferralPanel extends BorderPanel {
 		return SendReferralButton;
 	}
 	
+	/**
+	 * Creates a ComboBox to choose a Patient for the referral.
+	 * 
+	 * @return ComboBox
+	 */
+	private ComboBox createPatientComboBox(){
+		patientComboBox = new ComboBox();
+		patientComboBox.setInvalidAllowed(false);
+		patientComboBox.setNullSelectionAllowed(false);
+        
+        PatientHandler dbh = new PatientHandler("Patient");
+        ArrayList<Patient> list = dbh.getAll();
+        
+        for(int i = 0; i<list.size(); i++){
+        	patientComboBox.addItem(list.get(i).toString());
+        }
+        return patientComboBox;
+	}
 	
 	/**
 	 * Creates a ComboBox to choose a referral reason.
@@ -300,6 +323,7 @@ public class ReferralPanel extends BorderPanel {
 	private TextArea createMessageTextArea(){
 		textReferralMessage = new TextArea();
 		textReferralMessage.setInputPrompt("Additional Notes");
+
 		return textReferralMessage;
 	}
 	
@@ -427,6 +451,7 @@ public class ReferralPanel extends BorderPanel {
 			public void valueChange(ValueChangeEvent event) {
 				clinicComboBox.setEnabled(false);
 				}
+				
 		});
 		return doctorofficeComboBox;
 	}	
@@ -470,7 +495,7 @@ public class ReferralPanel extends BorderPanel {
 		
 		// check whether one Item of the Referral ComboBox is selected. if yes,
 				// the boolean valid referral is set true. if not, a notification
-			// is shown.
+				// is shown.
 		if (referralComboBox.getValue() == null)  {
 			Notification notif = new Notification("Input failure", 
 					"Select one reason for referral from the dropdown menu.",

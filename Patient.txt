@@ -1,9 +1,9 @@
-1234;Kapp;Rafael;Gostel;11;3235;Erlach;m;18.09.1991;1234;DANGEROUS
-1333;Wyss;Adrian;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;1333;DANGEROUS
-1343;Wyss;Adrian;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;1333;NORMAL
-2223;Wyss;Adrian;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;1333;NORMAL
-2323;Hirschi;Patrick;Heimweg;22;5555;Hinternmond;m;22.03.1990;2323;DANGEROUS
-3333;Wyss;Adrian;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;3333;DANGEROUS
-8333;Wyss;Adrian;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;8333;DANGEROUS
-9003;Wyss;Adrian;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;9003;DANGEROUS
-9171;Unser;Patient;Wohnt;4;8191;IN;w;11.08.1999;9171;NORMAL
+1234;Hegnauer;Jonas;Gostel;11;3235;Erlach;m;18.09.1991;1234;DANGEROUS
+1333;Baumgartner;Andreas;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;1333;DANGEROUS
+1343;Meier;Hans;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;1333;NORMAL
+2223;Müller;Josef;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;1333;NORMAL
+2323;Barth;Rudolf;Heimweg;22;5555;Hinternmond;m;22.03.1990;2323;DANGEROUS
+3333;De Roche;Isabel;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;3333;DANGEROUS
+8333;Mathys;Kim;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;8333;DANGEROUS
+9003;Baumann;Sandra;Schlumpfweg;3;9000;Entenhausen;m;13.03.1991;9003;DANGEROUS
+9171;Keller;Iris;Wohnt;4;8191;IN;w;11.08.1999;9171;NORMAL

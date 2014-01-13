@@ -1,10 +1,14 @@
 package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.denial;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 
+
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.PatientHandler;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.main.MyVaadinUI;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.person.Patient;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.alert.AlertView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.index.BorderPanel;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.index.IndexView;
@@ -38,6 +42,7 @@ import com.vaadin.ui.Button.ClickEvent;
 public class DenialPanel extends BorderPanel {
 
 	private static final long serialVersionUID = 1L;
+	private ComboBox patientComboBox;
 	private PopupDateField dateField;
 	private ComboBox medicineComboBox;
 	private Panel panel;
@@ -48,8 +53,10 @@ public class DenialPanel extends BorderPanel {
 		this.panel.setStyleName("borderless");
 		this.panel.setSizeFull();
 
-		Label label = new Label("Date of denial:");
+		Label label = new Label("Select a patient");
 		label.addStyleName("h3");
+		Label label1 = new Label("Date of denial:");
+		label1.addStyleName("h3");
 		Label label2 = new Label("Name of denied medicine:");
 		label2.addStyleName("h3");
 
@@ -61,7 +68,11 @@ public class DenialPanel extends BorderPanel {
 
 		HorizontalLayout hlayout = new HorizontalLayout();
 		hlayout.setWidth("340px");
-		hlayout.addComponent(createDateField());
+		hlayout.addComponent(createPatientComboBox());
+		
+		HorizontalLayout hlayout1 = new HorizontalLayout();
+		hlayout1.setWidth("340px");
+		hlayout1.addComponent(createDateField());
 
 		HorizontalLayout hlayout2 = new HorizontalLayout();
 		hlayout2.setWidth("340px");
@@ -74,12 +85,33 @@ public class DenialPanel extends BorderPanel {
 		hlayout3.addComponent(createAlertButton());
 
 		layout.addComponent(label);
-		layout.addComponent(hlayout);
+		
+		layout.addComponent(label1);
+		layout.addComponent(hlayout1);
 		layout.addComponent(label2);
 		layout.addComponent(hlayout2);
 		layout.addComponent(hlayout3);
 		this.panel.setContent(layout);
 		setContent(panel);
+	}
+	
+	/**
+	 * Creates a ComboBox to choose a Patient for the denial.
+	 * 
+	 * @return ComboBox
+	 */
+	private ComboBox createPatientComboBox(){
+		this.patientComboBox = new ComboBox();
+		this.patientComboBox.setInvalidAllowed(false);
+		this.patientComboBox.setNullSelectionAllowed(false);
+        
+        PatientHandler dbh = new PatientHandler("Patient");
+        ArrayList<Patient> list = dbh.getAll();
+        
+        for(int i = 0; i<list.size(); i++){
+        	this.patientComboBox.addItem(list.get(i).toString());
+        }
+        return patientComboBox;
 	}
 
 	/**
