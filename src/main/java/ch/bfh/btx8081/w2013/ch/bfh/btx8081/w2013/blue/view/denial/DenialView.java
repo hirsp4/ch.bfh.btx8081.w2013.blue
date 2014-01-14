@@ -5,19 +5,19 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.VerticalLayout;
 
+/**
+ * 
+ * @author Saskia Basler
+ * @version 1.0 08.12.2013
+ * 
+ *         DenialView
+ * 
+ *         Creates the view from the DenialPanel.
+ *         In this view the doctor can add informations about the denial.
+ * 
+ */
 public class DenialView extends VerticalLayout implements View{
 
-	/**
-	 * 
-	 * @author Saskia Basler
-	 * 
-	 * 
-	 *         DenialView v1.0 08.12.2013
-	 * 
-	 *         Creates the view from the DenialPanel.
-	 *         In this view the doctor can add informations about the denial.
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;	
 	public DenialView(){
 		setMargin(true);

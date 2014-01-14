@@ -2,6 +2,7 @@ package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.main;
 
 import javax.servlet.annotation.WebServlet;
 
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.patientadmission.PatientAdmissionView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.alert.AlertView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.denial.DenialView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.index.IndexView;
@@ -67,6 +68,12 @@ public class MyVaadinUI extends UI
 		rv.setImmediate(true);
 		navi.addView("Referral", rv);
 		navi.navigateTo("Referral");
+	}
+	
+	public static void setPatientAdmissionView(PatientAdmissionView pav) {
+		pav.setImmediate(true);
+		navi.addView("Patient Admission", pav);
+		navi.navigateTo("Patient Admission");
 	}
 
 }

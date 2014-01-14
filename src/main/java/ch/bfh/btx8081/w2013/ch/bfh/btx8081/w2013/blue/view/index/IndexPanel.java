@@ -1,6 +1,7 @@
 package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.index;
 
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.main.MyVaadinUI;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.patientadmission.PatientAdmissionView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.alert.AlertView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.denial.DenialView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.referral.ReferralView;
@@ -24,6 +25,7 @@ public class IndexPanel extends BorderPanel {
 	private Button avButton;
 	private Button dvButton;
 	private Button rvButton;
+	private Button pavButton;
 	
 	public IndexPanel() {
 		this.panel = new Panel(" iDoctor");
@@ -33,6 +35,7 @@ public class IndexPanel extends BorderPanel {
 		
 		FormLayout fLayout = new FormLayout();
 		GridLayout gLayout = new GridLayout(2,2);
+		gLayout.addComponent(this.createPavButton());
 		gLayout.addComponent(this.createAvButton());
 		gLayout.addComponent(this.createDvButton());
 		gLayout.addComponent(this.createRvButton());
@@ -84,6 +87,19 @@ public class IndexPanel extends BorderPanel {
 			}
 		});
 		return rvButton;
+	}
+	
+	private Button createPavButton(){
+		pavButton = new Button("Patient");
+		pavButton.addStyleName("borderless icon-on-top");
+		pavButton.setIcon(new ThemeResource("patient-icon.png"));
+		pavButton.addClickListener(new Button.ClickListener() {
+			private static final long serialVersionUID = 1L;
+			public void buttonClick(ClickEvent event) {
+				MyVaadinUI.setPatientAdmissionView(new PatientAdmissionView());
+			}
+		});
+		return pavButton;
 	}
 }
 

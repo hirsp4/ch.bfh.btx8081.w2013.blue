@@ -30,13 +30,13 @@ import com.vaadin.ui.Button.ClickEvent;
 /**
  * 
  * @author Saskia Basler
+ * @version 3.0 13.01.2014
  * 
- *         DenialPanel v1.0 08.12.2013/v2.0 18.12.2013
- * 
+ * 		   DenialPanel
  *         Creates the panel for our DenialView with the description when does
  *         the patient deny a drug and which drug. Button "Add to medical
- *         report" writes the information from the field when and what as a
- *         String in the "denial.txt" file out.
+ *         report" writes the information from the patientComboBox, dateField and medicineComboBox
+ *         as a String in the "denial.txt" file out.
  */
 
 public class DenialPanel extends BorderPanel {
@@ -132,7 +132,8 @@ public class DenialPanel extends BorderPanel {
 	}
 
 	/**
-	 * Creates a ComboBox for the MedicineComboBox.
+	 * Creates a ComboBox to choose the denied medicine.
+	 * The medicine list is from the class MedicineObjects.
 	 * 
 	 * @return ComboBox
 	 */
@@ -150,7 +151,7 @@ public class DenialPanel extends BorderPanel {
 	}
 
 	/**
-	 * Returns the value of the whenField-PopupDateField as a String in the
+	 * Returns the value of the dateField-PopupDateField as a String in the
 	 * format dd.MM.yyyy.
 	 * 
 	 * @return String
@@ -234,7 +235,8 @@ public class DenialPanel extends BorderPanel {
 			public void buttonClick(ClickEvent event) {
 				// check whether the input data is valid or not.
 				// Update the csv file, if the input is correct,
-				// and show the error message, if the input is incorrect.
+				// and show the error message from the method checkInputValues, 
+				// if the input is incorrect.
 				if (checkInputValues()) {
 					Object patient = patientComboBox.getValue();
 					String date = getDate();
@@ -246,14 +248,7 @@ public class DenialPanel extends BorderPanel {
 					notif.setDelayMsec(1000);
 					notif.setPosition(Position.BOTTOM_RIGHT);
 					notif.show(Page.getCurrent());
-				} else {
-//					Notification notif = new Notification(
-//							"The database update failed.",
-//							Notification.Type.TRAY_NOTIFICATION);
-//					notif.setDelayMsec(1000);
-//					notif.setPosition(Position.BOTTOM_RIGHT);
-//					notif.show(Page.getCurrent());
-				}
+				} 
 			}
 		});
 		return btn;

@@ -6,11 +6,14 @@ public class MedicineObjects {
 
 	/**
 	 * 
+	 * @author Saskia Basler
+	 * @version 08.01.2014
+	 *
+	 * Medicine Objects
+	 * 
 	 * Medicine Objects for the MedicineComboBox in the DenialPanel.
 	 * 
-	 * 
-	 * @author basls1
-	 * @version 08.01.2014
+	 *
 	 */
 
 	public static ArrayList<String> Medicines = new ArrayList<String>();
@@ -18,10 +21,13 @@ public class MedicineObjects {
 	String medicine;
 
 	static {
-		Medicines.add("Dafalgan");
-		Medicines.add("Algifor");
-		Medicines.add("Ponstan");
-		Medicines.add("Panadol");
+		Medicines.add("Citaloprom");
+		Medicines.add("Risperidon");
+		Medicines.add("Holdol");
+		Medicines.add("Distraneurin");
+		Medicines.add("Temesta");
+		Medicines.add("Cipralex");
+		Medicines.add("Seraquel");
 	}
 
 	public MedicineObjects() {
@@ -29,11 +35,19 @@ public class MedicineObjects {
 
 	}
 
+	/**
+	 * Set the medicine.
+	 * 
+	 */
 	public void setMedicine(String medicine) {
 		this.medicine = medicine;
 	}
 
-	public String getInsuranceKVG() {
+	/**
+	 * Gets the medicine back.
+	 * 
+	 */
+	public String getMedicine() {
 		return this.medicine;
 	}
 
