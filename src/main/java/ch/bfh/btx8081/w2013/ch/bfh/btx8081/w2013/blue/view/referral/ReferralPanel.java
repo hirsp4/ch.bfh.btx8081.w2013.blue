@@ -1,7 +1,5 @@
 package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.referral;
 
-
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,7 +37,7 @@ import com.vaadin.ui.TextArea;
  * @author Maja Kelterborn
  * 
  * 
- *         ReferralPanel v2.0  16.12.2013
+ *         ReferralPanel v3.0  13.01.2014
  * 
  *         Creates the panel for our ReferralView. The panel consists of several
  *         text fields and dropdown to add referral informations, a button to send the referral

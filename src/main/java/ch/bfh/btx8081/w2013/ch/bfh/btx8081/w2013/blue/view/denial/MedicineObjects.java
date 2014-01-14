@@ -27,7 +27,7 @@ public class MedicineObjects {
 		Medicines.add("Distraneurin");
 		Medicines.add("Temesta");
 		Medicines.add("Cipralex");
-		Medicines.add("Seraquel");
+		Medicines.add("Seroquel");
 	}
 
 	public MedicineObjects() {

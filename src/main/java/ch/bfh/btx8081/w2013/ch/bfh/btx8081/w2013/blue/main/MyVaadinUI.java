@@ -2,6 +2,7 @@ package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.main;
 
 import javax.servlet.annotation.WebServlet;
 
+import ch.bfh.btx2081.w2013.ch.bfh.btx8081.w2013.blue.view.login.LoginView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.patientadmission.PatientAdmissionView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.alert.AlertView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.denial.DenialView;
@@ -35,9 +36,9 @@ public class MyVaadinUI extends UI
     protected void init(VaadinRequest request) {   	
     	getPage().setTitle("iDoctor Web-Application");    	
     	navi = new Navigator(this, this);    	
-    	IndexView indexView = new IndexView();
-    	navi.addView("Index", indexView);
-    	navi.navigateTo("Index"); 	
+    	LoginView loginview = new LoginView();
+    	navi.addView("Login", loginview);
+    	navi.navigateTo("Login"); 	
     }
     
     public static void setIndexView(IndexView iv) {
