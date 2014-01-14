@@ -89,7 +89,6 @@ public class AlertPanel extends BorderPanel{
 		// add a change listener
 		s.addValueChangeListener(new Property.ValueChangeListener() {
 			private static final long serialVersionUID = 1L;
-			@SuppressWarnings("deprecation")
 			@Override
 			public void valueChange(ValueChangeEvent event) {
 		        double value = (Double) s.getValue();
