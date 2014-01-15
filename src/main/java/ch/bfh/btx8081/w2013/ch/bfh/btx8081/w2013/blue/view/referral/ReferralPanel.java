@@ -333,7 +333,7 @@ public class ReferralPanel extends BorderPanel {
 	private TextArea createMessageTextArea(){
 		textReferralMessage = new TextArea();
 		textReferralMessage.setWidth("340px");
-		textReferralMessage.setInputPrompt("Additional Notes");
+		textReferralMessage.setInputPrompt("Referral letter");
 
 		return textReferralMessage;
 	}
@@ -347,14 +347,22 @@ public class ReferralPanel extends BorderPanel {
 	private ComboBox createClinicComboBox(){
 		clinicComboBox = new ComboBox();
 		clinicComboBox.setInvalidAllowed(false);
-		clinicComboBox.setNullSelectionAllowed(false);
-		clinicComboBox.setWidth("150px");		
+		clinicComboBox.setNullSelectionAllowed(true);
+		clinicComboBox.setWidth("150px");
+		clinicComboBox.setImmediate(true);
 		clinicComboBox.addValueChangeListener(new Property.ValueChangeListener() {
 			private static final long serialVersionUID = 1L;
 			@Override
 			public void valueChange(ValueChangeEvent event) {
-					doctorofficeComboBox.setEnabled(false);	
+				if(clinicComboBox.getValue() != null)
+				{
+				doctorofficeComboBox.setEnabled(false);	
 				}
+				else
+				{
+				doctorofficeComboBox.setEnabled(true);
+				}
+			}
 		});
 		
         ClinicHandler clinicHandler = new ClinicHandler("Clinic");
@@ -375,13 +383,21 @@ public class ReferralPanel extends BorderPanel {
 	private ComboBox createDoctorOfficeComboBox() {
 		doctorofficeComboBox = new ComboBox();
 		doctorofficeComboBox.setInvalidAllowed(false);
-		doctorofficeComboBox.setNullSelectionAllowed(false);
+		doctorofficeComboBox.setNullSelectionAllowed(true);
 		doctorofficeComboBox.setWidth("150px");
+		doctorofficeComboBox.setImmediate(true);
 		doctorofficeComboBox.addValueChangeListener(new Property.ValueChangeListener() {
 			private static final long serialVersionUID = 1L;
 			@Override
 			public void valueChange(ValueChangeEvent event) {
-					clinicComboBox.setEnabled(false);	
+				if(doctorofficeComboBox.getValue() != null)
+				{
+				clinicComboBox.setEnabled(false);	
+				}
+				else
+				{
+				clinicComboBox.setEnabled(true);
+				}	
 				}
 	        });
 		 
@@ -477,7 +493,7 @@ public class ReferralPanel extends BorderPanel {
 			notif.show(Page.getCurrent());}
 		else if (!dateField.getValue().before(dateField2.getValue())) {
 			Notification notif = new Notification("Input failure",
-					"Date From has to be before Date To",
+					"Date from has to be before date to",
 					Notification.Type.WARNING_MESSAGE);
         	notif.setDelayMsec(5000);
         	notif.setPosition(Position.BOTTOM_RIGHT);
@@ -505,7 +521,8 @@ public class ReferralPanel extends BorderPanel {
 				// the boolean valid referral is set true. if not, a notification
 				// is shown.
 		if (textReferralMessage.getValue().isEmpty())  {
-			Notification notif = new Notification("Input failure", "Text fields can't be empty.",
+			Notification notif = new Notification("Input failure", 
+					"Please write a referral letter.",
 					Notification.Type.WARNING_MESSAGE);
         	notif.setDelayMsec(5000);
         	notif.setPosition(Position.BOTTOM_RIGHT);
@@ -519,7 +536,7 @@ public class ReferralPanel extends BorderPanel {
 				// is shown.
 		if (doctorofficeComboBox.getValue() == null && clinicComboBox.getValue() == null)  {
 			Notification notif = new Notification("Input failure", 
-					"Select a Clinic or a Doctor Office from the dropdown menu.",
+					"Select a clinic or a doctor office from the dropdown menu.",
 					Notification.Type.WARNING_MESSAGE);
 	       	notif.setDelayMsec(5000);
 	       	notif.setPosition(Position.BOTTOM_RIGHT);
@@ -533,7 +550,7 @@ public class ReferralPanel extends BorderPanel {
 				// is shown.
 		if (doctorComboBox.getValue() == null)  {
 			Notification notif = new Notification("Input failure", 
-					"Select a Doctor from the dropdown menu.",
+					"Select a doctor from the dropdown menu.",
 					Notification.Type.WARNING_MESSAGE);
 			notif.setDelayMsec(5000);
 		   	notif.setPosition(Position.BOTTOM_RIGHT);
