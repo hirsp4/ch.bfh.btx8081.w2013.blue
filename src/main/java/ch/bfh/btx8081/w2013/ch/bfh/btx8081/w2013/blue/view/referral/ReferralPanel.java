@@ -331,6 +331,7 @@ public class ReferralPanel extends BorderPanel {
 	 */
 	private TextArea createMessageTextArea(){
 		textReferralMessage = new TextArea();
+		textReferralMessage.setWidth("340px");
 		textReferralMessage.setInputPrompt("Additional Notes");
 
 		return textReferralMessage;
