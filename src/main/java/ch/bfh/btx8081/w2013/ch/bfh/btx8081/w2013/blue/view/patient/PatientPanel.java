@@ -49,7 +49,7 @@ public class PatientPanel extends BorderPanel {
 
 	public PatientPanel() {
 		this.panel = new Panel(" Alert");
-		this.panel.setIcon(new ThemeResource("alarmKlein.jpg"));
+		this.panel.setIcon(new ThemeResource("AlertView-klein.png"));
 		this.panel.setStyleName("borderless");
 		this.panel.setSizeFull();
 		this.btn = createIndexButton();
@@ -82,11 +82,11 @@ public class PatientPanel extends BorderPanel {
 	 * @return Button
 	 */
 	public Button createIndexButton() {
-		btn = new Button("Index");
+		btn = new Button("Home");
 		btn.setWidth("100px");
 		btn.setHeight("75px");
 		btn.addStyleName("borderless icon-on-top");
-		btn.setIcon(new ThemeResource("index.png"));
+		btn.setIcon(new ThemeResource("IndexView-mittel.png"));
 		btn.setEnabled(false);
 		btn.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;
@@ -106,12 +106,11 @@ public class PatientPanel extends BorderPanel {
 	 * @return Button
 	 */
 	public Button createAddPatientButton() {
-		addPatientButton = new Button("Add Patient");
+		addPatientButton = new Button("Add state");
 		addPatientButton.setWidth("100px");
 		addPatientButton.setHeight("75px");
 		addPatientButton.addStyleName("borderless icon-on-top");
-		addPatientButton.addStyleName(ChameleonTheme.BUTTON_SMALL);
-		addPatientButton.setIcon(new ThemeResource("add_to_folder.png"));
+		addPatientButton.setIcon(new ThemeResource("AddState.png"));
 		addPatientButton.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;
 

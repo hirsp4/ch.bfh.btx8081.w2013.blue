@@ -44,7 +44,7 @@ public class AlertPanel extends BorderPanel{
 	
 	public AlertPanel(){
 		this.panel = new Panel(" Alert");
-		this.panel.setIcon(new ThemeResource("alarmKlein.jpg"));
+		this.panel.setIcon(new ThemeResource("AlertView-klein.png"));
 		this.panel.setStyleName("borderless");
 		this.panel.setSizeFull();
 		
@@ -144,11 +144,11 @@ public class AlertPanel extends BorderPanel{
 	 * @return BackButton
 	 */
 	public Button createIndexButton() {
-		Button btn1 = new Button("Index");
+		Button btn1 = new Button("Home");
 		btn1.setWidth("100px");
 		btn1.setHeight("75px");	
 		btn1.addStyleName("borderless icon-on-top");
-		btn1.setIcon(new ThemeResource("index.png"));
+		btn1.setIcon(new ThemeResource("IndexView-mittel.png"));
 		btn1.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID =1L;
 			public void buttonClick(ClickEvent event) {

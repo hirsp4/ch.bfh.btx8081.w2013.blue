@@ -30,7 +30,7 @@ public class IndexPanel extends BorderPanel {
 	public IndexPanel() {
 		this.panel = new Panel(" iDoctor");
 		this.panel.setStyleName("borderless");
-		this.panel.setIcon(new ThemeResource("doctor-icon.png"));
+		this.panel.setIcon(new ThemeResource("doctor-klein.png"));
 		this.panel.setSizeFull();
 		
 		FormLayout fLayout = new FormLayout();
@@ -53,7 +53,7 @@ public class IndexPanel extends BorderPanel {
 	public Button createAvButton(){
 		avButton = new Button("Alert");
 		avButton.addStyleName("borderless icon-on-top");
-		avButton.setIcon(new ThemeResource("alarm-icon.jpg"));
+		avButton.setIcon(new ThemeResource("AlertView.png"));
 		avButton.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;
 			public void buttonClick(ClickEvent event) {
@@ -66,7 +66,7 @@ public class IndexPanel extends BorderPanel {
 	private Button createDvButton(){
 		dvButton = new Button("Denial");
 		dvButton.addStyleName("borderless icon-on-top");
-		dvButton.setIcon(new ThemeResource("prescription_drugs.png"));
+		dvButton.setIcon(new ThemeResource("DenialView.png"));
 		dvButton.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;
 			public void buttonClick(ClickEvent event) {
@@ -79,7 +79,7 @@ public class IndexPanel extends BorderPanel {
 	private Button createRvButton(){
 		rvButton = new Button("Referral");
 		rvButton.addStyleName("borderless icon-on-top");
-		rvButton.setIcon(new ThemeResource("inscripcion_manual.png"));
+		rvButton.setIcon(new ThemeResource("ReferralView.png"));
 		rvButton.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;
 			public void buttonClick(ClickEvent event) {
@@ -92,7 +92,7 @@ public class IndexPanel extends BorderPanel {
 	private Button createPavButton(){
 		pavButton = new Button("Patient");
 		pavButton.addStyleName("borderless icon-on-top");
-		pavButton.setIcon(new ThemeResource("patient-icon.png"));
+		pavButton.setIcon(new ThemeResource("PatientView.png"));
 		pavButton.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;
 			public void buttonClick(ClickEvent event) {

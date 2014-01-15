@@ -71,7 +71,7 @@ public class ReferralPanel extends BorderPanel {
 	
 	public ReferralPanel() {
 		this.panel = new Panel(" Referral");
-		this.panel.setIcon(new ThemeResource("Text-Edit-icon.png"));
+		this.panel.setIcon(new ThemeResource("ReferralView-klein.png"));
 		this.panel.setStyleName("borderless");
 		this.panel.setSizeFull();
 		this.lab = new Label("Select a patient:");
@@ -131,11 +131,11 @@ public class ReferralPanel extends BorderPanel {
 	 * @return Button
 	 */
 	public Button createLinkIndexButton() {
-		IndexButton = new Button("Index");
+		IndexButton = new Button("Home");
 		IndexButton.setWidth("100px");
 		IndexButton.setHeight("75px");
 		IndexButton.addStyleName("borderless icon-on-top");
-		IndexButton.setIcon(new ThemeResource("index.png"));
+		IndexButton.setIcon(new ThemeResource("IndexView-mittel.png"));
 		IndexButton.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID =1L;
 			public void buttonClick(ClickEvent event) {
@@ -156,7 +156,7 @@ public class ReferralPanel extends BorderPanel {
 		AlarmButton.setWidth("100px");
 		AlarmButton.setHeight("75px");
 		AlarmButton.addStyleName("borderless icon-on-top");
-		AlarmButton.setIcon(new ThemeResource("alarm.jpg"));
+		AlarmButton.setIcon(new ThemeResource("AlertView-mittel.png"));
 		AlarmButton.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID =1L;
 			public void buttonClick(ClickEvent event) {
@@ -178,7 +178,7 @@ public class ReferralPanel extends BorderPanel {
 		SendReferralButton.setWidth("100px");
 		SendReferralButton.setHeight("75px");
 		SendReferralButton.addStyleName("borderless icon-on-top");
-		SendReferralButton.setIcon(new ThemeResource("email.jpg"));
+		SendReferralButton.setIcon(new ThemeResource("Send.png"));
 		SendReferralButton.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;
 			

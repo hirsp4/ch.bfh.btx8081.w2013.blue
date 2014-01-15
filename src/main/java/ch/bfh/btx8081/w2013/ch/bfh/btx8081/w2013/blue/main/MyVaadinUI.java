@@ -4,6 +4,7 @@ import javax.servlet.annotation.WebServlet;
 
 import ch.bfh.btx2081.w2013.ch.bfh.btx8081.w2013.blue.view.login.LoginView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.patientadmission.PatientAdmissionView;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.addpatient.AddPatientView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.alert.AlertView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.denial.DenialView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.index.IndexView;
@@ -75,6 +76,12 @@ public class MyVaadinUI extends UI
 		pav.setImmediate(true);
 		navi.addView("Patient Admission", pav);
 		navi.navigateTo("Patient Admission");
+	}
+	
+	public static void setAddPatientView(AddPatientView apv) {
+		apv.setImmediate(true);
+		navi.addView("Patient", apv);
+		navi.navigateTo("Patient");
 	}
 
 }

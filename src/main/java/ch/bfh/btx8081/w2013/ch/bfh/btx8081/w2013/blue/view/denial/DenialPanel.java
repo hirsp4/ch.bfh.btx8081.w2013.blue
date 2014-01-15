@@ -49,7 +49,7 @@ public class DenialPanel extends BorderPanel {
 
 	public DenialPanel() {
 		this.panel = new Panel(" Denial");
-		this.panel.setIcon(new ThemeResource("drug-icon.png"));
+		this.panel.setIcon(new ThemeResource("DenialView-klein.png"));
 		this.panel.setStyleName("borderless");
 		this.panel.setSizeFull();
 
@@ -178,11 +178,11 @@ public class DenialPanel extends BorderPanel {
 	 * @return Button
 	 */
 	public Button createIndexButton() {
-		Button btn = new Button("Index");
+		Button btn = new Button("Home");
 		btn.setWidth("100px");
 		btn.setHeight("75px");
 		btn.addStyleName("borderless icon-on-top");
-		btn.setIcon(new ThemeResource("index.png"));
+		btn.setIcon(new ThemeResource("IndexView-mittel.png"));
 		btn.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;
 
@@ -203,7 +203,7 @@ public class DenialPanel extends BorderPanel {
 		btn.setWidth("100px");
 		btn.setHeight("75px");
 		btn.addStyleName("borderless icon-on-top");
-		btn.setIcon(new ThemeResource("alarm.jpg"));
+		btn.setIcon(new ThemeResource("AlertView-mittel.png"));
 		btn.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;
 
@@ -228,7 +228,7 @@ public class DenialPanel extends BorderPanel {
 		btn.setWidth("100px");
 		btn.setHeight("75px");
 		btn.addStyleName("borderless icon-on-top");
-		btn.setIcon(new ThemeResource("add_to_folder.png"));
+		btn.setIcon(new ThemeResource("AddDenial.png"));
 		btn.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;
 
@@ -302,7 +302,7 @@ public class DenialPanel extends BorderPanel {
 					"Select a medicine.",
 					Notification.Type.WARNING_MESSAGE);
 			notif.setDelayMsec(1000);
-			notif.setPosition(Position.MIDDLE_LEFT);
+			notif.setPosition(Position.BOTTOM_RIGHT);
 			notif.show(Page.getCurrent());
 		} else
 			validMedicine = true;

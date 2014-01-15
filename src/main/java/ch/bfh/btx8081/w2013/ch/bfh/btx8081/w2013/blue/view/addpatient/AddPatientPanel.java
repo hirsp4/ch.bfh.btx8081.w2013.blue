@@ -1,21 +1,25 @@
-package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.patientadmission;
+package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.addpatient;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.PatientHandler;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.main.MyVaadinUI;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.patientadmission.PatientAdmissionView;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.person.Address;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.person.Patient;
-import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.addpatient.AddPatientView;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.statedesign.Dangerous;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.statedesign.Normal;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.statedesign.State;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.alert.AlertView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.denial.DenialView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.index.BorderPanel;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.index.IndexView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.referral.ReferralView;
 
-
-
 import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.GridLayout;
 import com.vaadin.ui.HorizontalLayout;
@@ -27,59 +31,50 @@ import com.vaadin.ui.TextField;
 
 /**
  * 
- * @author René Vielgut
+ * @author Rafael Kapp
  * 
  *         Shows a complete list of all patients stored in the database. After
  *         choosing a specific patient, information on it will be shown below in
  *         the corresponding textfields
  */
 
-public class PatientAdmissionPanel extends BorderPanel {
+public class AddPatientPanel extends BorderPanel {
 
 	private static final long serialVersionUID = 1L;
 
 	private PatientHandler patienthandler;
-	private ListSelect patientAboutList;
 	private TextField PatientSurName;
 	private TextField PatientFirstName;
 	private TextField PatientStreet;
 	private TextField PatientStreetNB;
 	private TextField PatientZIPCode;
 	private TextField PatientCity;
-	private TextField PatientGender;
+	private ComboBox PatientGender;
 	private TextField PatientBirthdate;
 	private TextField PatientPID;
-	private TextField PatientState;
+	private ComboBox PatientState;
 	private Label lab1;
 	private Panel panel;
 
+	private Button pavButton;
 
-
-	public PatientAdmissionPanel() {
+	public AddPatientPanel() {
 
 		this.patienthandler = new PatientHandler("Patient");
 
-		this.panel = new Panel(" Patient");
+		this.panel = new Panel(" Add new patient");
 		this.panel.setIcon(new ThemeResource("PatientView-klein.png"));
 		this.panel.setStyleName("borderless");
 		this.panel.setSizeFull();
 
-		this.lab1 = new Label("Select the patient:");
+		this.lab1 = new Label("Create the patient:");
 		this.lab1.addStyleName("h3");
 
 		FormLayout flayout = new FormLayout();
-		GridLayout glayout = new GridLayout(2,1);
-		GridLayout gl = new GridLayout(1,2);
-		
-		flayout.addComponent(lab1);	
-		glayout.addComponent(this.createListPatientAboutList());
-		gl.setSpacing(true);
-		gl.addComponent(createshowButton());
-		gl.addComponent(createAddPatientButton());
-		glayout.addComponent(gl);
-		glayout.setWidth("320px");
-		
-		GridLayout gridlayout2 = new GridLayout(2,8);
+
+		flayout.addComponent(lab1);
+
+		GridLayout gridlayout2 = new GridLayout(2, 8);
 		gridlayout2.setHeight("250px");
 		gridlayout2.setWidth("360px");
 
@@ -93,16 +88,15 @@ public class PatientAdmissionPanel extends BorderPanel {
 		gridlayout2.addComponent(this.createBDateField());
 		gridlayout2.addComponent(this.createPIDField());
 		gridlayout2.addComponent(this.createStateField());
-		flayout.addComponent(glayout);
 		flayout.addComponent(gridlayout2);
-	
+
 		HorizontalLayout hlayoutButtons = new HorizontalLayout();
 
-		hlayoutButtons.setWidth("300px");
+		hlayoutButtons.setWidth("340px");
 		hlayoutButtons.addComponent(this.createIndexButton());
+		hlayoutButtons.addComponent(this.createPavButton());
+		hlayoutButtons.addComponent(this.createaddPatientButton());
 		hlayoutButtons.addComponent(this.createAlertButton());
-		hlayoutButtons.addComponent(this.createDenialButton());
-		hlayoutButtons.addComponent(this.createReferralButton());
 		flayout.addComponent(hlayoutButtons);
 
 		flayout.setSizeUndefined();
@@ -132,8 +126,10 @@ public class PatientAdmissionPanel extends BorderPanel {
 		return PatientStreet;
 	}
 
-	private TextField createGenderField() {
-		PatientGender = new TextField("Gender:");
+	private ComboBox createGenderField() {
+		PatientGender = new ComboBox("Gender:");
+		PatientGender.addItem("Female");
+		PatientGender.addItem("Male");
 		return PatientGender;
 	}
 
@@ -151,99 +147,74 @@ public class PatientAdmissionPanel extends BorderPanel {
 		PatientFirstName = new TextField("Forename:");
 		return PatientFirstName;
 	}
-	
+
 	private TextField createPIDField() {
 		PatientPID = new TextField("PID:");
 		return PatientPID;
 	}
-	
-	private TextField createStateField() {
-		PatientState = new TextField("State:");
+
+	private ComboBox createStateField() {
+		PatientState = new ComboBox("State:");
+		PatientState.addItem("DANGEROUS");
+		PatientState.addItem("NORMAL");
 		return PatientState;
 	}
-	
-	
-	private ListSelect createListPatientAboutList() {
-		this.patientAboutList = new ListSelect();
-		this.patientAboutList.setInvalidAllowed(false);
-		this.patientAboutList.setNullSelectionAllowed(false);
 
-		ArrayList<Patient> list = this.patienthandler.getAll();
+	public Button createaddPatientButton() {
+		Button addPatientBtn = new Button("Add");
+		addPatientBtn.setWidth("100px");
+		addPatientBtn.setHeight("75px");
+		addPatientBtn.addStyleName("borderless icon-on-top");
+		addPatientBtn.setIcon(new ThemeResource("add.png"));
+		addPatientBtn.addClickListener(new Button.ClickListener() {
 
-		for (int i = 0; i < list.size(); i++) {
-			this.patientAboutList.addItem(list.get(i).toString());
-
-		}
-
-		return patientAboutList;
-	}
-	
-	public Button createAddPatientButton() {
-		Button AddPatientButton = new Button("Add new patient");
-		AddPatientButton.setWidth("100px");
-		AddPatientButton.setHeight("75px");
-		AddPatientButton.addStyleName("borderless icon-on-top");
-		AddPatientButton.setIcon(new ThemeResource("add.png"));
-		AddPatientButton.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;
 
 			public void buttonClick(ClickEvent event) {
-				MyVaadinUI.setAddPatientView(new AddPatientView());
-			}
-		});
-		return AddPatientButton;
-	}
-
-	
-	public Button createshowButton() {
-		Button ShowButton = new Button("Show details");
-		ShowButton.setWidth("100px");
-		ShowButton.setHeight("75px");
-		ShowButton.addStyleName("borderless icon-on-top");
-		ShowButton.setIcon(new ThemeResource("show.png"));
-		ShowButton.addClickListener(new Button.ClickListener() {
-			private static final long serialVersionUID = 1L;
-
-			public void buttonClick(ClickEvent event) {
-				
-				try {
-					Patient patient = patienthandler.getPatient(
-							PatientHandler.PID,
-							((String) patientAboutList.getValue())
-									.split(" ")[2]);
-					PatientSurName.setValue(patient.getName());
-					PatientFirstName.setValue(patient.getForeName());
-					PatientStreet.setValue(patient.getAddress().getStreet());
-					PatientStreetNB.setValue(Integer.toString(patient.getAddress().getStreetNr()));
-					PatientZIPCode.setValue(Integer.toString(patient
-							.getAddress().getZip()));
-					PatientCity.setValue(patient.getAddress().getCity());
-					PatientGender.setValue(Character.toString(patient.getGender()));
-					PatientBirthdate.setValue(patient.getBirthdate());
-					PatientPID.setValue(Integer.toString(patient.getPid()));
-					PatientState.setValue(patient.getState().getStateDescription());
-				} catch (Exception e) {
-
+				Patient p = null;
+				State s = null;
+				if (PatientState.getValue().equals("DANGEROUS")) {
+					s = new Dangerous(p);
+				} else {
+					s = new Normal(p);
 				}
+
+				p = new Patient(Integer.parseInt(PatientPID.getValue()),
+						PatientSurName.getValue(), PatientFirstName.getValue(),
+						new Address(PatientStreet.getValue(), Integer
+								.parseInt(PatientStreetNB.getValue()), Integer
+								.parseInt(PatientZIPCode.getValue()),
+								PatientCity.getValue()), ((String)PatientGender
+								.getValue()).charAt(0), PatientBirthdate
+								.getValue(), s);
+
+				try {
+					patienthandler.addPatient(p);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				System.out.println("clicked");
+
+				MyVaadinUI.setPatientAdmissionView(new PatientAdmissionView());
 			}
 		});
-		return ShowButton;
+		return addPatientBtn;
 	}
 
-	public Button createDenialButton() {
-		Button DenialButton = new Button("Denial");
-		DenialButton.setWidth("100px");
-		DenialButton.setHeight("75px");
-		DenialButton.addStyleName("borderless icon-on-top");
-		DenialButton.setIcon(new ThemeResource("DenialView-mittel.png"));
-		DenialButton.addClickListener(new Button.ClickListener() {
+	private Button createPavButton(){
+		pavButton = new Button("Back");
+		pavButton.setWidth("100px");
+		pavButton.setHeight("75px");
+		pavButton.addStyleName("borderless icon-on-top");
+		pavButton.setIcon(new ThemeResource("back.png"));
+		pavButton.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;
-
 			public void buttonClick(ClickEvent event) {
-				MyVaadinUI.setDenialView(new DenialView());
+				MyVaadinUI.setPatientAdmissionView(new PatientAdmissionView());
 			}
 		});
-		return DenialButton;
+		return pavButton;
 	}
 
 	public Button createAlertButton() {
@@ -266,27 +237,6 @@ public class PatientAdmissionPanel extends BorderPanel {
 
 	}
 
-	public Button createReferralButton() {
-		Button ReferralButton = new Button("Referral");
-		ReferralButton.setWidth("100px");
-		ReferralButton.setHeight("75px");
-		ReferralButton.addStyleName("borderless icon-on-top");
-		ReferralButton.setIcon(new ThemeResource(
-				"ReferralView-mittel.png"));
-		ReferralButton.addClickListener(new Button.ClickListener() {
-
-			private static final long serialVersionUID = 1L;
-
-			public void buttonClick(ClickEvent event) {
-				MyVaadinUI.setReferralView(new ReferralView());
-
-			}
-		});
-
-		return ReferralButton;
-
-	}
-	
 	public Button createIndexButton() {
 		Button btn = new Button("Home");
 		btn.setWidth("100px");
@@ -302,4 +252,5 @@ public class PatientAdmissionPanel extends BorderPanel {
 		});
 		return btn;
 	}
+	
 }
