@@ -228,7 +228,7 @@ public class DenialPanel extends BorderPanel {
 		btn.setWidth("100px");
 		btn.setHeight("75px");
 		btn.addStyleName("borderless icon-on-top");
-		btn.setIcon(new ThemeResource("add-icon.png"));
+		btn.setIcon(new ThemeResource("add_to_folder.png"));
 		btn.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;
 

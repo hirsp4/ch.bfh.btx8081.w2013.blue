@@ -1,4 +1,4 @@
-1234;Hegnauer;Jonas;Gostel;11;3235;Erlach;m;18.09.1975;1234;NORMAL
+1234;Hegnauer;Jonas;Gostel;11;3235;Erlach;m;18.09.1975;1234;DANGEROUS
 1333;Baumgartner;Andreas;Gotthardstrasse;12;4054;Basel;m;13.03.1951;1333;NORMAL
 1343;Meier;Hans;Nidaugasse;3;2502;Biel;m;18.01.1944;1343;NORMAL
 2223;Mueller;Josef;Bahnhofstrasse;17;8000;Zuerich;m;07.02.1948;2223;NORMAL

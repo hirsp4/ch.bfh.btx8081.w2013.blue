@@ -111,7 +111,7 @@ public class PatientPanel extends BorderPanel {
 		addPatientButton.setHeight("75px");
 		addPatientButton.addStyleName("borderless icon-on-top");
 		addPatientButton.addStyleName(ChameleonTheme.BUTTON_SMALL);
-		addPatientButton.setIcon(new ThemeResource("Add-user.png"));
+		addPatientButton.setIcon(new ThemeResource("add_to_folder.png"));
 		addPatientButton.addClickListener(new Button.ClickListener() {
 			private static final long serialVersionUID = 1L;
 
