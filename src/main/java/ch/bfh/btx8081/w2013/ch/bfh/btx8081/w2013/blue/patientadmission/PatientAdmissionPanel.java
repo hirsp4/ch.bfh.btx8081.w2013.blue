@@ -30,7 +30,6 @@ import com.vaadin.ui.TextField;
  *         Shows a complete list of all patients stored in the database. After
  *         choosing a specific patient, information on it will be shown below in
  *         the corresponding textfields
- * 
  */
 
 public class PatientAdmissionPanel extends BorderPanel {
