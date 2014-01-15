@@ -48,10 +48,11 @@ public class PatientAdmissionPanel extends BorderPanel {
 	private TextField PatientGender;
 	private TextField PatientBirthdate;
 	private TextField PatientPID;
+	private TextField PatientState;
 	private Label lab1;
 	private Panel panel;
 
-	private TextField PatientState;
+
 
 	public PatientAdmissionPanel() {
 

@@ -256,7 +256,7 @@ public class DenialPanel extends BorderPanel {
 
 	/**
 	 * This private method returns true if and only if all input is correct. It
-	 * checks the dateField and the medicineComboBox, if they are filled.
+	 * checks the patientComboBox, dateField and the medicineComboBox, if they are filled.
 	 * 
 	 * @return boolean
 	 */
@@ -269,7 +269,7 @@ public class DenialPanel extends BorderPanel {
 		
 		
 		// check whether one Item of the Patient ComboBox is selected. if yes,
-					// the boolean valid referral is set true. if not, a notification
+					// the boolean validPatient is set true. if not, a notification
 					// is shown.
 		if (patientComboBox.getValue() == null)  {
 			Notification notif = new Notification("Input failure", 
@@ -286,7 +286,7 @@ public class DenialPanel extends BorderPanel {
 		// is shown.
 		if (dateField.getValue() == null) {
 			Notification notif = new Notification("Input failure",
-					"Please select a date.",
+					"Select a date.",
 					Notification.Type.WARNING_MESSAGE);
 			notif.setDelayMsec(1000);
 			notif.setPosition(Position.BOTTOM_RIGHT);
@@ -299,7 +299,7 @@ public class DenialPanel extends BorderPanel {
 		// is shown.
 		if (medicineComboBox.getValue() == null) {
 			Notification notif = new Notification("Input failure",
-					"Please select a medicine.",
+					"Select a medicine.",
 					Notification.Type.WARNING_MESSAGE);
 			notif.setDelayMsec(1000);
 			notif.setPosition(Position.MIDDLE_LEFT);
