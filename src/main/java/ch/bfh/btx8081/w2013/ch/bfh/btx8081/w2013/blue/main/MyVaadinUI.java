@@ -3,12 +3,12 @@ package ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.main;
 import javax.servlet.annotation.WebServlet;
 
 import ch.bfh.btx2081.w2013.ch.bfh.btx8081.w2013.blue.view.login.LoginView;
-import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.patientadmission.PatientAdmissionView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.addpatient.AddPatientView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.alert.AlertView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.denial.DenialView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.index.IndexView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.patient.PatientView;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.patientadmission.PatientAdmissionView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.referral.ReferralView;
 
 import com.vaadin.annotations.Push;

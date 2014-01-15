@@ -6,4 +6,4 @@
 3333;Roche;Isabel;Kramgasse;71;3011;Bern;w;19.06.1978;3333;NORMAL
 8333;Mathys;Kim;Marktgasse;31;3011;Bern;w;13.03.1991;8333;NORMAL
 9003;Baumann;Sandra;Mittelstrasse;47;3012;Bern;w;14.09.1984;9003;NORMAL
-9171;Keller;Iris;Dornacherstrasse;76;4053;Basel;w;11.08.1964;9171;DANGEROUS
+9171;Unser;Patient;Wohnt;4;8191;IN;w;11.08.1999;9171;NORMAL
