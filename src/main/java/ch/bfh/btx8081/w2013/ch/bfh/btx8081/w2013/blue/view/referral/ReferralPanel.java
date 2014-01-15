@@ -347,7 +347,7 @@ public class ReferralPanel extends BorderPanel {
 	private ComboBox createClinicComboBox(){
 		clinicComboBox = new ComboBox();
 		clinicComboBox.setInvalidAllowed(false);
-		clinicComboBox.setNullSelectionAllowed(false);
+		clinicComboBox.setNullSelectionAllowed(true);
 		clinicComboBox.setWidth("150px");
 		clinicComboBox.setImmediate(true);
 		clinicComboBox.addValueChangeListener(new Property.ValueChangeListener() {
@@ -383,7 +383,7 @@ public class ReferralPanel extends BorderPanel {
 	private ComboBox createDoctorOfficeComboBox() {
 		doctorofficeComboBox = new ComboBox();
 		doctorofficeComboBox.setInvalidAllowed(false);
-		doctorofficeComboBox.setNullSelectionAllowed(false);
+		doctorofficeComboBox.setNullSelectionAllowed(true);
 		doctorofficeComboBox.setWidth("150px");
 		doctorofficeComboBox.setImmediate(true);
 		doctorofficeComboBox.addValueChangeListener(new Property.ValueChangeListener() {
