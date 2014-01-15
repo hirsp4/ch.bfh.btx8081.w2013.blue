@@ -348,13 +348,21 @@ public class ReferralPanel extends BorderPanel {
 		clinicComboBox = new ComboBox();
 		clinicComboBox.setInvalidAllowed(false);
 		clinicComboBox.setNullSelectionAllowed(false);
-		clinicComboBox.setWidth("150px");		
+		clinicComboBox.setWidth("150px");
+		clinicComboBox.setImmediate(true);
 		clinicComboBox.addValueChangeListener(new Property.ValueChangeListener() {
 			private static final long serialVersionUID = 1L;
 			@Override
 			public void valueChange(ValueChangeEvent event) {
-					doctorofficeComboBox.setEnabled(false);	
+				if(clinicComboBox.getValue() != null)
+				{
+				doctorofficeComboBox.setEnabled(false);	
 				}
+				else
+				{
+				doctorofficeComboBox.setEnabled(true);
+				}
+			}
 		});
 		
         ClinicHandler clinicHandler = new ClinicHandler("Clinic");
@@ -377,11 +385,19 @@ public class ReferralPanel extends BorderPanel {
 		doctorofficeComboBox.setInvalidAllowed(false);
 		doctorofficeComboBox.setNullSelectionAllowed(false);
 		doctorofficeComboBox.setWidth("150px");
+		doctorofficeComboBox.setImmediate(true);
 		doctorofficeComboBox.addValueChangeListener(new Property.ValueChangeListener() {
 			private static final long serialVersionUID = 1L;
 			@Override
 			public void valueChange(ValueChangeEvent event) {
-					clinicComboBox.setEnabled(false);	
+				if(doctorofficeComboBox.getValue() != null)
+				{
+				clinicComboBox.setEnabled(false);	
+				}
+				else
+				{
+				clinicComboBox.setEnabled(true);
+				}	
 				}
 	        });
 		 
