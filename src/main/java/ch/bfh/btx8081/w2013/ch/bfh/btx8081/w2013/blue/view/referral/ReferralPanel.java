@@ -333,7 +333,7 @@ public class ReferralPanel extends BorderPanel {
 	private TextArea createMessageTextArea(){
 		textReferralMessage = new TextArea();
 		textReferralMessage.setWidth("340px");
-		textReferralMessage.setInputPrompt("Additional Notes");
+		textReferralMessage.setInputPrompt("Referral letter");
 
 		return textReferralMessage;
 	}
@@ -477,7 +477,7 @@ public class ReferralPanel extends BorderPanel {
 			notif.show(Page.getCurrent());}
 		else if (!dateField.getValue().before(dateField2.getValue())) {
 			Notification notif = new Notification("Input failure",
-					"Date From has to be before Date To",
+					"Date from has to be before date to",
 					Notification.Type.WARNING_MESSAGE);
         	notif.setDelayMsec(5000);
         	notif.setPosition(Position.BOTTOM_RIGHT);
@@ -505,7 +505,8 @@ public class ReferralPanel extends BorderPanel {
 				// the boolean valid referral is set true. if not, a notification
 				// is shown.
 		if (textReferralMessage.getValue().isEmpty())  {
-			Notification notif = new Notification("Input failure", "Text fields can't be empty.",
+			Notification notif = new Notification("Input failure", 
+					"Please write a referral letter.",
 					Notification.Type.WARNING_MESSAGE);
         	notif.setDelayMsec(5000);
         	notif.setPosition(Position.BOTTOM_RIGHT);
@@ -519,7 +520,7 @@ public class ReferralPanel extends BorderPanel {
 				// is shown.
 		if (doctorofficeComboBox.getValue() == null && clinicComboBox.getValue() == null)  {
 			Notification notif = new Notification("Input failure", 
-					"Select a Clinic or a Doctor Office from the dropdown menu.",
+					"Select a clinic or a doctor office from the dropdown menu.",
 					Notification.Type.WARNING_MESSAGE);
 	       	notif.setDelayMsec(5000);
 	       	notif.setPosition(Position.BOTTOM_RIGHT);
@@ -533,7 +534,7 @@ public class ReferralPanel extends BorderPanel {
 				// is shown.
 		if (doctorComboBox.getValue() == null)  {
 			Notification notif = new Notification("Input failure", 
-					"Select a Doctor from the dropdown menu.",
+					"Select a doctor from the dropdown menu.",
 					Notification.Type.WARNING_MESSAGE);
 			notif.setDelayMsec(5000);
 		   	notif.setPosition(Position.BOTTOM_RIGHT);
