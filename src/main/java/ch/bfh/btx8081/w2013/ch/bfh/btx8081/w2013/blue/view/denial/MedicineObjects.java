@@ -21,9 +21,9 @@ public class MedicineObjects {
 	String medicine;
 
 	static {
-		Medicines.add("Citaloprom");
+		Medicines.add("Citalopram");
 		Medicines.add("Risperidon");
-		Medicines.add("Holdol");
+		Medicines.add("Haldol");
 		Medicines.add("Distraneurin");
 		Medicines.add("Temesta");
 		Medicines.add("Cipralex");

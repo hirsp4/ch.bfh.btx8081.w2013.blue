@@ -244,6 +244,7 @@ public class ReferralPanel extends BorderPanel {
 		referralComboBox = new ComboBox();
 		referralComboBox.addItem("Hospital treatment");
 		referralComboBox.addItem("Diagnosis confirmation");
+		referralComboBox.addItem("Therapy");
 		referralComboBox.setInvalidAllowed(false);
 		referralComboBox.setNullSelectionAllowed(false);
 		return referralComboBox;
