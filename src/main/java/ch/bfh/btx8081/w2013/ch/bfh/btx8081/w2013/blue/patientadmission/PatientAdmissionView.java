@@ -21,8 +21,8 @@ public class PatientAdmissionView extends VerticalLayout implements View{
 	public PatientAdmissionView(){
 		setMargin(true);
 		PatientAdmissionPanel patientAdmissionPanel = new PatientAdmissionPanel();
-		addComponent(patientAdmissionPanel); // create the denial panel and
-										 // add it to the denial view.
+		addComponent(patientAdmissionPanel); // create the Patient panel and
+										 // add it to the patient admission view.
 		this.setComponentAlignment(patientAdmissionPanel, Alignment.TOP_CENTER);
 	}
 	

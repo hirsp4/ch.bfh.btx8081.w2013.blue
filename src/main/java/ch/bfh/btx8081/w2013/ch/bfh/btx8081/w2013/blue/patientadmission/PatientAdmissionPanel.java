@@ -51,6 +51,8 @@ public class PatientAdmissionPanel extends BorderPanel {
 	private Label lab1;
 	private Panel panel;
 
+	private TextField PatientState;
+
 	public PatientAdmissionPanel() {
 
 		this.patienthandler = new PatientHandler("Patient");
@@ -84,6 +86,7 @@ public class PatientAdmissionPanel extends BorderPanel {
 		gridlayout2.addComponent(this.createGenderField());
 		gridlayout2.addComponent(this.createBDateField());
 		gridlayout2.addComponent(this.createPIDField());
+		gridlayout2.addComponent(this.createStateField());
 		flayout.addComponent(glayout);
 		flayout.addComponent(gridlayout2);
 	
@@ -134,18 +137,23 @@ public class PatientAdmissionPanel extends BorderPanel {
 	}
 
 	private TextField createSurNameField() {
-		PatientSurName = new TextField("Surname:");
+		PatientSurName = new TextField("Name:");
 		return PatientSurName;
 	}
 
 	private TextField createFirstNameField() {
-		PatientFirstName = new TextField("Firstname:");
+		PatientFirstName = new TextField("Forename:");
 		return PatientFirstName;
 	}
 	
 	private TextField createPIDField() {
 		PatientPID = new TextField("PID:");
 		return PatientPID;
+	}
+	
+	private TextField createStateField() {
+		PatientState = new TextField("State:");
+		return PatientState;
 	}
 	
 	
@@ -187,6 +195,7 @@ public class PatientAdmissionPanel extends BorderPanel {
 					PatientGender.setValue(Character.toString(patient.getGender()));
 					PatientBirthdate.setValue(patient.getBirthdate());
 					PatientPID.setValue(Integer.toString(patient.getPid()));
+					PatientState.setValue(patient.getState().getStateDescription());
 				} catch (Exception e) {
 
 				}
