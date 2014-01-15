@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.database.PatientHandler;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.main.MyVaadinUI;
-import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.patientadmission.PatientAdmissionView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.person.Address;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.person.Patient;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.statedesign.Dangerous;
@@ -15,6 +14,7 @@ import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.alert.AlertView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.denial.DenialView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.index.BorderPanel;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.index.IndexView;
+import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.patientadmission.PatientAdmissionView;
 import ch.bfh.btx8081.w2013.ch.bfh.btx8081.w2013.blue.view.referral.ReferralView;
 
 import com.vaadin.server.ThemeResource;
