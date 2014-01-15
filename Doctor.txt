@@ -1,4 +1,4 @@
 2010;Vetsch;Karin;Spitalstrasse;22;4000;Guemligen;w;09.09.1940;2010;Medizentrum Guemligen
-2201;Fritzel;Horst;Strasse;3;4302;Ort;m;09.12.1950;2201;Medizentrum Ins
+2201;Gerber;David;Wolfbachstrasse;3;4302;Augst;m;09.12.1950;2201;Medizentrum Ins
 3141;Fischer;Theres;Ackerweg;45;2502;Biel;w;05:03:1944;3141;Praxis Dr. Fischer - Biel
 4532;Wyler;Robert;Rigistrasse;31;4054;Basel;m;07.09.1960;4532;Praxis Dr. Wyler - Basel
